@@ -9,7 +9,6 @@ function FichaRPG() {
   const [pericias, setPericias] = useState("");
   const [especializacoes, setEspecializacoes] = useState("");
   const [detalhes, setDetalhes] = useState("");
-  const [dadosAleatorios, setDadosAleatorios] = useState(null);
 
   const [d20, setD20] = useState(null);
   const [d4, setD4] = useState(null);
@@ -23,16 +22,6 @@ function FichaRPG() {
     setD6(Math.floor(Math.random() * 6) + 1);
     setD12(Math.floor(Math.random() * 12) + 1);
     setD10(Math.floor(Math.random() * 10) + 1);
-  };
-
-  const gerarDadosAleatorios = () => {
-    const dados = {
-      dado1: Math.floor(Math.random() * 20) + 1,
-      dado2: Math.floor(Math.random() * 6) + 1,
-      dado3: Math.floor(Math.random() * 12) + 1,
-      dado4: Math.floor(Math.random() * 10) + 1,
-    };
-    setDadosAleatorios(dados);
   };
 
   return (
