@@ -1,0 +1,129 @@
+body {
+  font-family: "FIEMGFont", sans-serif;
+  text-align: center;
+  background-color: #d2dee5;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
+  background-color: #043c73;
+  padding: 20px;
+  color: white;
+}
+
+.logo-senai {
+  height: 300px;
+  /* Aumentando o tamanho do logo */
+  width: auto;
+  /* Largura ajustável */
+  margin-bottom: 10px;
+}
+
+.tabuleiro {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 10px;
+  max-width: 330px;
+  margin: 0 auto;
+  margin-top: 50px;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.linha {
+  display: flex;
+}
+
+.quadrado {
+  background: none;
+  border: 2px solid #547b9a;
+  color: #000;
+  font-size: 36px;
+  font-weight: bold;
+  height: 100px;
+  width: 100px;
+  outline: none;
+  position: relative;
+  z-index: 1;
+}
+
+.quadrado::before {
+  content: attr(data-content);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.X {
+  color: #FF0000;
+}
+
+.O {
+  color: #0000FF;
+}
+
+.status {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #043c73;
+}
+
+.button {
+  background-color: #043c73;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.button:hover {
+  background-color: #6b90ac;
+}
+
+.wins {
+  font-size: 36px;
+}
+
+.wins .vitoria-x {
+  color: #FF0000;
+}
+
+.wins .vitoria-o {
+  color: #0000FF;
+}
+
+.choose-player label {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #043c73;
+}
+
+.choose-player input,
+.choose-player select {
+  font-size: 16px;
+  margin-top: 5px;
+  padding: 5px;
+}
+
+.App-footer {
+  background-color: #043c73;
+  color: white;
+  padding: 10px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  left: 0; /* Adiciona essa linha para garantir a fixação no canto esquerdo */
+}
+
