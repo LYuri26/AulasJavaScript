@@ -108,12 +108,13 @@ function Tabuleiro() {
             <div className="escolher-jogador">
                 <label>
                     Escolha o jogador (X ou O):
-                    <input
-                        type="text"
+                    <select
                         value={jogador}
                         onChange={(e) => setJogador(e.target.value)}
-                        maxLength="1"
-                    />
+                    >
+                        <option value="X">X</option>
+                        <option value="O">O</option>
+                    </select>
                 </label>
             </div>
             <div className="jogar-contra-ia">

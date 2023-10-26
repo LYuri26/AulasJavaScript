@@ -15,18 +15,16 @@ body {
 }
 
 .logo-senai {
-  height: 300px;
-  /* Aumentando o tamanho do logo */
-  width: auto;
-  /* Largura ajustável */
+  max-width: 100%;
+  height: auto;
   margin-bottom: 10px;
 }
 
 .tabuleiro {
   display: grid;
-  grid-template-columns: repeat(3, 100px);
+  grid-template-columns: repeat(3, 30vw);
   grid-gap: 10px;
-  max-width: 330px;
+  max-width: 90vw;
   margin: 0 auto;
   margin-top: 50px;
   border: 2px solid transparent;
@@ -41,21 +39,24 @@ body {
   background: none;
   border: 2px solid #547b9a;
   color: #000;
-  font-size: 36px;
+  font-size: 4vw;
   font-weight: bold;
-  height: 100px;
-  width: 100px;
+  height: 8vw;
+  width: 8vw;
   outline: none;
-  position: relative;
+  position:relative;
   z-index: 1;
+  margin: 0px; /* Adiciona uma margem de 10 pixels */
 }
 
 .quadrado::before {
   content: attr(data-content);
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  margin: 1px; /* Adiciona uma margem de 10 pixels */
+
 }
 
 .X {
@@ -124,6 +125,5 @@ body {
   bottom: 0;
   width: 100%;
   text-align: center;
-  left: 0; /* Adiciona essa linha para garantir a fixação no canto esquerdo */
+  left: 0;
 }
-
