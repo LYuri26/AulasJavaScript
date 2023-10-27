@@ -1,7 +1,7 @@
 /* Estilizando o formulário */
 form {
-  margin: auto;
-  padding: 30px;
+  margin: 10px;
+  padding: 60px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -20,10 +20,11 @@ label {
 
 input {
   width: calc(100% - 16px);
-  padding: 8px;
+  padding: 8px 100px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  margin: 2px
 }
 
 /* Estilizando o botão de registro */
@@ -52,5 +53,13 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
+  margin: 5px;
+}
+
+.mensagem {
+  background-color: #4caf50;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  margin: 15px;
 }

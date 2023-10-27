@@ -37,7 +37,6 @@ db.connect((err) => {
       rua VARCHAR(255),
       bairro VARCHAR(255),
       estado VARCHAR(50),
-      pais VARCHAR(50),
       email VARCHAR(255)
     )`, (err) => {
             if (err) {
@@ -53,10 +52,10 @@ app.listen(5000, () => {
 });
 
 app.post('/register', (req, res) => {
-    const { nome, idade, sexo, dataNascimento, rua, bairro, estado, pais, email } = req.body;
+    const { nome, idade, sexo, dataNascimento, rua, bairro, estado, email } = req.body;
 
-    const sql = `INSERT INTO users (nome, idade, sexo, data_nascimento, rua, bairro, estado, pais, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-    const values = [nome, idade, sexo, dataNascimento, rua, bairro, estado, pais, email];
+    const sql = `INSERT INTO users (nome, idade, sexo, data_nascimento, rua, bairro, estado, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+    const values = [nome, idade, sexo, dataNascimento, rua, bairro, estado, email];
 
     db.query(sql, values, (err, result) => {
         if (err) {
