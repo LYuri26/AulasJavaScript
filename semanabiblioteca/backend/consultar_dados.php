@@ -1,8 +1,10 @@
 <?php
+header("Access-Control-Allow-Origin: *"); // Permite todas as origens (não recomendado para produção)
+
 include 'conexao.php'; // Incluindo o arquivo de conexão
 
 // Consulta SQL para obter os dados dos jogadores
-$sql = "SELECT * FROM jogadores";
+$sql = "SELECT * FROM jogadores ORDER BY pontuacao DESC";
 
 $result = $conn->query($sql);
 
@@ -19,5 +21,4 @@ if ($result->num_rows > 0) {
 }
 
 $conn->close();
-
 ?>

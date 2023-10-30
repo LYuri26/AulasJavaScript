@@ -17,6 +17,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute() === TRUE) {
         echo "Dados inseridos com sucesso!";
+
+        // Calcular e atribuir a posição
+        $result = $conn->query("SELECT * FROM jogadores ORDER BY pontuacao DESC");
+        $posicao = 1;
+        while ($row = $result->fetch_assoc()) {
+            $id = $row["id"];
+            $conn->query("UPDATE jogadores SET posicao=$posicao WHERE id=$id");
+            $posicao++;
+        }
     } else {
         echo "Erro ao inserir dados: " . $stmt->error;
     }

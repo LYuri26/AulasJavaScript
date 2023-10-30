@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Classificação</title>
+</head>
+<body>
+    <h1>Tabela de Classificação</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Posição</th>
+                <th>Nome</th>
+                <th>Pontuação</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-corpo">
+            <!-- Dados serão carregados aqui -->
+        </tbody>
+    </table>
+
+    <script>
+        // Função para carregar os dados da tabela
+        function carregarTabela() {
+            fetch("http://localhost:3000/backend/consultar_dados.php")
+                .then(response => response.json())
+                .then(data => {
+                    const tabelaCorpo = document.getElementById("tabela-corpo");
+                    tabelaCorpo.innerHTML = "";
+
+                    data.forEach(jogador => {
+                        const linha = document.createElement("tr");
+                        linha.innerHTML = `
+                            <td>${jogador.posicao}</td>
+                            <td>${jogador.nome}</td>
+                            <td>${jogador.pontuacao}</td>
+                        `;
+                        tabelaCorpo.appendChild(linha);
+                    });
+                })
+                .catch(error => console.error("Erro:", error));
+        }
+
+        // Carregar a tabela quando a página carregar
+        window.onload = carregarTabela;
+    </script>
+</body>
+</html>

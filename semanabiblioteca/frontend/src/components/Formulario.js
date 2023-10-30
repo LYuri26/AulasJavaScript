@@ -1,25 +1,34 @@
 import React, { useState } from "react";
 
-const Formulario = () => {
+const Questionario = () => {
   const [nome, setNome] = useState("");
-  const [pontuacao, setPontuacao] = useState("");
+  const [pergunta, setPergunta] = useState("Qual é a capital da França?");
+  const [opcoes, setOpcoes] = useState([
+    { texto: "Nova York", valor: 0 },
+    { texto: "Londres", valor: 0 },
+    { texto: "Paris", valor: 10 },
+    { texto: "Roma", valor: 0 },
+  ]);
+  const [respostaSelecionada, setRespostaSelecionada] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Enviar os dados para o backend
-    fetch("http://localhost:3000/backend/inserir_dados.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: `nome=${nome}&pontuacao=${pontuacao}`,
-    })
-      .then((response) => response.text())
-      .then((data) => {
-        console.log(data); // Exibe a resposta do backend
+    if (respostaSelecionada !== null && nome.trim() !== "") {
+      // Enviar os dados para o backend
+      fetch("http://localhost:3000/backend/inserir_dados.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `nome=${nome}&pergunta=${pergunta}&opcao=${opcoes[respostaSelecionada].texto}&pontuacao=${opcoes[respostaSelecionada].valor}`,
       })
-      .catch((error) => console.error("Erro:", error));
+        .then((response) => response.text())
+        .then((data) => {
+          console.log(data); // Exibe a resposta do backend
+        })
+        .catch((error) => console.error("Erro:", error));
+    }
   };
 
   return (
@@ -35,18 +44,26 @@ const Formulario = () => {
         </label>
       </div>
       <div>
-        <label>
-          Pontuação:
-          <input
-            type="number"
-            value={pontuacao}
-            onChange={(e) => setPontuacao(e.target.value)}
-          />
-        </label>
+        <p>{pergunta}</p>
       </div>
-      <button type="submit">Enviar</button>
+      <div>
+        {opcoes.map((opcao, index) => (
+          <label key={index}>
+            <input
+              type="radio"
+              value={index}
+              checked={respostaSelecionada === index}
+              onChange={() => setRespostaSelecionada(index)}
+            />
+            {opcao.texto}
+          </label>
+        ))}
+      </div>
+      <button type="submit" disabled={respostaSelecionada === null || nome.trim() === ""}>
+        Enviar
+      </button>
     </form>
   );
 };
 
-export default Formulario;
+export default Questionario;
