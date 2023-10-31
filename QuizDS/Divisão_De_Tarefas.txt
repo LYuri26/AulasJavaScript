@@ -1,0 +1,26 @@
+Brenda: Vamos criar a página principal do menu em HTML. Ela terá as opções "Jogar", "Créditos" e "Acessar Tabela de Classificação".
+
+Diogo: Ficará encarregado do estilo CSS para a página do menu principal. Vamos manter o padrão semelhante ao CSS do arquivo App.css, 
+e também podemos organizar isso no Trello.
+
+Douglas: Vamos estilizar a página classificacao.js com um design que siga o mesmo estilo do arquivo index.css.
+
+Isaac: Vamos criar a página de classificação (classificacao.js). Ela irá buscar os dados no arquivo consulta_dados.php e 
+exibir a classificação em ordem crescente.
+
+João Victor Martins: Sua tarefa é finalizar a configuração do questionario.js. Vamos implementar o sistema de inserção de dados na t
+abela usando o arquivo inserir_dados.php e também cuidar do processo de perguntas e respostas.
+
+João Victor Vendramini: Vamos ajustar o estilo CSS da página de créditos, seguindo o mesmo padrão definido no arquivo index.css. 
+Também podemos organizar isso no Trello.
+
+Leandro: Sua missão é criar a página de créditos em HTML.
+
+Maria: Você será a responsável por fornecer e revisar as perguntas no arquivo perguntas.js.
+
+Rodrigo: Sua tarefa é configurar o arquivo inserir_dados.php.
+
+Roger: Você vai liderar os testes do aplicativo e reportar quaisquer falhas. Vamos também criar um espaço no Trello para organizar 
+nossas tarefas.
+
+Tarcisio: Vamos cuidar do estilo CSS para o questionario.js, mantendo a consistência com o design definido no arquivo index.css.
