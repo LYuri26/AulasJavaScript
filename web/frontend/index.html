@@ -18,14 +18,13 @@
             href="./assets/node_modules/bootstrap-icons/font/bootstrap-icons.css">
         <link rel="stylesheet"
             href="./assets/node_modules/bootstrap/dist/css/bootstrap.min.css">
-        <script
-            src="./assets/node_modules/jquery/dist/jquery.slim.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script
             src="./assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
         <script
             src="./assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./assets/js/script.js"></script>
     </head>
-
     <body>
         <header>
             <h1>Página que contém coisas</h1>
@@ -34,7 +33,8 @@
                     <li class="nav-item">
                         <div class="button_slide slide_down"
                             onclick="location.href='#jujutsu'"> Jujutsu
-                            Kaisen </div>
+                            Kaisen
+                        </div>
                     </li>
                     <li class="nav-item">
                         <div class="button_slide slide_down"
@@ -53,22 +53,26 @@
 
         <section id="jujutsu">
             <h2><i class="bi bi-tv"></i> Jujutsu Kaisen</h2>
-            <img
+            <img class="img-hover"
                 src="./imagens/TikToker-diz-que-MAPPA-usou-IA-em-Jujutsu-Kaisen-2-1133x637-1.jpg"
-                alt="Imagem de Jujutsu Kaisen">
+                alt="Imagem de Jujutsu Kaisen"
+                data-original="./imagens/TikToker-diz-que-MAPPA-usou-IA-em-Jujutsu-Kaisen-2-1133x637-1.jpg"
+                data-hover="./imagens/jujutsu-kaisen-fas-lamentam-a-morte-de-um-amado-personagem-2.jpg">
             <p>Jujutsu Kaisen é um anime/mangá que segue a história de Yuji
                 Itadori, um estudante colegial com habilidades atléticas
                 excepcionais que se vê envolvido em eventos sobrenaturais após
                 encontrar um artefato amaldiçoado.</p>
             <a
                 href="https://animefire.plus/animes/jujutsu-kaisen-2nd-season-todos-os-episodios"
-                target="_blank"
-                class="btn btn-primary">Assistir Agora</a>
+                target="_blank" class="btn btn-primary">Assistir Agora</a>
         </section>
 
         <section id="gintama">
             <h2><i class="bi bi-film"></i> Gintama</h2>
-            <img src="./imagens/gintama-spin-off.jpg" alt="Imagem de Gintama">
+            <img class="img-hover" src="./imagens/gintama-spin-off.jpg"
+                alt="Imagem de Gintama"
+                data-original="./imagens/gintama-spin-off.jpg"
+                data-hover="./imagens/maxresdefault.jpg">
             <p>Gintama é uma série de anime/mangá que combina elementos de
                 comédia, ação e drama. A história se passa em uma versão
                 alternativa da era Edo, onde a Terra foi invadida por
@@ -79,8 +83,10 @@
 
         <section id="linkinpark">
             <h2><i class="bi bi-music-note"></i> Linkin Park</h2>
-            <img src="./imagens/stickers-linkin-park-logo.jpg"
-                alt="Imagem de Linkin Park">
+            <img class="img-hover" src="./imagens/stickers-linkin-park-logo.jpg"
+                alt="Imagem de Linkin Park"
+                data-original="./imagens/stickers-linkin-park-logo.jpg"
+                data-hover="./imagens/Linkin-Park-Emblema.png">
             <p>Linkin Park é uma banda de rock alternativo conhecida por suas
                 músicas que mesclam rock, rap e elementos eletrônicos. Formada
                 em 1996, a banda ganhou reconhecimento internacional com álbuns
