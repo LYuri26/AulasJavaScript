@@ -57,7 +57,7 @@ app.get("/carros", async (req, res) => {
     res.json(carros);
   } catch (err) {
     console.error("Erro ao buscar carros:", err);
-    res.status(500).send("Erro interno do servidor");
+    res.status(500).json({ error: "Erro interno do servidor" });
   }
 });
 
@@ -66,10 +66,10 @@ app.post("/carros", async (req, res) => {
   const { modelo, marca, ano } = req.body;
   try {
     const novoCarro = await Carro.create({ modelo, marca, ano });
-    res.send("Carro cadastrado com sucesso");
+    res.json(novoCarro); // Retornar o novo carro criado
   } catch (err) {
     console.error("Erro ao inserir registro:", err);
-    res.status(500).send("Erro interno do servidor");
+    res.status(500).json({ error: "Erro interno do servidor" });
   }
 });
 
