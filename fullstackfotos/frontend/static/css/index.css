@@ -1,0 +1,68 @@
+/* Estilos para o modal */
+.modal {
+    display: none; /* Ocultar o modal por padrão */
+    position: fixed; /* Posição fixa */
+    z-index: 1; /* Sobrepor todo o conteúdo */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Adicionar rolagem se necessário */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+}
+
+/* Conteúdo do modal */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Centralizar na tela */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* Botão de fechar */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilo para os inputs e botões */
+.input {
+    border: 1px solid #161616; /* Cor da borda padrão */
+}
+
+.label {
+    font-family: Roboto;
+}
+
+/* Botões */
+.cancelbtn {
+    background-color: transparent;
+    border: 1px solid #161616;
+    color: #161616;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.loginbtn {
+    background-color: #161616;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Estilo para realçar campos inválidos */
+.invalid {
+    border: 1px solid red;
+}
