@@ -1,0 +1,146 @@
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 80px; /* Adiciona espaço para o cabeçalho */
+  padding-bottom: 80px; /* Adiciona espaço para o rodapé */
+  padding-left: 30px; /* Margem esquerda do corpo */
+  padding-right: 30px; /* Margem direita do corpo */
+  box-sizing: border-box; /* Inclui padding na largura e altura total */
+}
+
+header,
+footer {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Para garantir que o cabeçalho e o rodapé fiquem na frente do conteúdo */
+}
+
+header {
+  background-color: #161616;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 80px; /* Aumenta o espaçamento horizontal no lado direito */
+  top: 0;
+}
+
+header .logo h1 {
+  margin: 0;
+  padding-left: 50px; /* Aumenta o espaçamento horizontal no lado esquerdo */
+}
+
+header nav ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+header nav ul li {
+  display: inline;
+  margin-left: 20px;
+}
+
+header nav ul li button {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  padding-right: 50px; /* Aumenta o espaçamento horizontal no lado direito */
+}
+
+header nav ul li button:hover {
+  text-decoration: underline;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.post {
+  position: relative;
+}
+
+.post img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  margin-bottom: 20px; /* Aumenta a distância entre as imagens na vertical */
+}
+
+.actions {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex; /* Alinha os ícones horizontalmente */
+  background-color: rgba(
+    200,
+    200,
+    200,
+    0.5
+  ); /* Cor cinza claro com transparência */
+  padding: 4px; /* Espaçamento interno para destacar */
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); /* Adiciona uma pequena sombra */
+  border-radius: 4px;
+}
+
+.actions img {
+  width: 20px;
+  height: auto;
+  margin-right: 5px;
+  border-radius: 4px;
+}
+
+.likes,
+.comments {
+  font-size: 12px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Remove a margem inferior dos ícones */
+.actions img,
+.likes,
+.comments {
+  margin-bottom: 0;
+}
+
+/* Adiciona regra CSS para ícone de like com a classe 'liked' */
+.like-icon.liked {
+  fill: #c60e0e !important;
+}
+
+footer {
+  background-color: #161616;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 80px; /* Aumenta o espaçamento horizontal no lado direito */
+  bottom: 0;
+}
+
+footer .logo h1 {
+  margin: 0;
+  padding-left: 50px; /* Aumenta o espaçamento horizontal no lado esquerdo */
+}
+
+#openModalBtn,
+.copyright {
+  margin-right: 50px;
+}
+.social-icons img {
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  fill: #ffffff; /* Altera a cor do ícone para branco */
+}
+
+
