@@ -1,7 +1,6 @@
 <?php
-
 // Incluindo arquivo de conexão com o banco de dados
-include '../../backend/connect.php'; // Verifique o caminho correto aqui
+include '../backend/connect.php'; // Verifique o caminho correto aqui
 
 session_start();
 
@@ -11,17 +10,23 @@ function validarUsuario($conn, $username, $password)
     // Certifique-se de que $conn não é nulo
     if ($conn) {
         // Consultar se o usuário e a senha correspondem
-        $query = "SELECT id FROM usuario WHERE nome=:username AND senha=:password";
+        $query = "SELECT id, nome FROM usuario WHERE nome=:username AND senha=:password";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':password', $password);
         $stmt->execute();
 
-        return $stmt->rowCount() == 1;
-    } else {
-        // Retorne falso se $conn for nulo
-        return false;
+        // Verificar se a consulta retornou um resultado
+        if ($stmt->rowCount() == 1) {
+            // Armazenar o nome do usuário na sessão
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $_SESSION['logged_in'] = true;
+            $_SESSION['username'] = $user['nome'];
+            return true;
+        }
     }
+    // Retorne falso se $conn for nulo ou se o usuário não for encontrado
+    return false;
 }
 
 // Processar o formulário quando enviado
@@ -33,8 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verificar se o usuário existe no banco de dados
         if (validarUsuario($conn, $username, $password)) {
             // Usuário autenticado, redirecionar para a página principal
-            $_SESSION['logged_in'] = true;
-            $_SESSION['username'] = $username;
             header('Location: ../frontend/pages/inicio.php');
             exit();
         } else {
@@ -79,6 +82,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
     </div>
+
+    <script>
+        // Verificar se há uma mensagem de sessão PHP
+        <?php if(isset($_SESSION['message'])) { ?>
+            console.log(<?php echo json_encode($_SESSION['message']); ?>);
+            <?php unset($_SESSION['message']); // Limpar a mensagem de sessão ?>
+        <?php } ?>
+
+        // Verificar se o usuário está logado e exibir seu nome no console
+        <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']) { ?>
+            console.log("Usuário logado: <?php echo $_SESSION['username']; ?>");
+        <?php } ?>
+    </script>
 </body>
 
 </html>

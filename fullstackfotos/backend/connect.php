@@ -13,12 +13,12 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     // Exibe mensagem de sucesso
-    echo "<script>console.log('Conexão bem-sucedida ao banco de dados!');</script>";
+    // echo "<script>console.log('Conexão bem-sucedida ao banco de dados!');</script>";
     
     // Exibindo informações sobre a versão do MySQL
-    $stmt = $conn->query('SELECT version()');
-    $row = $stmt->fetch();
-    echo "<script>console.log('Versão do MySQL: " . $row[0] . "');</script>";
+    // $stmt = $conn->query('SELECT version()');
+    // $row = $stmt->fetch();
+    // echo "<script>console.log('Versão do MySQL: " . $row[0] . "');</script>";
 } catch(PDOException $e) {
     // Exibe mensagem de erro caso ocorra um problema na conexão
     echo "<script>console.error('Erro de conexão: " . $e->getMessage() . "');</script>";

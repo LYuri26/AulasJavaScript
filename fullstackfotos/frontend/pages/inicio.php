@@ -1,5 +1,6 @@
 <?php
 include '../index.php';
+include '../../backend/connect.php';
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +12,6 @@ include '../index.php';
     <title>Livros Recomendados</title>
     <link rel="stylesheet" href="../static/css/inicio.css">
     <link rel="stylesheet" href="../static/css/index.css">
-
 </head>
 
 <body>
@@ -22,14 +22,24 @@ include '../index.php';
         </div>
         <nav>
             <ul>
-                <button id="openModalBtn">Login</button>
+                <?php
+                // Verificar se o usuário está logado
+                if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+                    // Se estiver logado, exibir o nome do usuário e o botão "Sair"
+                    echo '<li class="nomeusuario">Usuário logado: ' . $_SESSION['username'] . '</li>';
+                    echo '<li><button id="logoutBtn">Sair</button></li>';
+                } else {
+                    // Se não estiver logado, exibir o botão "Login"
+                    echo '<li><button id="openModalBtn">Login</button></li>';
+                }
+                ?>
             </ul>
         </nav>
     </header>
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <div class="post">
+                <div class="post" id="post-1">
                     <img src="../static/images/fotos/aeradocapitalimprodutivo.jpg" alt="A Era do Capital Improdutivo">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(1)">
@@ -40,7 +50,7 @@ include '../index.php';
                 </div>
             </div>
             <div class="col-6">
-                <div class="post">
+                <div class="post" id="post-2">
                     <img src="../static/images/fotos/aorigemdafamíliadapropriedadeprivadaedoestado.jpg" alt="A Origem da Família da Propriedade Privada e do Estado">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(2)">
@@ -51,7 +61,7 @@ include '../index.php';
                 </div>
             </div>
             <div class="col-6">
-                <div class="post">
+                <div class="post" id="post-3">
                     <img src="../static/images/fotos/vigiarepunir.jpg" alt="Vigiar e Punir">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(3)">
@@ -64,7 +74,7 @@ include '../index.php';
         </div>
         <div class="row">
             <div class="col-4">
-                <div class="post">
+                <div class="post" id="post-4">
                     <img src="../static/images/fotos/asveiasabertasdaamericalatina.jpg" alt="As Veias Abertas da América Latina">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(4)">
@@ -75,7 +85,7 @@ include '../index.php';
                 </div>
             </div>
             <div class="col-4">
-                <div class="post">
+                <div class="post" id="post-5">
                     <img src="../static/images/fotos/democraciaelutadeclasses.jpg" alt="Democracia e Luta de Classes">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(5)">
@@ -86,7 +96,7 @@ include '../index.php';
                 </div>
             </div>
             <div class="col-4">
-                <div class="post">
+                <div class="post" id="post-6">
                     <img src="../static/images/fotos/olivrovermelho.jpg" alt="O Livro Vermelho">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(6)">
@@ -99,7 +109,7 @@ include '../index.php';
         </div>
         <div class="row">
             <div class="col-4">
-                <div class="post">
+                <div class="post" id="post-7">
                     <img src="../static/images/fotos/desigualdadeecaminhosparaumasociedademaisjusta.jpg" alt="Desigualdade e Caminhos para uma Sociedade Mais Justa">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(7)">
@@ -110,7 +120,7 @@ include '../index.php';
                 </div>
             </div>
             <div class="col-4">
-                <div class="post">
+                <div class="post" id="post-8">
                     <img src="../static/images/fotos/manifestocomunista.jpg" alt="Manifesto Comunista">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(8)">

@@ -25,6 +25,17 @@ CREATE TABLE IF NOT EXISTS postagens (
     comentarios INT DEFAULT 0
 );
 
+-- Inserção de exemplos de postagens
+INSERT INTO postagens (nome_da_imagem) VALUES
+('aeradocapitalimprodutivo.jpg'),
+('aorigemdafamíliadapropriedadeprivadaedoestado.jpg'),
+('vigiarepunir.jpg'),
+('asveiasabertasdaamericalatina.jpg'),
+('democraciaelutadeclasses.jpg'),
+('olivrovermelho.jpg'),
+('desigualdadeecaminhosparaumasociedademaisjusta.jpg'),
+('manifestocomunista.jpg');
+
 -- Criação da tabela de comentários
 CREATE TABLE IF NOT EXISTS comentarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -34,3 +45,53 @@ CREATE TABLE IF NOT EXISTS comentarios (
     data TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_postagem) REFERENCES postagens(id)
 );
+
+-- Criação da tabela de curtidas
+CREATE TABLE IF NOT EXISTS curtidas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    id_postagem INT,
+    data TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+    FOREIGN KEY (id_postagem) REFERENCES postagens(id)
+);
+
+-- Trigger para adicionar curtida
+DELIMITER $$
+CREATE TRIGGER after_insert_like
+AFTER INSERT ON curtidas
+FOR EACH ROW
+BEGIN
+    UPDATE postagens SET curtidas = curtidas + 1 WHERE id = NEW.id_postagem;
+END$$
+DELIMITER ;
+
+-- Trigger para remover curtida
+DELIMITER $$
+CREATE TRIGGER after_delete_like
+AFTER DELETE ON curtidas
+FOR EACH ROW
+BEGIN
+    UPDATE postagens SET curtidas = curtidas - 1 WHERE id = OLD.id_postagem;
+END$$
+DELIMITER ;
+
+-- Trigger para adicionar comentário
+DELIMITER $$
+CREATE TRIGGER after_insert_comment
+AFTER INSERT ON comentarios
+FOR EACH ROW
+BEGIN
+    UPDATE postagens SET comentarios = comentarios + 1 WHERE id = NEW.id_postagem;
+END$$
+DELIMITER ;
+
+-- Trigger para remover comentário
+DELIMITER $$
+CREATE TRIGGER after_delete_comment
+AFTER DELETE ON comentarios
+FOR EACH ROW
+BEGIN
+    UPDATE postagens SET comentarios = comentarios - 1 WHERE id = OLD.id_postagem;
+END$$
+DELIMITER ;

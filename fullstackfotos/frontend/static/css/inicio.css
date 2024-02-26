@@ -38,17 +38,14 @@ header nav ul {
 }
 
 header nav ul li {
-  display: inline;
+  display: inline; /* Alterado para 'inline' para alinhar os itens na mesma linha */
   margin-left: 20px;
+  padding-right: 20px; /* Adiciona espaçamento entre os itens */
 }
 
 header nav ul li button {
-  background-color: transparent;
-  border: none;
-  color: #ffffff;
   font-size: 16px;
   cursor: pointer;
-  padding-right: 50px; /* Aumenta o espaçamento horizontal no lado direito */
 }
 
 header nav ul li button:hover {
@@ -133,7 +130,9 @@ footer .logo h1 {
 }
 
 #openModalBtn,
-.copyright {
+#logoutBtn,
+.copyright,
+.nomeusuario {
   margin-right: 50px;
 }
 .social-icons img {
@@ -141,6 +140,11 @@ footer .logo h1 {
   width: 30px;
   height: 30px;
   fill: #ffffff; /* Altera a cor do ícone para branco */
+}
+
+.nomeusuario {
+  color: #ffffff;
+  margin-right: auto; /* Move este item para a extrema direita */
 }
 
 
