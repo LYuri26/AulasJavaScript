@@ -18,9 +18,10 @@ function validarUsuario($conn, $username, $password)
 
         // Verificar se a consulta retornou um resultado
         if ($stmt->rowCount() == 1) {
-            // Armazenar o nome do usuário na sessão
+            // Armazenar o ID do usuário na sessão
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             $_SESSION['logged_in'] = true;
+            $_SESSION['user_id'] = $user['id']; // Armazena o ID do usuário na sessão
             $_SESSION['username'] = $user['nome'];
             return true;
         }
@@ -85,16 +86,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script>
         // Verificar se há uma mensagem de sessão PHP
-        <?php if(isset($_SESSION['message'])) { ?>
+        <?php if (isset($_SESSION['message'])) { ?>
             console.log(<?php echo json_encode($_SESSION['message']); ?>);
-            <?php unset($_SESSION['message']); // Limpar a mensagem de sessão ?>
+            <?php unset($_SESSION['message']); // Limpar a mensagem de sessão 
+            ?>
         <?php } ?>
 
         // Verificar se o usuário está logado e exibir seu nome no console
-        <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']) { ?>
+        <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) { ?>
             console.log("Usuário logado: <?php echo $_SESSION['username']; ?>");
         <?php } ?>
     </script>
+    <script src="../static/js/inicio.js"></script>
 </body>
 
 </html>

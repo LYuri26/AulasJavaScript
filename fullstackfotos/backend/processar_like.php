@@ -1,91 +1,86 @@
 <?php
+// Inicie ou retome a sessão
 session_start();
+
+// Incluir o arquivo de conexão com o banco de dados
 include './connect.php';
 
-header('Content-Type: application/json');
+// Verificar o tipo de solicitação
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    // Função para carregar curtidas ao carregar a página
+    $likes = array();
 
-// Verifica se a solicitação é do tipo POST e se o usuário está logado
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-    // Verifica se os parâmetros necessários foram enviados
-    if (isset($_POST['postId'], $_POST['action'])) {
+    // Consultar o banco de dados para obter o número de curtidas de cada postagem
+    $stmt = $conn->prepare("SELECT id, curtidas FROM postagens");
+    $stmt->execute();
+    $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Adicionar o número de curtidas de cada postagem ao array de likes
+    foreach ($posts as $post) {
+        $likes[$post['id']] = intval($post['curtidas']);
+    }
+
+    // Retornar os likes no formato JSON
+    echo json_encode(array("success" => true, "likes" => $likes));
+    exit; // Termina o script após enviar a resposta JSON
+} elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+    // Verificar se os parâmetros necessários foram enviados
+    if (isset($_POST['postId'], $_POST['action'], $_SESSION['user_id'])) {
         $postId = $_POST['postId'];
         $action = $_POST['action'];
         $userId = $_SESSION['user_id'];
 
-        // Processa a ação de "like" ou "unlike"
-        if ($action === "like" || $action === "unlike") {
-            // Verifica se a ação é válida
-            if ($action === "like") {
-                // Verifica se o usuário já curtiu esta postagem
-                $stmt = $conn->prepare("SELECT * FROM curtidas WHERE id_usuario = ? AND id_postagem = ?");
-                $stmt->bindParam(1, $userId);
-                $stmt->bindParam(2, $postId);
-                $stmt->execute();
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Verificar se a postagem existe
+        $stmt = $conn->prepare("SELECT * FROM postagens WHERE id = ?");
+        $stmt->bindParam(1, $postId);
+        $stmt->execute();
+        $post = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                if (!$result) {
-                    // Adiciona um novo like
-                    $stmt = $conn->prepare("INSERT INTO curtidas (id_usuario, id_postagem) VALUES (?, ?)");
-                    $stmt->bindParam(1, $userId);
-                    $stmt->bindParam(2, $postId);
-                    $stmt->execute();
+        if ($post) {
+            // Verificar se o usuário já curtiu a postagem
+            $stmt = $conn->prepare("SELECT * FROM curtidas WHERE id_usuario = ? AND id_postagem = ?");
+            $stmt->bindParam(1, $userId);
+            $stmt->bindParam(2, $postId);
+            $stmt->execute();
+            $existingLike = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                    // Incrementa o número de curtidas na postagem
-                    $stmt = $conn->prepare("UPDATE postagens SET curtidas = curtidas + 1 WHERE id = ?");
-                    $stmt->bindParam(1, $postId);
-                    $stmt->execute();
-
-                    // Retorna o número atualizado de curtidas
-                    $stmt = $conn->prepare("SELECT curtidas FROM postagens WHERE id = ?");
-                    $stmt->bindParam(1, $postId);
-                    $stmt->execute();
-                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                    $newLikes = intval($result['curtidas']);
-
-                    // Responde com sucesso e os novos likes
-                    $response = array("success" => true, "likes" => $newLikes);
-                    echo json_encode($response);
-                    exit; // Termina o script após enviar a resposta JSON
-                } else {
-                    // O usuário já curtiu esta postagem
-                    $response = array("success" => false, "message" => "Você já curtiu esta postagem.");
-                    echo json_encode($response);
-                    exit; // Termina o script após enviar a resposta JSON
-                }
-            } else { // Se a ação for "unlike"
-                // Remove o like
+            // Processar a ação de "like" ou "unlike"
+            if ($action === "like" && !$existingLike) {
+                // Adicionar um novo like
+                $stmt = $conn->prepare("INSERT INTO curtidas (id_usuario, id_postagem) VALUES (?, ?)");
+            } elseif ($action === "unlike" && $existingLike) {
+                // Remover o like existente
                 $stmt = $conn->prepare("DELETE FROM curtidas WHERE id_usuario = ? AND id_postagem = ?");
-                $stmt->bindParam(1, $userId);
-                $stmt->bindParam(2, $postId);
-                $stmt->execute();
-
-                // Decrementa o número de curtidas na postagem
-                $stmt = $conn->prepare("UPDATE postagens SET curtidas = curtidas - 1 WHERE id = ?");
-                $stmt->bindParam(1, $postId);
-                $stmt->execute();
-
-                // Retorna o número atualizado de curtidas
-                $stmt = $conn->prepare("SELECT curtidas FROM postagens WHERE id = ?");
-                $stmt->bindParam(1, $postId);
-                $stmt->execute();
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                $newLikes = intval($result['curtidas']);
-
-                // Responde com sucesso e os novos likes
-                $response = array("success" => true, "likes" => $newLikes);
-                echo json_encode($response);
-                exit; // Termina o script após enviar a resposta JSON
             }
+
+            $stmt->bindParam(1, $userId);
+            $stmt->bindParam(2, $postId);
+            $stmt->execute();
+
+            // Atualizar o número de curtidas na postagem
+            $stmt = $conn->prepare("UPDATE postagens SET curtidas = (SELECT COUNT(*) FROM curtidas WHERE id_postagem = ?) WHERE id = ?");
+            $stmt->bindParam(1, $postId);
+            $stmt->bindParam(2, $postId);
+            $stmt->execute();
+
+            // Obter o número atualizado de curtidas
+            $stmt = $conn->prepare("SELECT curtidas FROM postagens WHERE id = ?");
+            $stmt->bindParam(1, $postId);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $newLikes = intval($result['curtidas']);
+
+            // Responder com sucesso e os novos likes
+            echo json_encode(array("success" => true, "likes" => $newLikes));
+            exit; // Termina o script após enviar a resposta JSON
         } else {
-            // Ação inválida
-            $response = array("success" => false, "message" => "Ação inválida.");
-            echo json_encode($response);
+            // Postagem não encontrada
+            echo json_encode(array("success" => false, "message" => "Postagem não encontrada."));
             exit; // Termina o script após enviar a resposta JSON
         }
     } else {
         // Parâmetros ausentes
-        $response = array("success" => false, "message" => "Parâmetros ausentes.");
-        echo json_encode($response);
+        echo json_encode(array("success" => false, "message" => "Parâmetros ausentes."));
         exit; // Termina o script após enviar a resposta JSON
     }
 } else {
@@ -96,19 +91,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['logged_in']) && $_S
     echo json_encode(array("success" => false, "message" => "Não autorizado ou método de solicitação inválido."));
     exit; // Termina o script após enviar a resposta JSON
 }
-
-// Obtém o número total de curtidas de todas as postagens
-$stmt = $conn->prepare("SELECT SUM(curtidas) AS total_likes FROM postagens");
-$stmt->execute();
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if ($result) {
-    $totalLikes = intval($result['total_likes']);
-    // Responde com sucesso e o total de likes
-    echo json_encode(array("success" => true, "likes" => $totalLikes));
-} else {
-    // Erro ao obter os likes
-    echo json_encode(array("success" => false, "message" => "Erro ao obter os likes."));
-}
-
 ?>
