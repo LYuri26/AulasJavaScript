@@ -130,6 +130,26 @@ footer .logo h1 {
 }
 
 #openModalBtn,
+#logoutBtn {
+  background-color: #fefefe;
+  color: #000;
+  border: 1px solid #000; /* Adicionando borda preta */
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+  outline: none;
+  border-radius: 5px; /* Borda arredondada */
+
+}
+
+#openModalBtn:hover,
+#logoutBtn:hover {
+  background-color: #ddd;
+}
+
+#openModalBtn,
 #logoutBtn,
 .copyright,
 .nomeusuario {

@@ -1,0 +1,77 @@
+/* Estilos para o modal */
+.modal-wrapper1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal1 {
+  position: relative;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  display: flex; /* Alteração para flexbox */
+  flex-direction: column; /* Ajuste para empilhar os elementos verticalmente */
+  justify-content: center; /* Centraliza verticalmente */
+  align-items: center; /* Centraliza horizontalmente */
+}
+
+.modal-content1 {
+  max-width: 40%;
+  max-height: 40%;
+}
+
+.modal-caption1 textarea {
+  width: 90%;
+  margin-bottom: 10px;
+}
+
+/* Estilo da imagem dentro do modal */
+.modal-content1 img {
+  max-width: 80%; /* Reduzindo a largura da imagem */
+  max-height: 80%; /* Reduzindo a altura da imagem */
+  margin-bottom: 20px; /* Adicionando espaço abaixo da imagem */
+}
+
+/* Estilo do botão Fechar */
+.close1 {
+  color: black;
+  position: absolute;
+  top: 10px;
+  right: 10px; /* Movendo o botão para a direita */
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close1:hover,
+.close1:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+/* Estilo dos botões */
+.modal-caption1 button {
+  background-color: #f2f2f2;
+  border: none;
+  color: black;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.modal-caption1 button:hover {
+  background-color: #ddd;
+}

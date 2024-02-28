@@ -1,5 +1,6 @@
 <?php
-include '../index.php';
+include './login.php';
+include './postagem.php';
 include '../../backend/connect.php';
 ?>
 
@@ -11,7 +12,9 @@ include '../../backend/connect.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Livros Recomendados</title>
     <link rel="stylesheet" href="../static/css/inicio.css">
-    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/login.css">
+    <link rel="stylesheet" href="../static/css/postagem.css">
+    <title>LIVROS RECOMENDADOS</title>
 </head>
 
 <body>
@@ -39,7 +42,7 @@ include '../../backend/connect.php';
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <div class="post" id="post-1">
+                <div class="post" id="post-1" onclick="openModal('../static/images/fotos/aeradocapitalimprodutivo.jpg')">
                     <img src="../static/images/fotos/aeradocapitalimprodutivo.jpg" alt="A Era do Capital Improdutivo">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(1)">
@@ -50,7 +53,7 @@ include '../../backend/connect.php';
                 </div>
             </div>
             <div class="col-6">
-                <div class="post" id="post-2">
+                <div class="post" id="post-2" onclick="openModal('../static/images/fotos/aorigemdafamíliadapropriedadeprivadaedoestado.jpg')">
                     <img src="../static/images/fotos/aorigemdafamíliadapropriedadeprivadaedoestado.jpg" alt="A Origem da Família da Propriedade Privada e do Estado">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(2)">
@@ -61,7 +64,7 @@ include '../../backend/connect.php';
                 </div>
             </div>
             <div class="col-6">
-                <div class="post" id="post-3">
+                <div class="post" id="post-3" onclick="openModal('../static/images/fotos/vigiarepunir.jpg')">
                     <img src="../static/images/fotos/vigiarepunir.jpg" alt="Vigiar e Punir">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(3)">
@@ -74,7 +77,7 @@ include '../../backend/connect.php';
         </div>
         <div class="row">
             <div class="col-4">
-                <div class="post" id="post-4">
+                <div class="post" id="post-4" onclick="openModal('../static/images/fotos/asveiasabertasdaamericalatina.jpg')">
                     <img src="../static/images/fotos/asveiasabertasdaamericalatina.jpg" alt="As Veias Abertas da América Latina">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(4)">
@@ -85,7 +88,7 @@ include '../../backend/connect.php';
                 </div>
             </div>
             <div class="col-4">
-                <div class="post" id="post-5">
+                <div class="post" id="post-5" onclick="openModal('../static/images/fotos/democraciaelutadeclasses.jpg')">
                     <img src="../static/images/fotos/democraciaelutadeclasses.jpg" alt="Democracia e Luta de Classes">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(5)">
@@ -96,7 +99,7 @@ include '../../backend/connect.php';
                 </div>
             </div>
             <div class="col-4">
-                <div class="post" id="post-6">
+                <div class="post" id="post-6" onclick="openModal('../static/images/fotos/olivrovermelho.jpg')">
                     <img src="../static/images/fotos/olivrovermelho.jpg" alt="O Livro Vermelho">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(6)">
@@ -109,7 +112,7 @@ include '../../backend/connect.php';
         </div>
         <div class="row">
             <div class="col-4">
-                <div class="post" id="post-7">
+                <div class="post" id="post-7" onclick="openModal('../static/images/fotos/desigualdadeecaminhosparaumasociedademaisjusta.jpg')">
                     <img src="../static/images/fotos/desigualdadeecaminhosparaumasociedademaisjusta.jpg" alt="Desigualdade e Caminhos para uma Sociedade Mais Justa">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(7)">
@@ -120,7 +123,7 @@ include '../../backend/connect.php';
                 </div>
             </div>
             <div class="col-4">
-                <div class="post" id="post-8">
+                <div class="post" id="post-8" onclick="openModal('../static/images/fotos/manifestocomunista.jpg')">
                     <img src="../static/images/fotos/manifestocomunista.jpg" alt="Manifesto Comunista">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(8)">
@@ -133,7 +136,8 @@ include '../../backend/connect.php';
         </div>
     </div>
     <script src="../static/js/inicio.js"></script>
-    <script src="../static/js/index.js"></script>
+    <script src="../static/js/login.js"></script>
+    <script src="../static/js/postagem.js"></script>
 </body>
 
 <footer>

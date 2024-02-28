@@ -1,0 +1,165 @@
+/* Modal */
+.modal {
+  display: none; /* Escondido por padrão */
+  position: fixed; /* Fica no lugar */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Preenche toda a tela */
+  height: 100%; /* Preenche toda a tela */
+  overflow: auto; /* Permite rolagem se o conteúdo for maior que a tela */
+  background-color: rgba(0, 0, 0, 0.6); /* Fundo preto translúcido */
+  padding-top: 100px;
+}
+
+/* Conteúdo do Modal */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #000; /* Adicionando borda preta */
+  width: 80%;
+  max-width: 500px; /* Limita a largura máxima */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px; /* Borda arredondada */
+  padding-bottom: 30px;
+}
+
+/* Animação do Modal */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+/* Fechar Modal */
+.close {
+  color: #aaa;
+  text-decoration: none;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 28px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+}
+
+/* Cabeçalho do Modal */
+.modal-header {
+  padding: 10px 16px;
+  background-color: #5cb85c;
+  color: white;
+  text-align: center;
+  border-bottom: 1px solid #000; /* Linha preta na parte inferior */
+  border-radius: 10px 10px 0 0; /* Borda arredondada apenas no topo */
+}
+
+/* Ícone no cabeçalho */
+.modal-header .icon {
+  margin-right: 10px;
+}
+
+/* Corpo do Modal */
+.modal-body {
+  padding: 20px 40px;
+  text-align: justify;
+  border-bottom: 1px solid #000; /* Linha preta na parte inferior */
+}
+
+/* Rodapé do Modal */
+.modal-footer {
+  padding: 10px 16px;
+  background-color: #5cb85c;
+  color: white;
+  text-align: center;
+  border-radius: 0 0 10px 10px; /* Borda arredondada apenas na parte inferior */
+}
+
+/* Botões */
+.cancelbtn,
+.loginbtn {
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+  outline: none;
+  border-radius: 5px; /* Borda arredondada */
+}
+
+.cancelbtn {
+  background-color: #fefefe;
+  color: #000;
+  border: 1px solid #000; /* Adicionando borda preta */
+}
+
+.loginbtn {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #000; /* Adicionando borda preta */
+}
+
+.cancelbtn:hover {
+  background-color: #ddd;
+}
+
+.loginbtn:hover {
+    background-color: #575757;
+}
+
+#username {
+  border-bottom-width: 2px;
+}
+
+#password {
+  position: relative;
+  border-bottom-width: 2px;
+}
+
+input {
+  font-family: Arial, sans-serif;
+  color: #000;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  width: 100%;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+  .modal-content {
+    width: 100%;
+  }
+}

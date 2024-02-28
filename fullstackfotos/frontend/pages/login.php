@@ -1,6 +1,6 @@
 <?php
 // Incluindo arquivo de conexão com o banco de dados
-include '../backend/connect.php'; // Verifique o caminho correto aqui
+include '../../backend/connect.php'; // Verifique o caminho correto aqui
 
 session_start();
 
@@ -39,17 +39,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verificar se o usuário existe no banco de dados
         if (validarUsuario($conn, $username, $password)) {
             // Usuário autenticado, redirecionar para a página principal
-            header('Location: ../frontend/pages/inicio.php');
+            header('Location: ./inicio.php');
             exit();
         } else {
             // Usuário ou senha incorretos, redirecionar de volta para a página de login
             $_SESSION['message'] = 'Usuário ou senha incorretos.';
-            header('Location: ../frontend/pages/inicio.php');
+            header('Location: ./inicio.php');
             exit();
         }
     } elseif (isset($_POST['cancel'])) {
         // Se o botão de cancelar foi clicado, redirecionar para a página de login
-        header('Location: ../frontend/pages/inicio.php');
+        header('Location: ./inicio.php');
         exit();
     }
 }
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>LIVROS RECOMENDADOS</title>
 </head>
 
 <body>
@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <span class="close">&times;</span>
             <h2 style="font-family: Roboto;">Login</h2>
             <hr style="border-top: 1px solid black;">
-            <form action="../index.php" method="post">
+            <form action="./login.php" method="post">
                 <label for="username" class="label">Usuário:</label><br>
                 <input type="text" id="username" name="username" class="input"><br>
                 <label for="password" class="label">Senha:</label><br>
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             console.log("Usuário logado: <?php echo $_SESSION['username']; ?>");
         <?php } ?>
     </script>
-    <script src="../static/js/inicio.js"></script>
+    <script src="../static/js/login.js"></script>
 </body>
 
 </html>
