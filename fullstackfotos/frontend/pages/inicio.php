@@ -42,8 +42,8 @@ include '../../backend/connect.php';
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <div class="post" id="post-1" onclick="openModal('../static/images/fotos/aeradocapitalimprodutivo.jpg')">
-                    <img src="../static/images/fotos/aeradocapitalimprodutivo.jpg" alt="A Era do Capital Improdutivo">
+                <div class="post" id="post-1">
+                    <img src="../static/images/fotos/aeradocapitalimprodutivo.jpg" alt="A Era do Capital Improdutivo" class="regular-image" id="imagem-1" onclick="openModal('../static/images/fotos/aeradocapitalimprodutivo.jpg')">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(1)">
                         <span class="likes">0</span>
@@ -52,9 +52,10 @@ include '../../backend/connect.php';
                     </div>
                 </div>
             </div>
+
             <div class="col-6">
-                <div class="post" id="post-2" onclick="openModal('../static/images/fotos/aorigemdafamíliadapropriedadeprivadaedoestado.jpg')">
-                    <img src="../static/images/fotos/aorigemdafamíliadapropriedadeprivadaedoestado.jpg" alt="A Origem da Família da Propriedade Privada e do Estado">
+                <div class="post" id="post-2">
+                    <img src="../static/images/fotos/aorigemdafamíliadapropriedadeprivadaedoestado.jpg" alt="A Origem da Família da Propriedade Privada e do Estado" class="regular-image" id="imagem-2" onclick="openModal('../static/images/fotos/aorigemdafamíliadapropriedadeprivadaedoestado.jpg')">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(2)">
                         <span class="likes">0</span>
@@ -63,9 +64,10 @@ include '../../backend/connect.php';
                     </div>
                 </div>
             </div>
+
             <div class="col-6">
-                <div class="post" id="post-3" onclick="openModal('../static/images/fotos/vigiarepunir.jpg')">
-                    <img src="../static/images/fotos/vigiarepunir.jpg" alt="Vigiar e Punir">
+                <div class="post" id="post-3">
+                    <img src="../static/images/fotos/vigiarepunir.jpg" alt="Vigiar e Punir" class="regular-image" id="imagem-3" onclick="openModal('../static/images/fotos/vigiarepunir.jpg')">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(3)">
                         <span class="likes">0</span>
@@ -75,6 +77,7 @@ include '../../backend/connect.php';
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-4">
                 <div class="post" id="post-4" onclick="openModal('../static/images/fotos/asveiasabertasdaamericalatina.jpg')">

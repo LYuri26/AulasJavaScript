@@ -24,6 +24,8 @@ header {
   align-items: center;
   padding-right: 80px; /* Aumenta o espaçamento horizontal no lado direito */
   top: 0;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 header .logo h1 {

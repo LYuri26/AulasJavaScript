@@ -76,7 +76,6 @@ function updateLikes(likes) {
 }
 
 // Função para enviar um like para o servidor quando o botão de "Curtir" é clicado
-// Função para enviar um like para o servidor quando o botão de "Curtir" é clicado
 function like(postId) {
   var post = document.getElementById("post-" + postId);
   if (post) {
@@ -106,13 +105,11 @@ function like(postId) {
 
     // Atualizar o estado do like na sessão do usuário
     sessionStorage.setItem("likeState_" + postId, liked ? "" : "liked");
-
-    // Atualizar a página automaticamente após a interação de curtida
-    loadLikesOnPageLoad();
   } else {
     console.log("Post não encontrado para o postId: " + postId);
   }
 }
+
 // Evento que aguarda o carregamento do conteúdo da página
 document.addEventListener("DOMContentLoaded", function () {
   // Chama a função para carregar curtidas ao carregar a página

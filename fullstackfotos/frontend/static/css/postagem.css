@@ -1,4 +1,4 @@
-/* Estilos para o modal */
+/* Estilo para o modal */
 .modal-wrapper1 {
   display: flex;
   justify-content: center;
@@ -16,31 +16,66 @@
   position: relative;
   background-color: #f2f2f2;
   padding: 20px;
-  border-radius: 10px;
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 80%;
+  max-height: 80%;
   overflow-y: auto;
-  display: flex; /* Alteração para flexbox */
-  flex-direction: column; /* Ajuste para empilhar os elementos verticalmente */
-  justify-content: center; /* Centraliza verticalmente */
-  align-items: center; /* Centraliza horizontalmente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px; /* Arredondamento das bordas */
 }
 
 .modal-content1 {
-  max-width: 40%;
-  max-height: 40%;
+  max-width: 40%; /* Largura da imagem */
+  max-height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.modal-caption1 textarea {
-  width: 90%;
-  margin-bottom: 10px;
+.modal-caption1 {
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Estilo da imagem dentro do modal */
-.modal-content1 img {
-  max-width: 80%; /* Reduzindo a largura da imagem */
-  max-height: 80%; /* Reduzindo a altura da imagem */
-  margin-bottom: 20px; /* Adicionando espaço abaixo da imagem */
+.comment-container {
+  display: flex; /* Torna os elementos filhos flexíveis */
+  align-items: center; /* Alinha os elementos verticalmente */
+}
+
+.comment-text {
+  width: 100%; /* Define a largura da caixa de texto */
+  height: 50px; /* Altura fixa da caixa de texto */
+  resize: none; /* Impede o redimensionamento da caixa de texto */
+  margin-right: 10px; /* Adiciona espaço entre a caixa de texto e a imagem de enviar */
+  font-family: inherit; /* Usa a mesma fonte do site */
+  font-size: 16px; /* Define o tamanho da fonte */
+  padding: 10px; /* Adiciona preenchimento interno */
+  border: 1px solid #ccc; /* Adiciona uma borda */
+  border-radius: 5px; /* Arredondamento das bordas */
+}
+
+/* Estilo para os ícones de ação */
+.action-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Estilo específico para o ícone de coração */
+.action-icons img:first-child {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+/* Estilo da imagem de enviar */
+.action-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 /* Estilo do botão Fechar */
@@ -48,7 +83,7 @@
   color: black;
   position: absolute;
   top: 10px;
-  right: 10px; /* Movendo o botão para a direita */
+  right: 10px;
   font-size: 30px;
   font-weight: bold;
   cursor: pointer;
@@ -60,18 +95,9 @@
   text-decoration: none;
 }
 
-/* Estilo dos botões */
-.modal-caption1 button {
-  background-color: #f2f2f2;
-  border: none;
-  color: black;
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-right: 10px;
-  border-radius: 5px;
-}
-
-.modal-caption1 button:hover {
-  background-color: #ddd;
+/* Estilo da imagem dentro do modal */
+.modal-content1 img {
+  max-width: 100%; /* Define a largura máxima da imagem */
+  border-radius: 10px; /* Arredondamento das bordas */
+  margin-bottom: 20px; /* Adicionando espaço abaixo da imagem */
 }
