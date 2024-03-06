@@ -1,9 +1,3 @@
-<?php
-include './login.php';
-include './postagem.php';
-include '../../backend/connect.php';
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -26,6 +20,10 @@ include '../../backend/connect.php';
         <nav>
             <ul>
                 <?php
+                include './login.php';
+                include './postagem.php';
+                include '../../backend/connect.php';
+                
                 // Verificar se o usuário está logado
                 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                     // Se estiver logado, exibir o nome do usuário e o botão "Sair"
@@ -43,33 +41,33 @@ include '../../backend/connect.php';
         <div class="row">
             <div class="col-6">
                 <div class="post" id="post-1">
-                    <img src="../static/images/fotos/aeradocapitalimprodutivo.jpg" alt="A Era do Capital Improdutivo" class="regular-image" id="imagem-1" onclick="openModal(this)">
+                    <img src="../static/images/fotos/aeradocapitalimprodutivo.jpg" alt="A Era do Capital Improdutivo" class="regular-image" id="imagem-1" onclick="openModal(this, 1)">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(1)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/aeradocapitalimprodutivo.jpg')">
                         <span class="comments">0</span>
                     </div>
                 </div>
             </div>
             <div class="col-6">
                 <div class="post" id="post-2">
-                    <img src="../static/images/fotos/aorigemdafamíliadapropriedadeprivadaedoestado.jpg" alt="A Origem da Família da Propriedade Privada e do Estado" class="regular-image" id="imagem-2" onclick="openModal(this)">
+                    <img src="../static/images/fotos/aorigemdafamíliadapropriedadeprivadaedoestado.jpg" alt="A Origem da Família da Propriedade Privada e do Estado" class="regular-image" id="imagem-2" onclick="openModal(this, 2)">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(2)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/aorigemdafamíliadapropriedadeprivadaedoestado.jpg')">
                         <span class="comments">0</span>
                     </div>
                 </div>
             </div>
             <div class="col-6">
                 <div class="post" id="post-3">
-                    <img src="../static/images/fotos/vigiarepunir.jpg" alt="Vigiar e Punir" class="regular-image" id="imagem-3" onclick="openModal(this)">
+                    <img src="../static/images/fotos/vigiarepunir.jpg" alt="Vigiar e Punir" class="regular-image" id="imagem-3" onclick="openModal(this, 3)">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(3)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/vigiarepunir.jpg')">
                         <span class="comments">0</span>
                     </div>
                 </div>
@@ -78,33 +76,33 @@ include '../../backend/connect.php';
         <div class="row">
             <div class="col-4">
                 <div class="post" id="post-4">
-                    <img src="../static/images/fotos/asveiasabertasdaamericalatina.jpg" alt="As Veias Abertas da América Latina" class="regular-image" id="imagem-4" onclick="openModal(this)">
+                    <img src="../static/images/fotos/asveiasabertasdaamericalatina.jpg" alt="As Veias Abertas da América Latina" class="regular-image" id="imagem-4" onclick="openModal(this, 4)">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(4)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/asveiasabertasdaamericalatina.jpg')">
                         <span class="comments">0</span>
                     </div>
                 </div>
             </div>
             <div class="col-4">
                 <div class="post" id="post-5">
-                    <img src="../static/images/fotos/democraciaelutadeclasses.jpg" alt="Democracia e Luta de Classes" class="regular-image" id="imagem-5" onclick="openModal(this)">
+                    <img src="../static/images/fotos/democraciaelutadeclasses.jpg" alt="Democracia e Luta de Classes" class="regular-image" id="imagem-5" onclick="openModal(this, 5)">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(5)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/democraciaelutadeclasses.jpg')">
                         <span class="comments">0</span>
                     </div>
                 </div>
             </div>
             <div class="col-4">
                 <div class="post" id="post-6">
-                    <img src="../static/images/fotos/olivrovermelho.jpg" alt="O Livro Vermelho" class="regular-image" id="imagem-6" onclick="openModal(this)">
+                    <img src="../static/images/fotos/olivrovermelho.jpg" alt="O Livro Vermelho" class="regular-image" id="imagem-6" onclick="openModal(this, 6)">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(6)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/olivrovermelho.jpg')">
                         <span class="comments">0</span>
                     </div>
                 </div>
@@ -113,22 +111,22 @@ include '../../backend/connect.php';
         <div class="row">
             <div class="col-4">
                 <div class="post" id="post-7">
-                    <img src="../static/images/fotos/desigualdadeecaminhosparaumasociedademaisjusta.jpg" alt="Desigualdade e Caminhos para uma Sociedade Mais Justa" class="regular-image" id="imagem-7" onclick="openModal(this)">
+                    <img src="../static/images/fotos/desigualdadeecaminhosparaumasociedademaisjusta.jpg" alt="Desigualdade e Caminhos para uma Sociedade Mais Justa" class="regular-image" id="imagem-7" onclick="openModal(this, 7)">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(7)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/desigualdadeecaminhosparaumasociedademaisjusta.jpg')">
                         <span class="comments">0</span>
                     </div>
                 </div>
             </div>
             <div class="col-4">
                 <div class="post" id="post-8">
-                    <img src="../static/images/fotos/manifestocomunista.jpg" alt="Manifesto Comunista" class="regular-image" id="imagem-8" onclick="openModal(this)">
+                    <img src="../static/images/fotos/manifestocomunista.jpg" alt="Manifesto Comunista" class="regular-image" id="imagem-8" onclick="openModal(this, 8)">
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(8)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/manifestocomunista.jpg')">
                         <span class="comments">0</span>
                     </div>
                 </div>

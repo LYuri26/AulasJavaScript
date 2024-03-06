@@ -74,9 +74,9 @@ function updateLikes(likes) {
     }
   }
 }
-
 // Função para enviar um like para o servidor quando o botão de "Curtir" é clicado
 function like(postId) {
+  console.log("ID da postagem:", postId); // Imprime o ID da postagem no console
   var post = document.getElementById("post-" + postId);
   if (post) {
     var likeIcon = post.querySelector(".like-icon");
