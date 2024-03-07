@@ -81,11 +81,13 @@ function likeImage(event) {
   var postId = document.getElementById("myModal1").getAttribute("data-post-id");
 
   // Obtém o botão de curtir e o contador de likes
-  var likeButton = event.currentTarget;
+  var likeButtonInicio = document.querySelector(".like-icon");
+  var likeButtonPostagem = document.querySelector(".action-icon-like-icon");
   var likesCountElement = document.getElementById("likesCount1");
+  var likesElement = document.querySelector(".likes"); // Seleciona o span com a classe "likes"
 
   // Verifica se a postagem já foi curtida pelo usuário
-  var alreadyLiked = likeButton.classList.contains("liked");
+  var alreadyLiked = likeButtonInicio.classList.contains("liked");
 
   // Envia uma requisição AJAX para o servidor para curtir ou descurtir a postagem
   var xhr = new XMLHttpRequest();
@@ -99,12 +101,15 @@ function likeImage(event) {
           if (response.success) {
             // Atualiza o contador de likes com o valor retornado pelo servidor
             likesCountElement.textContent = response.likes;
+            likesElement.textContent = response.likes; // Atualiza o span com a classe "likes"
 
             // Atualiza a classe do botão de curtir para refletir o estado atual
             if (alreadyLiked) {
-              likeButton.classList.remove("liked");
+              likeButtonInicio.classList.remove("liked");
+              likeButtonPostagem.classList.remove("liked");
             } else {
-              likeButton.classList.add("liked");
+              likeButtonInicio.classList.add("liked");
+              likeButtonPostagem.classList.add("liked");
             }
           } else {
             console.log("Erro ao processar o like: " + response.message);
@@ -118,5 +123,7 @@ function likeImage(event) {
       }
     }
   };
-  xhr.send("postId=" + postId + "&action=" + (alreadyLiked ? "unlike" : "like"));
+  xhr.send(
+    "postId=" + postId + "&action=" + (alreadyLiked ? "unlike" : "like")
+  );
 }

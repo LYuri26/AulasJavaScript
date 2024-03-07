@@ -45,7 +45,7 @@
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(1)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/aeradocapitalimprodutivo.jpg')">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/aeradocapitalimprodutivo.jpg',1)">
                         <span class="comments">0</span>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(2)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/aorigemdafamíliadapropriedadeprivadaedoestado.jpg')">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/aorigemdafamíliadapropriedadeprivadaedoestado.jpg',2)">
                         <span class="comments">0</span>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(3)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/vigiarepunir.jpg')">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/vigiarepunir.jpg',3)">
                         <span class="comments">0</span>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(4)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/asveiasabertasdaamericalatina.jpg')">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/asveiasabertasdaamericalatina.jpg',4)">
                         <span class="comments">0</span>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(5)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/democraciaelutadeclasses.jpg')">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/democraciaelutadeclasses.jpg',5)">
                         <span class="comments">0</span>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(6)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/olivrovermelho.jpg')">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/olivrovermelho.jpg',6)">
                         <span class="comments">0</span>
                     </div>
                 </div>
@@ -115,7 +115,7 @@
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(7)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/desigualdadeecaminhosparaumasociedademaisjusta.jpg')">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/desigualdadeecaminhosparaumasociedademaisjusta.jpg',7)">
                         <span class="comments">0</span>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                     <div class="actions">
                         <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(8)">
                         <span class="likes">0</span>
-                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/manifestocomunista.jpg')">
+                        <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/manifestocomunista.jpg',8)">
                         <span class="comments">0</span>
                     </div>
                 </div>
