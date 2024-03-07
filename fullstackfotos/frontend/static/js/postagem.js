@@ -1,7 +1,6 @@
 (function () {
   // Define as funções no escopo global
   window.openModal = openModal;
-  window.likeImage = likeImage;
   window.closeModal = closeModal;
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -31,13 +30,7 @@
     modalContent.innerHTML = '<img src="' + imgSrc + '" alt="Imagem modal">';
     modalWrapper.setAttribute("data-post-id", postId);
     modalWrapper.style.display = "flex";
-
-    // Carrega a quantidade de curtidas ao abrir o modal
-    loadLikesCount(postId, function (likes) {
-      // Atualiza o número de curtidas exibido no HTML
-      var likesElement = document.getElementById("likesCount1");
-      likesElement.textContent = likes;
-    });
+    loadLikesCount(postId);
   }
 
   // Definição da função closeModal
@@ -46,87 +39,84 @@
     modalWrapper.style.display = "none";
     location.reload(); // Recarrega a página ao fechar o modal
   }
-
-  // Definição da função likeImage
-  function likeImage(event) {
-    var postId = document
-      .getElementById("myModal1")
-      .getAttribute("data-post-id");
-    like(postId, function (likes) {
-      // Atualiza o número de curtidas no botão de "Curtir"
-      var likeButton = document.getElementById("likeButton1");
-      likeButton.textContent = "Curtir " + likes;
-    });
-  }
-
-  // Função para enviar um like para o servidor
-  function like(postId) {
-    console.log("ID da postagem:", postId); // Imprime o ID da postagem no console
-
-    // Realiza uma solicitação AJAX para enviar o like para o servidor
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../../../backend/processar_like.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          try {
-            // Tentar analisar a resposta JSON
-            var response = JSON.parse(xhr.responseText);
-            if (response.success) {
-              // Atualiza o número de curtidas exibido no HTML
-              var likesElement = document.getElementById("likesCount1");
-              likesElement.textContent = response.likes;
-            } else {
-              console.log("Erro ao processar o like: " + response.message);
-            }
-          } catch (error) {
-            console.log("Erro ao analisar resposta JSON: " + error);
-            console.log("Resposta JSON inválida: " + xhr.responseText);
-          }
-        } else {
-          console.log("Erro na requisição AJAX: " + xhr.status);
-        }
-      }
-    };
-    // Envia os parâmetros postId e action corretamente
-    xhr.send("postId=" + postId + "&action=like");
-  }
-
-  // Função para carregar o número de curtidas ao carregar a página
-  function loadLikesCount(postId, callback) {
-    // Realiza uma solicitação AJAX para carregar o número de curtidas da postagem
-    var xhr = new XMLHttpRequest();
-    xhr.open(
-      "GET",
-      "../../../backend/processar_like.php?postId=" + postId,
-      true
-    );
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          try {
-            // Tentar analisar a resposta JSON
-            var response = JSON.parse(xhr.responseText);
-            if (response.success) {
-              // Obter o total de curtidas para o postId específico
-              var likes = response.likes[postId] || 0;
-              // Executa a função de retorno com o número total de curtidas
-              callback(likes);
-            } else {
-              console.log(
-                "Erro ao obter o número de curtidas: " + response.message
-              );
-            }
-          } catch (error) {
-            console.log("Erro ao analisar resposta JSON: " + error);
-            console.log("Resposta JSON inválida: " + xhr.responseText);
-          }
-        } else {
-          console.log("Erro na requisição AJAX: " + xhr.status);
-        }
-      }
-    };
-    xhr.send();
-  }
 })();
+
+// Função para carregar as curtidas ao carregar a página
+function loadLikesCount(postId) {
+  // Realiza uma solicitação AJAX para carregar a quantidade de curtidas da postagem
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "../../../backend/processar_like.php?postId=" + postId, true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        try {
+          // Tentar analisar a resposta JSON
+          var response = JSON.parse(xhr.responseText);
+          if (response.success) {
+            // Obter o número de curtidas para a postagem específica
+            var likesCount = response.likes[postId] || 0;
+            // Atualizar o conteúdo do elemento com o número de curtidas
+            var likesCountElement = document.getElementById("likesCount1");
+            likesCountElement.textContent = likesCount;
+          } else {
+            console.log(
+              "Erro ao obter o número de curtidas: " + response.message
+            );
+          }
+        } catch (error) {
+          console.log("Erro ao analisar resposta JSON: " + error);
+          console.log("Resposta JSON inválida: " + xhr.responseText);
+        }
+      } else {
+        console.log("Erro na requisição AJAX: " + xhr.status);
+      }
+    }
+  };
+  xhr.send();
+}
+
+// Definição da função para enviar um like para o servidor
+function likeImage(event) {
+  // Obtém o ID da postagem associado ao modal
+  var postId = document.getElementById("myModal1").getAttribute("data-post-id");
+
+  // Obtém o botão de curtir e o contador de likes
+  var likeButton = event.currentTarget;
+  var likesCountElement = document.getElementById("likesCount1");
+
+  // Verifica se a postagem já foi curtida pelo usuário
+  var alreadyLiked = likeButton.classList.contains("liked");
+
+  // Envia uma requisição AJAX para o servidor para curtir ou descurtir a postagem
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "../../../backend/processar_like.php", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        try {
+          var response = JSON.parse(xhr.responseText);
+          if (response.success) {
+            // Atualiza o contador de likes com o valor retornado pelo servidor
+            likesCountElement.textContent = response.likes;
+
+            // Atualiza a classe do botão de curtir para refletir o estado atual
+            if (alreadyLiked) {
+              likeButton.classList.remove("liked");
+            } else {
+              likeButton.classList.add("liked");
+            }
+          } else {
+            console.log("Erro ao processar o like: " + response.message);
+          }
+        } catch (error) {
+          console.log("Erro ao analisar resposta JSON: " + error);
+          console.log("Resposta JSON inválida: " + xhr.responseText);
+        }
+      } else {
+        console.log("Erro na requisição AJAX: " + xhr.status);
+      }
+    }
+  };
+  xhr.send("postId=" + postId + "&action=" + (alreadyLiked ? "unlike" : "like"));
+}
