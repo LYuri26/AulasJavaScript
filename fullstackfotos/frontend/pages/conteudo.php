@@ -28,7 +28,7 @@ include '../../backend/connect.php';
             </div>
         </div>
     </div>
-    <script src="../static/js/inicio.js"></script>
+    <script src="../static/js/index.js"></script>
     <script src="../static/js/postagem.js"></script>
 </body>
 

@@ -7,6 +7,6 @@ session_unset();
 session_destroy();
 
 // Redirecionar para a página inicial
-header("Location: ./inicio.php");
+header("Location: ./index.php");
 exit;
 ?>

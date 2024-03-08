@@ -1,61 +1,45 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Obter o modal
   var modal = document.getElementById("loginModal");
-
-  // Verificar se o modal foi encontrado
   if (modal) {
-    // Obter o botão que abre o modal
     var btn = document.getElementById("openModalBtn");
-
-    // Verificar se o botão foi encontrado
     if (btn) {
-      // Obter o elemento <span> que fecha o modal
-      var span = document.getElementsByClassName("close")[0];
+      var span = document.querySelector(".modal-content .close");
+      var cancelBtn = document.querySelector(".modal-content .cancelbtn");
 
-      // Obter o botão cancelar
-      var cancelBtn = document.getElementsByClassName("cancelbtn")[0];
-
-      // Quando o usuário clicar no botão, abrir o modal
-      btn.onclick = function () {
+      btn.addEventListener("click", function () {
         modal.style.display = "block";
-      };
+      });
 
-      // Quando o usuário clicar no <span> (x), fechar o modal
-      span.onclick = function () {
+      span.addEventListener("click", function () {
         modal.style.display = "none";
-      };
+      });
 
-      // Quando o usuário clicar no botão cancelar, fechar o modal
-      cancelBtn.onclick = function () {
+      cancelBtn.addEventListener("click", function () {
         modal.style.display = "none";
-      };
+      });
 
-      // Quando o usuário clicar em qualquer lugar fora do modal, fechar o modal
-      window.onclick = function (event) {
-        if (event.target == modal) {
+      window.addEventListener("click", function (event) {
+        if (event.target === modal) {
           modal.style.display = "none";
         }
-      };
+      });
 
-      // Validar formulário antes de submeter
       var form = document.querySelector("form");
       if (form) {
         form.addEventListener("submit", function (event) {
           var usernameInput = document.getElementById("username");
           var passwordInput = document.getElementById("password");
 
-          // Verificar se os campos estão vazios
           if (
             usernameInput.value.trim() === "" ||
             passwordInput.value.trim() === ""
           ) {
-            event.preventDefault(); // Impedir envio do formulário
-            usernameInput.classList.add("invalid"); // Realçar campo inválido
-            passwordInput.classList.add("invalid"); // Realçar campo inválido
+            event.preventDefault();
+            usernameInput.classList.add("invalid");
+            passwordInput.classList.add("invalid");
             return;
           }
 
-          // Remover estilo de campo inválido se estiver presente
           usernameInput.classList.remove("invalid");
           passwordInput.classList.remove("invalid");
         });
@@ -64,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// Função para abrir o modal quando o botão é clicado
 var openModalBtn = document.getElementById("openModalBtn");
 if (openModalBtn) {
   openModalBtn.addEventListener("click", function () {
