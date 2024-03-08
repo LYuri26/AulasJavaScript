@@ -1,0 +1,68 @@
+body {
+  margin: 20px 0; /* Adiciona margens superior e inferior de 20px, e margens laterais automáticas */
+  display: flex;
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
+  align-items: center; /* Centraliza o conteúdo verticalmente */
+  min-height: 100vh; /* Usa a altura total da viewport como mínimo */
+  background-color: #f0f0f0; /* Adiciona uma cor de fundo */
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Define três colunas com a mesma largura */
+  grid-gap: 20px; /* Define o espaçamento entre os itens */
+  max-width: 800px; /* Define a largura máxima do contêiner */
+  width: 100%; /* Garante que o contêiner se ajuste à largura máxima */
+  padding: 20px; /* Adiciona algum espaçamento interno */
+}
+
+.post {
+  position: relative;
+}
+
+.post img {
+  width: 100%; /* Usa 100% da largura do contêiner pai */
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.actions {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  background-color: rgba(200, 200, 200, 0.5);
+  padding: 4px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.actions img {
+  width: 20px;
+  height: auto;
+  margin-right: 5px;
+  border-radius: 4px;
+}
+
+.likes,
+.comments {
+  font-size: 12px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Remove a margem inferior dos ícones */
+.actions img,
+.likes,
+.comments {
+  margin-bottom: 0;
+}
+
+/* Adiciona regra CSS para ícone de like com a classe 'liked' */
+.like-icon.liked {
+  fill: #c60e0e !important;
+}

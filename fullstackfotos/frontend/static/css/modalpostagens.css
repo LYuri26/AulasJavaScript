@@ -1,0 +1,97 @@
+/* Estilo da imagem dentro do modal */
+#modalImage {
+  max-width: 40%; /* Define a largura máxima da imagem */
+  max-height: 70%; /* Define a altura máxima da imagem */
+  border-radius: 10px; /* Arredondamento das bordas */
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Estilo para os ícones de ação */
+.like-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Estilo para o contador de curtidas e comentários */
+#likesCount1,
+#commentsCount1 {
+  color: #000;
+  margin-left: 5px;
+}
+
+/* Ajuste de posição do ícone de enviar */
+.action-icon-comment-text {
+  width: 30px; /* Defina a largura do ícone de enviar */
+  height: 30px; /* Defina a altura do ícone de enviar */
+  margin-left: 10px; /* Adicione um espaço entre o ícone de enviar e a caixa de texto */
+  cursor: pointer; /* Mude o cursor para indicar que é clicável */
+}
+
+/* Estilo para a caixa de texto de comentário */
+.comment-text {
+  width: 100%; /* Define a largura da caixa de texto */
+  height: 50px; /* Altura fixa da caixa de texto */
+  resize: none; /* Impede o redimensionamento da caixa de texto */
+  margin-right: 30px; /* Adiciona espaço entre a caixa de texto e a imagem de enviar */
+  margin-left: 10px; /* Adiciona espaço entre a caixa de texto e a margem esquerda */
+  font-family: inherit; /* Usa a mesma fonte do site */
+  font-size: 16px; /* Define o tamanho da fonte */
+  padding: 10px; /* Adiciona preenchimento interno */
+  border: 1px solid #ccc; /* Adiciona uma borda */
+  border-radius: 5px; /* Arredondamento das bordas */
+  flex: 1; /* Ocupa todo o espaço disponível */
+}
+
+/* Estilo específico para a caixa de texto de comentário no modal */
+#myModal1 .comment-text::placeholder {
+  font-size: 16px; /* Define o tamanho do placeholder */
+  color: #aaa; /* Cor do placeholder */
+}
+
+/* Estilo para os ícones de ação */
+.action-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Estilo específico para o ícone de coração */
+.like-container img:first-child {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+/* Estilo para o container do modal */
+.modal-content1 {
+  max-width: 40%; /* Largura do conteúdo do modal */
+  max-height: 60%; /* Altura máxima do conteúdo do modal */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilo para a legenda do modal */
+.modal-caption1 {
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilo da linha */
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  margin: 10px 0; /* Espaçamento entre a linha e os elementos adjacentes */
+}
+
+/* Ajuste de posição da caixa de texto e do ícone */
+.comment-container {
+  display: flex;
+  align-items: center; /* Alinha os itens verticalmente */
+}

@@ -1,0 +1,76 @@
+/* Estilo comum para os modais */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding-top: 100px;
+  }
+  
+  .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #000;
+    width: 70%;
+    max-width: 40%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    padding-bottom: 30px;
+    color: #000000;
+    height: 60%;
+    align-items: center;
+  }
+  
+  .close {
+    color: #aaa;
+    text-decoration: none;
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 28px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #f44336;
+  }
+  
+  .modal-header {
+    padding: 10px 16px;
+    background-color: #5cb85c;
+    color: white;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .modal-header .icon {
+    margin-right: 10px;
+  }
+  
+  .modal-body {
+    padding: 20px 40px;
+    text-align: center;
+    width: 70%;
+  }
+  
+  .modal-footer {
+    padding: 10px 16px;
+    background-color: #5cb85c;
+    color: white;
+    text-align: center;
+    border-radius: 0 0 10px 10px;
+  }
+  

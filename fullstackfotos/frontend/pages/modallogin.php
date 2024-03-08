@@ -22,7 +22,7 @@ include '../../backend/conexao_login.php'; // Verifique o caminho correto aqui
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 style="font-family: Roboto;">Login</h2>
-            <form action="./login.php" method="post">
+            <form action="./index.php" method="post">
                 <label for="username" class="label">Usuário:</label><br>
                 <input type="text" id="username" name="username" class="input"><br>
                 <label for="password" class="label">Senha:</label><br>
@@ -33,7 +33,7 @@ include '../../backend/conexao_login.php'; // Verifique o caminho correto aqui
         </div>
     </div>
 
-    <script src="../static/js/login.js"></script>
+    <script src="../static/js/modallogin.js"></script>
 </body>
 
 </html>

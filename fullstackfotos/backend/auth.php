@@ -1,9 +1,20 @@
 <?php
-
-// Incluindo arquivo de conexão com o banco de dados
-include 'connect.php'; // Verifique o caminho correto aqui
-
 session_start();
+
+// Inclui o arquivo de conexão com o banco de dados
+include 'connect.php';
+
+// Array para armazenar as mensagens de log
+$logMessages = array();
+
+// Verificar se o usuário está logado
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+    // Se o usuário estiver logado, retorna true
+    echo json_encode(array('logged_in' => true, 'log_messages' => $logMessages));
+} else {
+    // Se o usuário não estiver logado, retorna false
+    echo json_encode(array('logged_in' => false, 'log_messages' => $logMessages));
+}
 
 // Função para verificar se o usuário existe no banco de dados
 function validarUsuario($conn, $username, $password)

@@ -1,0 +1,63 @@
+/* Estilo específico para o modal de login */
+.modal-content {
+  background-color: #fefefe;
+  color: #000000;
+}
+
+.modal-header {
+  background-color: #5cb85c;
+}
+
+.modal-footer {
+  background-color: #5cb85c;
+}
+
+.cancelbtn,
+.loginbtn {
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+
+.cancelbtn {
+  background-color: #fefefe;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.loginbtn {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #000;
+}
+
+.cancelbtn:hover {
+  background-color: #ddd;
+}
+
+.loginbtn:hover {
+  background-color: #575757;
+}
+
+#username,
+#password {
+  font-family: inherit;
+  color: #000;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .modal-content {
+    width: 100%;
+  }
+}
+

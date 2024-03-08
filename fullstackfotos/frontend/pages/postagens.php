@@ -60,36 +60,49 @@ $postagens = array(
     ),
 );
 ?>
+<!DOCTYPE html>
+<html lang="pt-br">
 
-<div class="container">
-    <?php
-    // Verifica se $postagens é um array válido
-    if (isset($postagens) && is_array($postagens)) {
-        // Loop através das postagens divididas em seções de três
-        for ($i = 0; $i < count($postagens); $i += 3) {
-            ?>
-            <div class="row">
-                <?php
-                // Loop para cada postagem na seção atual
-                for ($j = $i; $j < $i + 3 && $j < count($postagens); $j++) {
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postagens</title>
+</head>
+
+<body>
+    <div class="container">
+        <?php
+        // Verifica se $postagens é um array válido
+        if (isset($postagens) && is_array($postagens)) {
+            // Loop através das postagens divididas em seções de três
+            for ($i = 0; $i < count($postagens); $i += 3) {
+        ?>
+                <div class="row">
+                    <?php
+                    // Loop para cada postagem na seção atual
+                    for ($j = $i; $j < $i + 3 && $j < count($postagens); $j++) {
                     ?>
-                    <div class="col-4">
-                        <div class="post" id="post-<?php echo $postagens[$j]['id']; ?>">
-                            <img src="../static/images/fotos/<?php echo $postagens[$j]['imagem']; ?>" alt="<?php echo $postagens[$j]['titulo']; ?>" class="regular-image" id="imagem-<?php echo $postagens[$j]['id']; ?>" onclick="openModal(this, <?php echo $postagens[$j]['id']; ?>)">
-                            <div class="actions">
-                                <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(<?php echo $postagens[$j]['id']; ?>)">
-                                <span class="likes"><?php echo $postagens[$j]['likes']; ?></span>
-                                <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/<?php echo $postagens[$j]['imagem']; ?>', <?php echo $postagens[$j]['id']; ?>)">
-                                <span class="comments"><?php echo $postagens[$j]['comentarios']; ?></span>
+                        <div class="col-4" onclick="handleActionClick(<?php echo $postagens[$j]['id']; ?>)">
+                            <div class="post" id="post-<?php echo $postagens[$j]['id']; ?>">
+                                <img src="../static/images/fotos/<?php echo $postagens[$j]['imagem']; ?>" alt="<?php echo $postagens[$j]['titulo']; ?>" class="regular-image" id="imagem-<?php echo $postagens[$j]['id']; ?>" onclick="openModal('../static/images/fotos/<?php echo $postagens[$j]['imagem']; ?>', <?php echo $postagens[$j]['id']; ?>)">
+                                <div class="actions">
+                                    <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" onclick="like(<?php echo $postagens[$j]['id']; ?>)">
+                                    <span class="likes"><?php echo $postagens[$j]['likes']; ?></span>
+                                    <img src="../static/images/icons/coment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/<?php echo $postagens[$j]['imagem']; ?>', <?php echo $postagens[$j]['id']; ?>)">
+                                    <span class="comments"><?php echo $postagens[$j]['comentarios']; ?></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php
-                }
-                ?>
-            </div>
+                    <?php
+                    }
+                    ?>
+                </div>
         <?php
+            }
         }
-    }
-    ?>
-</div>
+        ?>
+    </div>
+    <script src="../static/js/modallogin.js"></script>
+</body>
+
+</html>

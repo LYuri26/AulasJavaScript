@@ -1,107 +1,59 @@
-/* Estilo para o modal */
 .modal-wrapper1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: fixed;
   z-index: 999;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal1 {
-  position: relative;
-  background-color: #f2f2f2;
+  background-color: #fefefe;
+  margin: 10% auto;
   padding: 20px;
-  max-width: 70%;
-  max-height: 70%;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px; /* Arredondamento das bordas */
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 10px;
+  position: relative;
+}
+
+.modal1 .close1 {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal1 .close1:hover,
+.modal1 .close1:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .modal-content1 {
-  max-width: 40%; /* Largura da imagem */
-  max-height: 60%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-caption1 {
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
+  margin-bottom: 20px;
 }
 
 .comment-container {
-  display: flex; /* Torna os elementos filhos flexíveis */
-  align-items: center; /* Alinha os elementos verticalmente */
+  margin-bottom: 20px;
 }
 
 .comment-text {
-  width: 100%; /* Define a largura da caixa de texto */
-  height: 50px; /* Altura fixa da caixa de texto */
-  resize: none; /* Impede o redimensionamento da caixa de texto */
-  margin-right: 10px; /* Adiciona espaço entre a caixa de texto e a imagem de enviar */
-  font-family: inherit; /* Usa a mesma fonte do site */
-  font-size: 16px; /* Define o tamanho da fonte */
-  padding: 10px; /* Adiciona preenchimento interno */
-  border: 1px solid #ccc; /* Adiciona uma borda */
-  border-radius: 5px; /* Arredondamento das bordas */
+  width: calc(100% - 40px);
+  margin-right: 10px;
+  border-radius: 5px;
+  padding: 5px;
 }
 
-/* Estilo para os ícones de ação */
-.like-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-/* Estilo específico para o ícone de coração */
-.like-container img:first-child {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-}
-
-/* Estilo da imagem de enviar */
-.action-icon {
-  width: 20px;
-  height: 20px;
+.action-icon-comment-text,
+.action-icon-like-icon {
   cursor: pointer;
 }
 
-/* Estilo do botão Fechar */
-.close1 {
-  color: black;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 30px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close1:hover,
-.close1:focus {
-  color: #000;
-  text-decoration: none;
-}
-
-/* Estilo da imagem dentro do modal */
-.modal-content1 img {
-  max-width: 60%; /* Define a largura máxima da imagem */
-  border-radius: 10px; /* Arredondamento das bordas */
-  margin-bottom: 20px; /* Adicionando espaço abaixo da imagem */
-}
-
-#likesCount1{
-  color: #000;
+.action-icon-comment-text:hover,
+.action-icon-like-icon:hover {
+  filter: brightness(0.8);
 }

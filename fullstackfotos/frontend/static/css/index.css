@@ -54,68 +54,6 @@ header nav ul li button:hover {
   text-decoration: underline;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-}
-
-.post {
-  position: relative;
-}
-
-.post img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
-  margin-bottom: 20px; /* Aumenta a distância entre as imagens na vertical */
-}
-
-.actions {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  display: flex; /* Alinha os ícones horizontalmente */
-  background-color: rgba(
-    200,
-    200,
-    200,
-    0.5
-  ); /* Cor cinza claro com transparência */
-  padding: 4px; /* Espaçamento interno para destacar */
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); /* Adiciona uma pequena sombra */
-  border-radius: 4px;
-}
-
-.actions img {
-  width: 20px;
-  height: auto;
-  margin-right: 5px;
-  border-radius: 4px;
-}
-
-.likes,
-.comments {
-  font-size: 12px;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-/* Remove a margem inferior dos ícones */
-.actions img,
-.likes,
-.comments {
-  margin-bottom: 0;
-}
-
-/* Adiciona regra CSS para ícone de like com a classe 'liked' */
-.like-icon.liked {
-  fill: #c60e0e !important;
-}
-
 footer {
   background-color: #161616;
   color: #ffffff;
@@ -143,7 +81,6 @@ footer .logo h1 {
   border: none;
   outline: none;
   border-radius: 5px; /* Borda arredondada */
-
 }
 
 #openModalBtn:hover,
@@ -168,5 +105,3 @@ footer .logo h1 {
   color: #ffffff;
   margin-right: auto; /* Move este item para a extrema direita */
 }
-
-

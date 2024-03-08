@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Livros Recomendados</title>
     <link rel="stylesheet" href="../static/css/index.css">
-    <link rel="stylesheet" href="../static/css/login.css">
+    <link rel="stylesheet" href="../static/css/modallogin.css">
     <link rel="stylesheet" href="../static/css/conteudo.css">
+    <link rel="stylesheet" href="../static/css/postagens.css">
+    <link rel="stylesheet" href="../static/css/modalestilo.css">
+    <link rel="stylesheet" href="../static/css/modalpostagens.css">
+
 </head>
 
 <body>
@@ -18,8 +22,9 @@
         </div>
         <nav>
             <ul>
+                
                 <?php
-                include './login.php';
+                include './modallogin.php';
 
                 // Verificar se o usuário está logado
                 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
@@ -31,12 +36,16 @@
                     echo '<li><button id="openModalBtn">Login</button></li>';
                 }
                 ?>
+
             </ul>
         </nav>
     </header>
 
     <!-- Conteúdo do Corpo -->
-    <?php include 'postagens.php'; ?>
+    <?php
+    include 'postagens.php';
+    include 'modalpostagens.php';
+    ?>
 
     <!-- Rodapé -->
     <footer>
@@ -55,8 +64,9 @@
     </footer>
 
     <script src="../static/js/index.js"></script>
-    <script src="../static/js/login.js"></script>
-    <script src="../static/js/conteudo.js"></script>
+    <script src="../static/js/modallogin.js"></script>
+    <script src="../static/js/modalpostagens.js"></script>
+    <script src="../static/js/postagens.js"></script>
 </body>
 
 </html>
