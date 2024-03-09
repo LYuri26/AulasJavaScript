@@ -21,7 +21,7 @@
                 <img src="../static/images/icons/enviar.svg" alt="Enviar" class="action-icon-comment-text" onclick="submitComment()">
             </div>
             <div class="like-container">
-                <img src="../static/images/icons/coracao2.svg" alt="Curtir" class="action-icon-like-icon" onclick="likeImage(event)">
+                <img src="../static/images/icons/coracao2.svg" alt="Curtir" class="action-icon-like-icon" onclick="like">
                 <span id="likesCount1">0</span>
             </div>
         </div>
@@ -32,5 +32,3 @@
 </body>
 
 </html>
-
-

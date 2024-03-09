@@ -6,24 +6,7 @@ session_start();
 include './connect.php';
 
 // Verificar o tipo de solicitação
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    // Função para carregar curtidas ao carregar a página
-    $likes = array();
-
-    // Consultar o banco de dados para obter o número de curtidas de cada postagem
-    $stmt = $conn->prepare("SELECT id, curtidas FROM postagens");
-    $stmt->execute();
-    $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Adicionar o número de curtidas de cada postagem ao array de likes
-    foreach ($posts as $post) {
-        $likes[$post['id']] = intval($post['curtidas']);
-    }
-
-    // Retornar os likes no formato JSON
-    echo json_encode(array("success" => true, "likes" => $likes));
-    exit; // Termina o script após enviar a resposta JSON
-} elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     // Verificar se os parâmetros necessários foram enviados
     if (isset($_POST['postId'], $_POST['action'], $_SESSION['user_id'])) {
         $postId = $_POST['postId'];
@@ -54,12 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             }
 
             $stmt->bindParam(1, $userId);
-            $stmt->bindParam(2, $postId);
-            $stmt->execute();
-
-            // Atualizar o número de curtidas na postagem
-            $stmt = $conn->prepare("UPDATE postagens SET curtidas = (SELECT COUNT(*) FROM curtidas WHERE id_postagem = ?) WHERE id = ?");
-            $stmt->bindParam(1, $postId);
             $stmt->bindParam(2, $postId);
             $stmt->execute();
 

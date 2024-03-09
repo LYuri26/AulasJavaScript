@@ -4,7 +4,7 @@ function sendLike(postId, isLike) {
 
   // Enviar uma requisição AJAX para o servidor
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "../../../backend/processar_like.php", true);
+  xhr.open("POST", "../../../backend/processar_like_curtidas.php", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
