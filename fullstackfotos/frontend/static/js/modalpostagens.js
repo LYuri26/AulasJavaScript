@@ -22,9 +22,9 @@ function closeModal() {
   document.getElementById("myModal1").style.display = "none";
 }
 
-function likeModal() {
+async function likeModal() {
   // Verificar se o usuário está logado antes de aumentar o contador
-  const loggedIn = isUserLoggedIn();
+  const loggedIn = await isUserLoggedIn();
   if (!loggedIn) {
     console.log("Usuário não está logado. Não é possível adicionar curtida.");
     return;
@@ -33,9 +33,35 @@ function likeModal() {
   var modalImage = document.getElementById("modalImage");
   var postId = modalImage.dataset.postId; // Obter o ID da postagem do atributo de dados
   if (postId) {
+    console.log("ID da imagem:", postId);
+
+    try {
+      // Enviar uma solicitação ao servidor para obter os likes para o ID da postagem
+      const response = await fetch(`../../../backend/processar_like_postagens.php?id=${postId}`);
+      if (response.ok) {
+        const responseData = await response.json();
+        if (responseData.success) {
+          const likes = responseData.likes[postId];
+          console.log("Likes:", likes);
+
+          // Atualizar o elemento HTML com o número de curtidas
+          var likesCountElement = document.getElementById("likesCount1");
+          likesCountElement.innerText = likes;
+          // Mostrar o elemento
+          likesCountElement.style.display = "inline";
+        } else {
+          console.error("Erro ao obter os likes:", responseData.message);
+        }
+      } else {
+        console.error("Erro ao obter os likes:", response.status);
+      }
+    } catch (error) {
+      console.error("Erro ao obter os likes:", error);
+    }
+
     like(postId); // Chamar a função de adicionar curtida com o ID da postagem
   } else {
-    console.error("ID da postagem não encontrado.");
+    console.log("ID da imagem não encontrado.");
   }
 }
 

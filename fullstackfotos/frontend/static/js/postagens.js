@@ -82,38 +82,6 @@ function like(postId) {
   }
 }
 
-// Adiciona um ouvinte de evento a todos os botões de "Curtir"
-document.addEventListener("DOMContentLoaded", function () {
-  var likeButtons = document.querySelectorAll(".like-btn");
-  likeButtons.forEach(function (button) {
-    button.addEventListener("click", function (event) {
-      // Obtém o ID da postagem associada ao botão de "Curtir" clicado
-      var postId = event.target.dataset.postId;
-      // Envia uma curtida para a postagem
-      like(postId);
-    });
-  });
-
-  // Recuperar o estado dos likes da sessão do usuário e atualizar a interface
-  for (var i = 0; i < sessionStorage.length; i++) {
-    var key = sessionStorage.key(i);
-    if (key.startsWith("likeState_")) {
-      var postId = key.substring(10); // Remove "likeState_" do início da chave
-      var liked = sessionStorage.getItem(key) === "liked";
-      var likeIcon = document.querySelector("#post-" + postId + " .like-icon");
-      if (likeIcon) {
-        if (liked) {
-          likeIcon.classList.add("liked");
-          likeIcon.style.fill = "#FF0000"; // Altera a cor do ícone de like para vermelho
-        } else {
-          likeIcon.classList.remove("liked");
-          likeIcon.style.fill = "#FFFFFF"; // Altera a cor do ícone de like para branco
-        }
-      }
-    }
-  }
-});
-
 document.addEventListener("DOMContentLoaded", function () {
   // Verificar se o usuário está logado
   isUserLoggedIn()

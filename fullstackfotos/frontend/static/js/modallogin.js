@@ -82,11 +82,7 @@ function openModalForPost(postId) {
   console.log("Abrindo modal de imagem para a postagem com o ID:", postId);
 }
 
-// Função para dar like em uma postagem específica
-function likePost(postId) {
-  // Aqui você pode implementar a lógica para dar like em uma postagem com base no postId
-  console.log("Dando like na postagem com o ID:", postId);
-}
+
 
 // Função para manipular o clique no botão de ação
 async function handleActionClick(postId) {
@@ -98,19 +94,4 @@ async function handleActionClick(postId) {
 
   // Lógica para abrir o modal de imagem
   openModalForPost(postId);
-
-  // Lógica para dar like
-  likePost(postId);
 }
-
-// Adiciona um event listener aos elementos de imagem e like
-document.addEventListener("DOMContentLoaded", function () {
-  var imageElements = document.querySelectorAll(".regular-image, .like-icon");
-  imageElements.forEach(function (element) {
-    element.addEventListener("click", function (event) {
-      event.preventDefault(); // Previne o comportamento padrão
-      var postId = event.target.closest(".post").id.split("-")[1]; // Obtém o ID da postagem
-      handleActionClick(postId);
-    });
-  });
-});

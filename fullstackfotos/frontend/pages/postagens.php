@@ -1,6 +1,4 @@
 <?php
-include '../../backend/connect.php';
-
 $postagens = array(
     array(
         'id' => 1,
