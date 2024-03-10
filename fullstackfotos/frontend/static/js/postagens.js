@@ -116,23 +116,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   // Verificar se o usuário está logado
-  isUserLoggedIn().then(function(loggedIn) {
-    // Selecionar o botão de curtir
-    var likeIcon = document.querySelector(".like-icon");
+  isUserLoggedIn()
+    .then(function (loggedIn) {
+      // Selecionar os botões de curtir
+      var likeIcons = document.querySelectorAll(".like-icon");
 
-    // Verificar se o botão foi encontrado e se o usuário está logado
-    if (likeIcon && loggedIn) {
-      console.log("Botão de curtir habilitado.");
-    } else {
-      // Desabilitar o botão se o usuário não estiver logado ou o botão não for encontrado
-      if (likeIcon) {
-        likeIcon.onclick = null; // Remover a função de clique
-        console.log("Botão de curtir desabilitado.");
+      // Verificar se os botões foram encontrados e se o usuário está logado
+      if (likeIcons.length > 0 && loggedIn) {
+        // Habilitar os botões de curtir
+        likeIcons.forEach(function (icon) {
+          icon.classList.remove("disabled");
+          console.log(
+            "Botão de curtir habilitado para a postagem com ID " +
+              icon.id.replace("like-icon-", "")
+          );
+        });
       } else {
-        console.log("Botão de curtir não encontrado.");
+        // Desabilitar os botões de curtir se o usuário não estiver logado ou se os botões não forem encontrados
+        likeIcons.forEach(function (icon) {
+          icon.classList.add("disabled");
+          icon.onclick = null; // Remover a função de clique
+          console.log(
+            "Botão de curtir desabilitado para a postagem com ID " +
+              icon.id.replace("like-icon-", "")
+          );
+        });
       }
-    }
-  }).catch(function(error) {
-    console.error("Erro ao verificar se o usuário está logado:", error);
-  });
+    })
+    .catch(function (error) {
+      console.error("Erro ao verificar se o usuário está logado:", error);
+    });
 });
