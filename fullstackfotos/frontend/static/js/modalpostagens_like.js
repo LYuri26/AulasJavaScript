@@ -26,7 +26,9 @@ function closeModal() {
   document.getElementById("myModal1").style.display = "none";
 }
 
-async function likeModal() {
+async function likeModal(event) {
+  const postId = document.getElementById("modalImage").dataset.postId;
+
   // Verificar se o usuário está logado antes de aumentar o contador
   const loggedIn = await isUserLoggedIn();
   if (!loggedIn) {
@@ -35,7 +37,6 @@ async function likeModal() {
   }
 
   var modalImage = document.getElementById("modalImage");
-  var postId = modalImage.dataset.postId; // Obter o ID da postagem do atributo de dados
   if (postId) {
     console.log("ID da imagem:", postId);
 
@@ -69,11 +70,10 @@ async function likeModal() {
   }
 }
 
-// Função para aumentar o contador de comentários dentro do modal
-function commentModal() {
-  var commentsCount = document.getElementById("commentsCount1");
-  commentsCount.innerText = parseInt(commentsCount.innerText) + 1;
-}
+document.addEventListener("DOMContentLoaded", function () {
+  var likeIcon = document.querySelector(".action-icon-like-icon");
+  likeIcon.addEventListener("click", likeModal);
+});
 
 // Função para adicionar like
 function like() {
