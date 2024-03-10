@@ -65,7 +65,7 @@
 
     <script src="../static/js/index.js"></script>
     <script src="../static/js/modallogin.js"></script>
-    <script src="../static/js/modalpostagens.js"></script>
+    <script src="../static/js/modalpostagens_like.js"></script>
     <script src="../static/js/postagens.js"></script>
 </body>
 

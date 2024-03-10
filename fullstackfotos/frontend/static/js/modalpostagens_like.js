@@ -13,10 +13,14 @@ async function openModal(imagePath, postId) {
     modalImage.src = imagePath;
     modalImage.dataset.postId = postId; // Definir o ID da postagem como um atributo de dados
     modal.style.display = "block";
+
+    // Atualizar o conteúdo do modal
+    likeModal();
   } else {
     console.error("Elemento modalImage não encontrado.");
   }
 }
+
 // Função para fechar o modal
 function closeModal() {
   document.getElementById("myModal1").style.display = "none";
@@ -37,7 +41,9 @@ async function likeModal() {
 
     try {
       // Enviar uma solicitação ao servidor para obter os likes para o ID da postagem
-      const response = await fetch(`../../../backend/processar_like_postagens.php?id=${postId}`);
+      const response = await fetch(
+        `../../../backend/processar_like_postagens.php?id=${postId}`
+      );
       if (response.ok) {
         const responseData = await response.json();
         if (responseData.success) {
@@ -58,8 +64,6 @@ async function likeModal() {
     } catch (error) {
       console.error("Erro ao obter os likes:", error);
     }
-
-    like(postId); // Chamar a função de adicionar curtida com o ID da postagem
   } else {
     console.log("ID da imagem não encontrado.");
   }
@@ -69,6 +73,12 @@ async function likeModal() {
 function commentModal() {
   var commentsCount = document.getElementById("commentsCount1");
   commentsCount.innerText = parseInt(commentsCount.innerText) + 1;
+}
+
+// Função para adicionar like
+function like() {
+  // Coloque aqui a lógica para adicionar o like
+  console.log("Like adicionado!");
 }
 
 // Evento de clique no documento inteiro para fechar o modal ao clicar fora dele

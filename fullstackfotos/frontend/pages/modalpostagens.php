@@ -27,7 +27,7 @@
         </div>
     </div>
 </div>
-<script src="../static/js/modalpostagens.js"></script>
+<script src="../static/js/modalpostagens_like.js"></script>
 
 </body>
 
