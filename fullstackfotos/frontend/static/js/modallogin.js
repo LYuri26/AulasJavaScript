@@ -95,3 +95,20 @@ async function handleActionClick(postId) {
   // Lógica para abrir o modal de imagem
   openModalForPost(postId);
 }
+
+// Adiciona um ouvinte de evento ao botão "Sair"
+var logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", function () {
+    // Requisição AJAX para encerrar a sessão
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "../pages/logout.php", true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        // Recarrega a página após o logout
+        window.location.reload();
+      }
+    };
+    xhr.send();
+  });
+}

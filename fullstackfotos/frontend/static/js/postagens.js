@@ -15,8 +15,11 @@ function sendLike(postId, isLike) {
           if (!response.success) {
             console.log("Erro ao processar o like: " + response.message);
           } else {
-            // Atualizar o número de curtidas exibido no HTML
-            updateLikes(postId, response.likes); // Aqui chama a função updateLikes com o postId correto
+            console.log("Like processado com sucesso.");
+            // Atualizar o número de curtidas na interface do usuário, se necessário
+            if (typeof updateLikesUI === "function") {
+              updateLikesUI(postId, response.likes);
+            }
           }
         } catch (error) {
           console.log("Erro ao analisar resposta JSON: " + error);
@@ -31,49 +34,27 @@ function sendLike(postId, isLike) {
   xhr.send("postId=" + postId + "&action=" + action);
 }
 
-// Função para atualizar os likes exibidos no HTML
-function updateLikes(likes) {
-  // Iterar sobre cada postagem e atualizar os likes correspondentes
-  for (var postId in likes) {
-    if (likes.hasOwnProperty(postId)) {
-      // Selecionar o elemento de likes correto usando o ID da postagem
-      var likesElement = document.querySelector("#post-" + postId + " .likes");
-      if (likesElement) {
-        // Atualizar o conteúdo do elemento com o número de likes correspondente
-        likesElement.textContent = likes[postId];
-      }
-    }
-  }
-}
-
 // Função para enviar um like para o servidor quando o botão de "Curtir" é clicado
 function like(postId) {
   console.log("ID da postagem:", postId); // Imprime o ID da postagem no console
   var post = document.getElementById("post-" + postId);
   if (post) {
     var likeIcon = post.querySelector(".like-icon");
-    var likesElement = post.querySelector(".likes");
-    var likeCount = parseInt(likesElement.textContent);
 
     // Verificar o estado atual do like na sessão do usuário
     var likedState = sessionStorage.getItem("likeState_" + postId);
     var liked = likedState === "liked";
 
-    // Atualizar o número de likes localmente
-    if (!liked) {
-      likeCount++;
-      likeIcon.classList.add("liked");
-      likeIcon.style.fill = "#FF0000"; // Altera a cor do ícone de like para vermelho
-    } else {
-      likeCount--;
+    // Verificar se o usuário está removendo o like
+    if (liked) {
+      sendLike(postId, false); // Envia um deslike
       likeIcon.classList.remove("liked");
       likeIcon.style.fill = "#FFFFFF"; // Altera a cor do ícone de like para branco
+    } else {
+      sendLike(postId, true); // Envia um like
+      likeIcon.classList.add("liked");
+      likeIcon.style.fill = "#FF0000"; // Altera a cor do ícone de like para vermelho
     }
-
-    likesElement.textContent = likeCount; // Atualiza o número de likes exibido no HTML
-
-    // Enviar um like para o servidor
-    sendLike(postId, !liked); // O segundo argumento indica se o like está sendo adicionado ou removido
 
     // Atualizar o estado do like na sessão do usuário
     sessionStorage.setItem("likeState_" + postId, liked ? "" : "liked");
