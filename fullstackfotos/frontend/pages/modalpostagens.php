@@ -10,7 +10,7 @@
 <body>
 
     <!-- Modal -->
-    <div class="modal" id="myModal1" style="display: none;">
+    <div class="modal" id="myModalPost" style="display: none;">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <div class="modal-body">
@@ -21,8 +21,8 @@
                     <img src="../static/images/icons/enviar.svg" alt="Enviar" class="action-icon-comment-text" onclick="submitComment()">
                 </div>
                 <div class="like-container">
-                    <img src="../static/images/icons/coracao2.svg" alt="Curtir" class="action-icon-like-icon" onclick="like">
-                    <span id="likesCount1">0</span>
+                    <img src="../static/images/icons/coracao2.svg" alt="Curtir" class="action-icon-like-icon" onclick="likeModal">
+                    <span id="likesCountPost">0</span>
                 </div>
             </div>
         </div>

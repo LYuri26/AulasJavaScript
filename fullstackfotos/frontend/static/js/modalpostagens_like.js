@@ -7,7 +7,7 @@ async function openModal(imagePath, postId) {
     return; // Não abre o modal se o usuário não estiver logado
   }
 
-  var modal = document.getElementById("myModal1");
+  var modal = document.getElementById("myModalPost");
   var modalImage = document.getElementById("modalImage");
   if (modalImage) {
     modalImage.src = imagePath;
@@ -23,9 +23,10 @@ async function openModal(imagePath, postId) {
 
 // Função para fechar o modal
 function closeModal() {
-  document.getElementById("myModal1").style.display = "none";
+  document.getElementById("myModalPost").style.display = "none";
 }
 
+// Função para exibir os likes da postagem
 async function likeModal(event) {
   const postId = document.getElementById("modalImage").dataset.postId;
 
@@ -52,7 +53,7 @@ async function likeModal(event) {
           console.log("Likes:", likes);
 
           // Atualizar o elemento HTML com o número de curtidas
-          var likesCountElement = document.getElementById("likesCount1");
+          var likesCountElement = document.getElementById("likesCountPost");
           likesCountElement.innerText = likes;
           // Mostrar o elemento
           likesCountElement.style.display = "inline";
@@ -72,18 +73,15 @@ async function likeModal(event) {
 
 document.addEventListener("DOMContentLoaded", function () {
   var likeIcon = document.querySelector(".action-icon-like-icon");
-  likeIcon.addEventListener("click", likeModal);
+  likeIcon.addEventListener("click", function () {
+    // Chama a função likeModal() quando o ícone de "like" for clicado
+    likeModal();
+  });
 });
-
-// Função para adicionar like
-function like() {
-  // Coloque aqui a lógica para adicionar o like
-  console.log("Like adicionado!");
-}
 
 // Evento de clique no documento inteiro para fechar o modal ao clicar fora dele
 document.addEventListener("click", function (event) {
-  var modal = document.getElementById("myModal1");
+  var modal = document.getElementById("myModalPost");
   if (event.target === modal) {
     closeModal();
   }
@@ -107,7 +105,3 @@ async function isUserLoggedIn() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  var likeIcon = document.querySelector(".action-icon-like-icon");
-  likeIcon.addEventListener("click", likeModal);
-});

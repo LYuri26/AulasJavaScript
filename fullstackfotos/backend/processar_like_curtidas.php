@@ -40,6 +40,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['logged_in']) && $_S
             $stmt->bindParam(2, $postId);
             $stmt->execute();
 
+            // Atualizar o número de curtidas na tabela de postagens
+            $stmt = $conn->prepare("UPDATE postagens SET curtidas = (SELECT COUNT(*) FROM curtidas WHERE id_postagem = ?) WHERE id = ?");
+            $stmt->bindParam(1, $postId);
+            $stmt->bindParam(2, $postId);
+            $stmt->execute();
+
             // Obter o número atualizado de curtidas
             $stmt = $conn->prepare("SELECT curtidas FROM postagens WHERE id = ?");
             $stmt->bindParam(1, $postId);

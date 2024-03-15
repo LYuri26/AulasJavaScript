@@ -96,3 +96,45 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Erro ao verificar se o usuário está logado:", error);
     });
 });
+
+// Função para carregar as curtidas das postagens ao carregar a página
+window.onload = function() {
+  loadLikes();
+};
+
+// Função para carregar as curtidas das postagens
+function loadLikes() {
+  // Faz uma solicitação AJAX para o servidor para obter as curtidas
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "../../../backend/processar_like_postagens.php", true);
+  xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+          // Processa a resposta do servidor
+          var response = JSON.parse(xhr.responseText);
+          if (response.success) {
+              // Atualiza as curtidas para cada postagem
+              var likes = response.likes;
+              for (var postId in likes) {
+                  if (likes.hasOwnProperty(postId)) {
+                      var likesCount = likes[postId];
+                      // Atualiza o número de curtidas no DOM
+                      document.getElementById("likes-" + postId).innerText = likesCount;
+                  }
+              }
+          } else {
+              // Exibe uma mensagem de erro se a solicitação falhar
+              console.error("Erro ao carregar curtidas:", response.message);
+          }
+      }
+  };
+  xhr.send();
+}
+
+// Adiciona um evento de clique aos botões de "curtir"
+document.querySelectorAll('.like-icon').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+      var postId = this.dataset.postId;
+      // Chama a função para carregar as curtidas quando um botão de "curtir" for clicado
+      loadLikes(postId);
+  });
+});
