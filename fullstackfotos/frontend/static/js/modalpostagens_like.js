@@ -1,31 +1,3 @@
-// Função para abrir o modal apenas se o usuário estiver logado
-async function openModal(imagePath, postId) {
-  // Verificar se o usuário está logado
-  const loggedIn = await isUserLoggedIn();
-  if (!loggedIn) {
-    console.log("Usuário não está logado. Não é possível abrir o modal.");
-    return; // Não abre o modal se o usuário não estiver logado
-  }
-
-  var modal = document.getElementById("myModalPost");
-  var modalImage = document.getElementById("modalImage");
-  if (modalImage) {
-    modalImage.src = imagePath;
-    modalImage.dataset.postId = postId; // Definir o ID da postagem como um atributo de dados
-    modal.style.display = "block";
-
-    // Atualizar o conteúdo do modal
-    likeModal();
-  } else {
-    console.error("Elemento modalImage não encontrado.");
-  }
-}
-
-// Função para fechar o modal
-function closeModal() {
-  document.getElementById("myModalPost").style.display = "none";
-}
-
 // Função para exibir os likes da postagem
 async function likeModal(event) {
   const postId = document.getElementById("modalImage").dataset.postId;
@@ -40,6 +12,12 @@ async function likeModal(event) {
   var modalImage = document.getElementById("modalImage");
   if (postId) {
     console.log("ID da imagem:", postId);
+
+    // Chamar a função like quando o ícone de "Curtir" for clicado
+    var likeIcon = document.querySelector(".action-icon-like-icon");
+    likeIcon.addEventListener("click", function () {
+      like(postId);
+    });
 
     try {
       // Enviar uma solicitação ao servidor para obter os likes para o ID da postagem
@@ -105,3 +83,39 @@ async function isUserLoggedIn() {
   }
 }
 
+// Função para enviar um like para o servidor
+async function like(postId) {
+  try {
+    console.log("Enviando like para o servidor...");
+    // Envia a solicitação para adicionar um like para o servidor
+    const response = await fetch(
+      "../../../backend/processar_like_curtidas.php",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          postId: postId,
+          action: "like",
+        }),
+      }
+    );
+
+    // Verifica se a solicitação foi bem-sucedida
+    if (response.ok) {
+      console.log(
+        "Like enviado com sucesso para o servidor e registrado na tabela."
+      );
+      // Atualize a contagem de likes na interface do usuário, se necessário
+      likeModal();
+    } else {
+      console.error(
+        "Erro ao enviar like para o servidor. Status:",
+        response.status
+      );
+    }
+  } catch (error) {
+    console.error("Erro ao enviar like:", error);
+  }
+}
