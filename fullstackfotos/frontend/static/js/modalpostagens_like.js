@@ -1,5 +1,5 @@
 // Função para exibir os likes da postagem
-async function likeModal(event) {
+async function likeModal() {
   const postId = document.getElementById("modalImage").dataset.postId;
 
   // Verificar se o usuário está logado antes de aumentar o contador
@@ -9,7 +9,6 @@ async function likeModal(event) {
     return;
   }
 
-  var modalImage = document.getElementById("modalImage");
   if (postId) {
     console.log("ID da imagem:", postId);
 

@@ -21,7 +21,7 @@ try {
     // echo "<script>console.log('Versão do MySQL: " . $row[0] . "');</script>";
 } catch(PDOException $e) {
     // Exibe mensagem de erro caso ocorra um problema na conexão
-    echo "<script>console.error('Erro de conexão: " . $e->getMessage() . "');</script>";
+    //echo "<script>console.error('Erro de conexão: " . $e->getMessage() . "');</script>";
     exit(); // Encerra o script se houver erro de conexão
 }
 ?>

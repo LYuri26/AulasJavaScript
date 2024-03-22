@@ -66,6 +66,14 @@
   margin-right: 5px;
 }
 
+.action-icon-comment-icon {
+  width: 20px;
+  height: auto;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+
 /* Estilo para o container do modal */
 .modal-content1 {
   max-width: 40%; /* Largura do conteúdo do modal */

@@ -40,9 +40,10 @@ INSERT INTO postagens (nome_da_imagem) VALUES
 CREATE TABLE IF NOT EXISTS comentarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_postagem INT,
-    usuario VARCHAR(255) NOT NULL,
+    id_usuario INT,
     texto TEXT NOT NULL,
     data TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id),
     FOREIGN KEY (id_postagem) REFERENCES postagens(id)
 );
 

@@ -49,11 +49,13 @@
 }
 
 .action-icon-comment-text,
-.action-icon-like-icon {
+.action-icon-like-icon,
+.action-icon-comment-icon {
   cursor: pointer;
 }
 
 .action-icon-comment-text:hover,
-.action-icon-like-icon:hover {
+.action-icon-like-icon:hover,
+.action-icon-comment-icon:hover {
   filter: brightness(0.8);
 }
