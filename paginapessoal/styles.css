@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('./images/dark-blur-abstract-4k_1551646029.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Alterado para empilhar os itens verticalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+}
+
+header {
+    text-align: center;
+    padding: 20px 0; /* Adicionado preenchimento interno apenas na parte superior e inferior */
+    margin-bottom: 20px; /* Adicionado espaçamento abaixo do header */
+    background-color: rgba(255, 255, 255, 0.8); /* Adicionado fundo ao cabeçalho */
+    border-radius: 10px; /* Adicionado borda arredondada ao cabeçalho */
+    width: 60%;
+    padding: 20px;
+
+}
+
+header img {
+    width: 300px;
+    border-radius: 15%;
+
+}
+
+section {
+    background-color: rgba(255, 255, 255, 0.8); /* Cor de fundo com transparência */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 60%;
+}
+
+h1, h2 {
+    color: #333;
+    margin-top: 0; /* Removido margem superior para evitar corte */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer {
+    background-color: rgba(255, 255, 255, 0.8); /* Cor de fundo com transparência */
+    width: 100%;
+    text-align: center;
+    padding: 10px 0; /* Adicionado espaçamento interno ao rodapé */
+}
