@@ -87,7 +87,7 @@ $postagens = array(
                                     <img src="../static/images/icons/coracao.svg" alt="Coração" class="like-icon" id="like-icon-<?php echo $postagens[$j]['id']; ?>" onclick="like(<?php echo $postagens[$j]['id']; ?>)">
                                     <span class="likes" id="likes-<?php echo $postagens[$j]['id']; ?>"><?php echo $postagens[$j]['likes']; ?></span>
                                     <img src="../static/images/icons/comment.svg" alt="Comentário" onclick="openModal('../static/images/fotos/<?php echo $postagens[$j]['imagem']; ?>', <?php echo $postagens[$j]['id']; ?>)">
-                                    <span class="comments"><?php echo $postagens[$j]['comentarios']; ?></span>
+                                    <span class="comments" id="comments-<?php echo $postagens[$j]['id']; ?>"><?php echo $postagens[$j]['comentarios']; ?></span>
                                 </div>
                             </div>
                         </div>

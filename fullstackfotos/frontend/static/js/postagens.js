@@ -98,8 +98,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Função para carregar as curtidas das postagens ao carregar a página
-window.onload = function() {
+window.onload = function () {
   loadLikes();
+  loadComments();
 };
 
 // Função para carregar as curtidas das postagens
@@ -107,34 +108,77 @@ function loadLikes() {
   // Faz uma solicitação AJAX para o servidor para obter as curtidas
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "../../../backend/processar_like_postagens.php", true);
-  xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-          // Processa a resposta do servidor
-          var response = JSON.parse(xhr.responseText);
-          if (response.success) {
-              // Atualiza as curtidas para cada postagem
-              var likes = response.likes;
-              for (var postId in likes) {
-                  if (likes.hasOwnProperty(postId)) {
-                      var likesCount = likes[postId];
-                      // Atualiza o número de curtidas no DOM
-                      document.getElementById("likes-" + postId).innerText = likesCount;
-                  }
-              }
-          } else {
-              // Exibe uma mensagem de erro se a solicitação falhar
-              console.error("Erro ao carregar curtidas:", response.message);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      // Processa a resposta do servidor
+      var response = JSON.parse(xhr.responseText);
+      if (response.success) {
+        // Atualiza as curtidas para cada postagem
+        var likes = response.likes;
+        for (var postId in likes) {
+          if (likes.hasOwnProperty(postId)) {
+            var likesCount = likes[postId];
+            // Atualiza o número de curtidas no DOM
+            document.getElementById("likes-" + postId).innerText = likesCount;
           }
+        }
+      } else {
+        // Exibe uma mensagem de erro se a solicitação falhar
+        console.error("Erro ao carregar curtidas:", response.message);
       }
+    }
   };
   xhr.send();
 }
 
 // Adiciona um evento de clique aos botões de "curtir"
-document.querySelectorAll('.like-icon').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-      var postId = this.dataset.postId;
-      // Chama a função para carregar as curtidas quando um botão de "curtir" for clicado
-      loadLikes(postId);
+document.querySelectorAll(".like-icon").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    var postId = this.dataset.postId;
+    // Chama a função para carregar as curtidas quando um botão de "curtir" for clicado
+    loadLikes(postId);
   });
 });
+
+// Função para carregar os comentários das postagens
+function loadComments() {
+  // Seleciona todos os elementos de postagem
+  var posts = document.querySelectorAll(".post");
+
+  // Itera sobre cada postagem
+  posts.forEach(function (post) {
+    // Extrai o ID da postagem do ID do elemento
+    var postId = post.id.split("-")[1];
+
+    // Faz uma solicitação AJAX para o servidor para obter a quantidade de comentários
+    var xhr = new XMLHttpRequest();
+    xhr.open(
+      "GET",
+      "../../../backend/processar_comentario_contagem.php?postId=" + postId,
+      true
+    );
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        // Processa a resposta do servidor
+        var response = JSON.parse(xhr.responseText);
+        if (response.success) {
+          // Atualiza a quantidade de comentários para a postagem específica
+          var commentsCount = response.comments[postId];
+          // Atualiza o número de comentários no DOM
+          var commentsElement = document.getElementById("comments-" + postId);
+          if (commentsElement) {
+            commentsElement.innerText = commentsCount;
+          } else {
+            console.error(
+              "Elemento de comentários não encontrado para o postId: " + postId
+            );
+          }
+        } else {
+          // Exibe uma mensagem de erro se a solicitação falhar
+          console.error("Erro ao carregar comentários:", response.message);
+        }
+      }
+    };
+    xhr.send();
+  });
+}

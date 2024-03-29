@@ -14,7 +14,7 @@ async function submitComment() {
 
   // Enviar o texto do comentário para o servidor usando XMLHttpRequest
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "../../../backend/processar_comentario.php", true); // Arquivo PHP que irá lidar com o armazenamento do comentário
+  xhr.open("POST", "../../../backend/processar_comentario_envio.php", true); // Arquivo PHP que irá lidar com o armazenamento do comentário
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
