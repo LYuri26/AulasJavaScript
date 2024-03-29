@@ -16,6 +16,8 @@ async function openModal(imagePath, postId) {
 
     // Atualizar o conteúdo do modal
     likeModal();
+    // Carregar os comentários para a postagem ao abrir o modal
+    await loadCommentsModal(postId);
   } else {
     console.error("Elemento modalImage não encontrado.");
   }

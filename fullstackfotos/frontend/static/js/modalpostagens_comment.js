@@ -23,7 +23,8 @@ async function submitComment() {
         console.log("Comentário enviado com sucesso!");
         // Limpar a caixa de texto após o envio do comentário
         document.getElementById("commentText1").value = "";
-        // Você pode adicionar aqui qualquer lógica adicional, como atualizar a contagem de comentários na página
+        // Atualizar os comentários após o envio bem-sucedido
+        loadCommentsModal(postId);
       } else {
         // Tratar possíveis erros
         console.error("Erro ao enviar comentário: " + xhr.status);
@@ -73,3 +74,54 @@ async function isUserLoggedIn() {
     return false;
   }
 }
+
+// Função para carregar os comentários
+async function loadCommentsModal(postId) {
+  try {
+    // Verificar se o postId está definido
+    if (!postId) {
+      console.error("Erro: ID da postagem não definido.");
+      return;
+    }
+
+    // Enviar uma solicitação ao servidor para obter os comentários para o ID da postagem
+    const response = await fetch(
+      `../../../backend/processar_comentario_contagem.php?id=${postId}`
+    );
+    if (response.ok) {
+      const responseData = await response.json();
+      if (responseData.success) {
+        const comments = responseData.comments[postId];
+        console.log("Comentários:", comments);
+
+        // Atualizar o elemento HTML com o número de comentários
+        var commentsCountElement = document.getElementById("comments");
+        commentsCountElement.innerText = comments;
+        // Mostrar o elemento
+        commentsCountElement.style.display = "inline";
+      } else {
+        console.error("Erro ao obter os comentários:", responseData.message);
+      }
+    } else {
+      console.error("Erro ao obter os comentários:", response.status);
+    }
+  } catch (error) {
+    console.error("Erro ao obter os comentários:", error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", async function () {
+  try {
+    // Obter o ID da postagem do elemento modalImage
+    const postId = document.getElementById("modalImage").dataset.postId;
+    // Verificar se o postId está definido
+    if (!postId) {
+      console.error("Erro: ID da postagem não definido.");
+      return;
+    }
+    // Carregar os comentários para a postagem ao abrir o modal
+    await loadCommentsModal(postId);
+  } catch (error) {
+    console.error("Erro ao carregar os comentários:", error);
+  }
+});
