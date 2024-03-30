@@ -1,0 +1,105 @@
+/* Estilo padrão para o corpo da página */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Define a fonte padrão para o texto */
+  margin: 0; /* Remove as margens externas */
+  padding: 0; /* Remove o preenchimento interno */
+  background-color: #f0f0f0; /* Define a cor de fundo do corpo da página */
+  color: #333; /* Define a cor do texto */
+}
+
+/* Estilo do cabeçalho */
+header {
+  background-color: #333; /* Define a cor de fundo do cabeçalho */
+  color: #fff; /* Define a cor do texto do cabeçalho */
+  text-align: center; /* Centraliza o texto horizontalmente */
+  padding: 20px 0; /* Adiciona espaçamento interno superior e inferior */
+}
+
+/* Estilo para o título principal */
+h1 {
+  margin-bottom: 5px; /* Adiciona margem inferior para separar do próximo elemento */
+  font-size: 36px; /* Define o tamanho da fonte */
+}
+
+/* Estilo para os títulos secundários */
+h2 {
+  margin-top: 5px; /* Adiciona margem superior para separar do elemento anterior */
+  font-size: 24px; /* Define o tamanho da fonte */
+}
+
+/* Estilo para os parágrafos */
+p {
+  line-height: 1.6; /* Define a altura da linha para melhor legibilidade */
+  font-size: 18px; /* Define o tamanho da fonte */
+  color: #555; /* Define a cor do texto */
+}
+
+/* Estilo para as seções */
+section {
+  padding: 20px; /* Adiciona espaçamento interno */
+  margin-bottom: 30px; /* Adiciona margem inferior para separar do próximo elemento */
+  background-color: #fff; /* Define a cor de fundo */
+  border-radius: 10px; /* Adiciona cantos arredondados */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra sutil */
+}
+
+/* Estilo para o contêiner */
+.container {
+  max-width: 900px; /* Define a largura máxima do contêiner */
+  margin: 0 auto; /* Centraliza horizontalmente */
+}
+
+/* Estilo para o rodapé */
+footer {
+  text-align: center; /* Centraliza o texto horizontalmente */
+  padding: 20px 0; /* Adiciona espaçamento interno superior e inferior */
+  background-color: #333; /* Define a cor de fundo */
+  color: #fff; /* Define a cor do texto */
+}
+
+/* Estilo para os links */
+a {
+  color: #007bff; /* Define a cor padrão dos links */
+  text-decoration: none; /* Remove a decoração de texto sublinhado */
+  transition: color 0.3s ease-in-out; /* Adiciona uma transição suave de cor */
+}
+
+/* Efeito de mudança de cor ao passar o mouse sobre os links */
+a:hover {
+  color: #0056b3; /* Define a cor do texto ao passar o mouse sobre o link */
+}
+
+/* Estilo para as listas não ordenadas */
+ul {
+  list-style-type: none; /* Remove os marcadores de lista */
+  padding: 0; /* Remove o preenchimento padrão */
+}
+
+/* Estilo para os itens de lista */
+li {
+  margin-bottom: 10px; /* Adiciona margem inferior para separar os itens */
+}
+
+/* Estilo para as informações de contato */
+.contact-info {
+  font-size: 20px; /* Define o tamanho da fonte */
+}
+
+/* Estilo para os parágrafos dentro das informações de contato */
+.contact-info p {
+  margin: 5px 0; /* Adiciona espaçamento interno superior e inferior */
+}
+
+/* Estilo para a imagem no cabeçalho */
+header img {
+  width: 100px; /* Define a largura da imagem */
+  height: 100px; /* Define a altura da imagem */
+  border-radius: 50%; /* Transforma a imagem em um círculo */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave */
+  transition: transform 0.3s ease-in-out; /* Adiciona uma transição suave de transformação */
+}
+
+/* Efeito de escala ao passar o mouse sobre a imagem */
+header img:hover {
+  transform: scale(1.05); /* Aumenta ligeiramente o tamanho da imagem */
+}
