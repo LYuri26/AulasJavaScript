@@ -1,0 +1,45 @@
+/* Estilos para o modal overlay */
+.modal-overlay {
+  position: fixed; /* Define a posição fixa para cobrir toda a tela */
+  top: 0; /* Alinha o topo com o topo da tela */
+  left: 0; /* Alinha a esquerda com a esquerda da tela */
+  width: 100%; /* Define a largura para cobrir toda a largura da tela */
+  height: 100%; /* Define a altura para cobrir toda a altura da tela */
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente escuro */
+  display: flex; /* Permite o uso de flexbox para centralizar */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
+}
+
+/* Estilos para o modal */
+.modal {
+  background-color: #333; /* Fundo mais escuro */
+  border-radius: 15px; /* Borda arredondada */
+  padding: 20px; /* Espaçamento interno */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra */
+  width: 100%; /* Largura reduzida para 80% da tela */
+  max-width: 60%; /* Largura máxima */
+  color: white; /* Cor do texto branco */
+  position: relative; /* Tornando o posicionamento relativo para alinhar centralmente */
+  left: 50%; /* Move o modal para a direita em 50% da largura da tela */
+  top: 50%; /* Move o modal para baixo em 50% da altura da tela */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Corrige o posicionamento para centralizar */
+}
+
+/* Estilos para o botão de fechar */
+.close-button {
+  position: absolute; /* Posição absoluta em relação ao modal */
+  top: 10px; /* Espaço de 10px do topo */
+  right: 10px; /* Espaço de 10px da direita */
+  cursor: pointer; /* Cursor do mouse em forma de mão */
+  color: white; /* Cor do texto branco */
+}
+
+/* Estilos para o conteúdo do modal */
+.modal-content {
+  margin-top: 20px; /* Espaço superior de 20px */
+}

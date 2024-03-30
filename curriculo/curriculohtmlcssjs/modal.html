@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <body>
+        <!-- Conteúdo do modal -->
+        <div id="modal" class="modal-overlay">
+            <!-- Div que representa o modal -->
+            <div class="modal">
+                <!-- Cabeçalho do modal -->
+                <div class="modal-header">
+                    <!-- Título do modal -->
+                    <h2>Programação</h2>
+                    <!-- Botão para fechar o modal -->
+                    <button id="closeModalButton"
+                        class="close-button">&times;</button>
+                </div>
+
+                <!-- Links para os arquivos de estilo CSS -->
+                <link rel="stylesheet" type="text/css" href="barra.css">
+                <link rel="stylesheet" type="text/css" href="modal.css">
+
+                <!-- Div para exibir o gráfico -->
+                <div id="grafico"></div>
+
+                <!-- Scripts necessários para o funcionamento do gráfico -->
+                <script src="https://d3js.org/d3.v5.min.js"></script>
+                <!-- Biblioteca D3.js -->
+                <script src="barra.js" defer></script>
+                <!-- Script para renderizar o gráfico de barras -->
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+/* Estilos para o contêiner que envolve o gráfico */
+.container {
+  display: flex; /* Define o contêiner como um flex container */
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
+  align-items: center; /* Centraliza o conteúdo verticalmente */
+  height: 100vh; /* Define a altura do contêiner como 100% da altura da viewport */
+}
+
+/* Estilos para o elemento do gráfico */
+#grafico {
+  width: 800px; /* Largura do gráfico */
+  height: 400px; /* Altura do gráfico */
+}
+
+/* Estilos para as barras do gráfico */
+.barra {
+  fill: salmon; /* Cor de preenchimento das barras */
+  stroke: #fff; /* Cor da borda das barras */
+  stroke-width: 2px; /* Espessura da borda das barras */
+}
+
+/* Estilos para os rótulos do eixo Y */
+.rotulo {
+  font-family: Arial, sans-serif; /* Fonte dos rótulos */
+  font-size: 12px; /* Tamanho da fonte dos rótulos */
+}
+
+/* Estilos para as porcentagens dentro das barras */
+.porcentagem {
+  fill: #fa8072; /* Cor de preenchimento das porcentagens */
+  font-weight: bold; /* Peso da fonte das porcentagens */
+}
