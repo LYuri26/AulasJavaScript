@@ -1,0 +1,23 @@
+/* Estilos para o carrossel de imagens responsivo */
+.carrossel {
+    width: 100%;
+    overflow: hidden;
+}
+
+.carrossel-slide {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carrossel-slide img {
+    width: 100%;
+    height: auto;
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 600px) {
+    .carrossel-slide img {
+        width: auto;
+        max-width: 100%;
+    }
+}
