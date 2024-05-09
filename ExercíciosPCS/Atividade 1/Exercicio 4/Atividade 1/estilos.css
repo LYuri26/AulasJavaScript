@@ -1,0 +1,58 @@
+/* Estilos para botões responsivos */
+
+/* Botão de envio */
+.botao-envio {
+    background-color: #4CAF50; /* Cor de fundo verde */
+    border: none;
+    color: white;
+    padding: 15px 32px; /* Espaçamento interno */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+/* Botão de ação */
+.botao-acao {
+    background-color: #008CBA; /* Cor de fundo azul */
+    border: none;
+    color: white;
+    padding: 15px 32px; /* Espaçamento interno */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+/* Botão de navegação */
+.botao-navegacao {
+    background-color: #f44336; /* Cor de fundo vermelho */
+    border: none;
+    color: white;
+    padding: 15px 32px; /* Espaçamento interno */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 600px) {
+    /* Ajuste de tamanho para dispositivos menores */
+    .botao-envio, .botao-acao, .botao-navegacao {
+        padding: 10px 20px; /* Reduzir o espaçamento interno */
+        font-size: 14px; /* Reduzir o tamanho da fonte */
+    }
+}

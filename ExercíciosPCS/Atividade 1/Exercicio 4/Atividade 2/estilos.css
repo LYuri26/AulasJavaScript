@@ -1,0 +1,41 @@
+/* Estilos para formulário responsivo */
+.formulario {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+}
+
+.formulario label, .formulario input, .formulario select, .formulario textarea {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.formulario input[type="text"],
+.formulario input[type="email"],
+.formulario textarea,
+.formulario select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.formulario input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 600px) {
+    .formulario {
+        max-width: 90%;
+    }
+}
