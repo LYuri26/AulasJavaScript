@@ -3,11 +3,11 @@
 
 /* Define a fonte e a cor padrão para o corpo do documento */
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif; /* Define a fonte */
   background-color: #043ca4; /* Define a cor de fundo do corpo */
   color: #ffffff; /* Define a cor do texto */
-  margin: 0;
-  padding: 0;
+  margin: 0; /* Remove as margens */
+  padding: 0; /* Remove o preenchimento */
 }
 
 /* Define o estilo do container principal */
@@ -39,6 +39,8 @@ button {
   border-radius: 5px; /* Define o raio da borda */
   font-size: 39px; /* Define o tamanho da fonte */
   transition: background-color 0.3s ease; /* Adiciona uma transição suave na mudança de cor de fundo */
+  position: relative; /* Define a posição como relativa para animações */
+  overflow: hidden; /* Oculta elementos filho que ultrapassam os limites do botão */
 }
 
 /* Estilo para os botões quando passados sobre */
@@ -53,17 +55,52 @@ button:hover {
   font-size: 43px; /* Define o tamanho da fonte */
 }
 
-/* Estilos responsivos para telas menores que 600px */
-@media only screen and (max-width: 600px) {
-  .container {
-    margin-top: 10vh; /* Redefine a margem superior */
-  }
+/* Estilo para o container dos fogos de artifício */
+#fireworks-container {
+  position: fixed; /* Define a posição fixa para ocupar a tela inteira */
+  top: 0; /* Alinha o container no topo */
+  left: 0; /* Alinha o container à esquerda */
+  width: 100%; /* Define a largura para ocupar a tela inteira */
+  height: 100%; /* Define a altura para ocupar a tela inteira */
+  pointer-events: none; /* Ignora os eventos do mouse para que não interfiram no conteúdo */
+}
 
-  input[type="number"] {
-    width: 90%; /* Redefine a largura do campo de entrada */
-  }
+/* Estilo para os fogos de artifício */
+.rocket {
+  position: absolute; /* Define a posição absoluta para os foguetes */
+  bottom: 0; /* Alinha os foguetes na parte inferior do container */
+  width: 2px; /* Define a largura dos foguetes */
+  height: 15px; /* Define a altura dos foguetes */
+  background-color: #fff; /* Define a cor dos foguetes */
+  animation: launch 2s forwards; /* Aplica a animação de lançamento */
+}
 
-  button {
-    width: 90%; /* Redefine a largura do botão */
-  }
+.explosion {
+  position: absolute; /* Define a posição absoluta para as explosões */
+  bottom: 15px; /* Alinha as explosões abaixo dos foguetes */
+  width: 20px; /* Define a largura das explosões */
+  height: 20px; /* Define a altura das explosões */
+  border-radius: 50%; /* Define o raio da borda para criar uma forma circular */
+  animation: explode 2s forwards; /* Aplica a animação de explosão */
+}
+
+/* Animação de lançamento */
+@keyframes launch {
+  0% {
+    transform: translateY(0);
+  } /* Estado inicial: sem translação vertical */
+  100% {
+    transform: translateY(-100vh);
+  } /* Estado final: translação para cima, fora da tela */
+}
+
+/* Animação de explosão */
+@keyframes explode {
+  0% {
+    transform: scale(0);
+  } /* Estado inicial: sem escala (tamanho zero) */
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  } /* Estado final: escala ampliada e opacidade zero */
 }
