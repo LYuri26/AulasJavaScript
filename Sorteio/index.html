@@ -1,0 +1,39 @@
+<!DOCTYPE html> <!-- Define o tipo de documento como HTML5 -->
+<html lang="pt-BR"> <!-- Define o idioma da página como português brasileiro -->
+    <head>
+        <meta charset="UTF-8">
+        <!-- Define o conjunto de caracteres como UTF-8 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Configura a viewport para dispositivos móveis -->
+        <title>Sorteio de Números Trabalhos</title>
+        <!-- Define o título da página -->
+        <link rel="stylesheet" href="styles.css">
+        <!-- Importa o arquivo de estilo CSS -->
+    </head>
+    <body>
+        <div class="container"> <!-- Início do contêiner principal -->
+            <h1>Sorteio de Números</h1> <!-- Título da página -->
+            <div> <!-- Início do primeiro conjunto de entrada -->
+                <label for="inicio">Início:</label>
+                <!-- Rótulo para o campo de entrada de início -->
+                <input type="number" id="inicio" min="0" required>
+                <!-- Campo de entrada para o início do intervalo -->
+            </div> <!-- Fim do primeiro conjunto de entrada -->
+            <div> <!-- Início do segundo conjunto de entrada -->
+                <label for="fim">Fim:</label>
+                <!-- Rótulo para o campo de entrada de fim -->
+                <input type="number" id="fim" min="0" required>
+                <!-- Campo de entrada para o fim do intervalo -->
+            </div> <!-- Fim do segundo conjunto de entrada -->
+            <button onclick="sortearNumeroUnico()">Sortear Número Único</button>
+            <!-- Botão para sortear um número único -->
+            <button onclick="sortearSequencia()">Sortear Sequência</button>
+            <!-- Botão para sortear uma sequência de números -->
+            <div id="resultado"></div>
+            <!-- Div para exibir o resultado do sorteio -->
+        </div> <!-- Fim do contêiner principal -->
+
+        <script src="script.js"></script>
+        <!-- Importa o arquivo de script JavaScript -->
+    </body>
+</html>
