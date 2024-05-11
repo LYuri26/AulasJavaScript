@@ -1,0 +1,35 @@
+body {
+  font-family: Arial, sans-serif; /* Define a fonte padrão para o corpo do documento como Arial ou uma fonte sans-serif genérica. */
+}
+
+.container {
+  max-width: 600px; /* Define a largura máxima do contêiner como 600 pixels. */
+  margin: 0 auto; /* Centraliza o contêiner horizontalmente na página. */
+}
+
+input[type="text"] {
+  width: 70%; /* Define a largura do campo de entrada de texto como 70% do seu contêiner pai. */
+  padding: 10px; /* Adiciona um preenchimento interno de 10 pixels ao redor do campo de entrada de texto. */
+  margin-bottom: 10px; /* Adiciona uma margem inferior de 10 pixels ao campo de entrada de texto. */
+}
+
+button {
+  padding: 10px 20px; /* Adiciona um preenchimento interno de 10 pixels no topo e na base e 20 pixels nas laterais aos botões. */
+  background-color: #007bff; /* Define a cor de fundo dos botões como azul (tom padrão do Bootstrap). */
+  color: #fff; /* Define a cor do texto dos botões como branco. */
+  border: none; /* Remove a borda dos botões. */
+  cursor: pointer; /* Define o cursor do mouse como um ponteiro ao passar sobre os botões. */
+}
+
+ul {
+  list-style-type: none; /* Remove os marcadores de lista padrão (pontos) das listas não ordenadas. */
+  padding: 0; /* Remove o preenchimento padrão das listas não ordenadas. */
+}
+
+li {
+  padding: 10px; /* Adiciona um preenchimento interno de 10 pixels aos itens da lista. */
+}
+
+input[type="checkbox"] {
+  margin-right: 10px; /* Adiciona uma margem à direita de 10 pixels aos checkboxes. */
+}

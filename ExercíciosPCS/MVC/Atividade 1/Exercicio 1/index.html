@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <!-- Define o conjunto de caracteres como UTF-8. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Define a viewport para dispositivos móveis. -->
+        <title>Lista de Tarefas</title> <!-- Define o título da página. -->
+        <link rel="stylesheet" href="styles.css">
+        <!-- Importa o arquivo CSS para estilização. -->
+    </head>
+    <body>
+        <div class="container">
+            <h1>Lista de Tarefas</h1> <!-- Cabeçalho da página. -->
+            <input type="text" id="input-tarefa"
+                placeholder="Adicionar nova tarefa">
+            <!-- Campo de entrada para adicionar nova tarefa. -->
+            <button id="botao-adicionar">Adicionar Tarefa</button>
+            <!-- Botão para adicionar tarefa. -->
+            <ul id="lista-tarefas"></ul>
+            <!-- Lista não ordenada onde serão exibidas as tarefas. -->
+        </div>
+        <!-- Importa os arquivos JavaScript necessários. -->
+        <script src="model.js"></script>
+        <script src="view.js"></script>
+        <script src="controller.js"></script>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <!-- Define o conjunto de caracteres UTF-8 para suportar caracteres especiais. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Define a viewport para garantir que o layout seja responsivo em dispositivos móveis. -->
+        <title>Calculadora MVC</title> <!-- Define o título da página. -->
+        <link rel="stylesheet" href="style.css">
+        <!-- Importa o arquivo de estilo CSS para estilizar a calculadora. -->
+    </head>
+    <body>
+        <div class="calculadora">
+            <input type="text" id="tela" readonly>
+            <!-- Cria um campo de entrada de texto para exibir o resultado da calculadora. O atributo readonly impede a edição do campo pelo usuário. -->
+            <div class="botoes">
+                <!-- Define um contêiner para os botões da calculadora. -->
+                <!-- Cria os botões numéricos e operadores com as classes correspondentes e valores para representar seus respectivos números ou operadores. -->
+                <button class="numero" value="7">7</button>
+                <button class="numero" value="8">8</button>
+                <button class="numero" value="9">9</button>
+                <button class="operador" value="/">/</button>
+                <button class="numero" value="4">4</button>
+                <button class="numero" value="5">5</button>
+                <button class="numero" value="6">6</button>
+                <button class="operador" value="*">*</button>
+                <button class="numero" value="1">1</button>
+                <button class="numero" value="2">2</button>
+                <button class="numero" value="3">3</button>
+                <button class="operador" value="-">-</button>
+                <button class="numero" value="0">0</button>
+                <button class="limpar" value="C">C</button>
+                <button class="calcular" value="=">=</button>
+                <button class="operador" value="+">+</button>
+            </div>
+        </div>
+        <!-- Importa os arquivos JavaScript que contêm as classes do modelo, visualização e controle da calculadora. -->
+        <script src="modelo.js"></script>
+        <script src="visualizacao.js"></script>
+        <script src="controle.js"></script>
+    </body>
+</html>
