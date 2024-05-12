@@ -63,10 +63,11 @@ button {
 
 /* Define o estilo para o resultado */
 #resultado {
-  display: table; /* Altera o display para tabela */
+  display: flex; /* Usa flexbox */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
   margin-top: 20px; /* Margem superior */
   font-size: 18px; /* Tamanho da fonte */
-  border-collapse: collapse; /* Combina as bordas das células */
 }
 
 /* Define o estilo para cada linha da tabela */

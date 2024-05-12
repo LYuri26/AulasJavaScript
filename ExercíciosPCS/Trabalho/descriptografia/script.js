@@ -122,6 +122,33 @@ function Descriptografar() {
     });
   });
 
-  // Exibe o resultado na página HTML
-  document.getElementById("resultado").innerText = JSON.stringify(matrizLetras);
+  // Exibe a matriz descriptografada na página HTML
+  exibirMatrizDescriptografada(matrizLetras);
+}
+
+// Função para exibir a matriz descriptografada na tabela HTML
+function exibirMatrizDescriptografada(matrizDescriptografada) {
+  // Obtém a referência ao elemento HTML onde a matriz será exibida
+  const resultadoDiv = document.getElementById("resultado");
+  resultadoDiv.innerHTML = ""; // Limpa o conteúdo anterior, se houver
+
+  // Cria uma tabela HTML para exibir a matriz descriptografada
+  const table = document.createElement("table");
+  table.classList.add("matriz");
+
+  // Itera sobre cada linha da matriz descriptografada
+  matrizDescriptografada.forEach((linha) => {
+    const tr = document.createElement("tr");
+
+    // Adiciona cada elemento da linha como uma célula na tabela
+    linha.forEach((celula) => {
+      const td = document.createElement("td");
+      td.textContent = celula;
+      tr.appendChild(td);
+    });
+
+    table.appendChild(tr); // Adiciona a linha à tabela
+  });
+
+  resultadoDiv.appendChild(table); // Adiciona a tabela ao elemento de resultado
 }
