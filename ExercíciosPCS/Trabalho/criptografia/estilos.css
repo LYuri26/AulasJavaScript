@@ -63,13 +63,23 @@ button {
 
 /* Define o estilo para o resultado */
 #resultado {
-  display: flex; /* Usa flexbox */
-  flex-direction: column; /* Direção da coluna */
-  align-items: center; /* Alinhamento central */
+  display: table; /* Altera o display para tabela */
   margin-top: 20px; /* Margem superior */
   font-size: 18px; /* Tamanho da fonte */
-  border-top: 1px solid #ff0000; /* Borda superior */
-  padding-top: 20px; /* Preenchimento superior */
+  border-collapse: collapse; /* Combina as bordas das células */
+}
+
+/* Define o estilo para cada linha da tabela */
+#resultado div {
+  display: table-row; /* Altera o display para linha de tabela */
+}
+
+/* Define o estilo para cada célula da tabela */
+#resultado span {
+  display: table-cell; /* Altera o display para célula de tabela */
+  padding: 8px; /* Preenchimento */
+  text-align: center; /* Alinhamento do texto */
+  border: 1px solid #eee; /* Borda */
 }
 
 /* Define o estilo para a matriz chave */

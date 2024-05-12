@@ -11,7 +11,7 @@ function obterTabelaCaracteres() {
 }
 
 // Função para transformar uma texto em uma matriz usando a tabela de caracteres
-function transformartextoEmMatriz(texto) {
+function transformarTextoEmMatriz(texto) {
     // Verifica se a texto foi fornecida
     if (!texto) {
         console.error("Nenhuma texto fornecida.");
@@ -72,145 +72,104 @@ function transformartextoEmMatriz(texto) {
     return [primeiraLinha, segundaLinha];
 }
 
-// Função para transformar uma sequência de números em uma matriz de letras usando a tabela de caracteres
+
+// Função para transformar uma sequência de números em uma matriz de números com duas linhas
 function transformarNumerosEmMatriz(sequenciaNumeros) {
     // Verifica se a sequência de números foi fornecida
     if (!sequenciaNumeros) {
-        console.error("Nenhuma sequência de números fornecida.");
-        return []; // Retorna uma matriz vazia se nenhum número foi fornecido
+      console.error("Nenhuma sequência de números fornecida.");
+      return [];
     }
-
-    // Obtém a tabela de caracteres
-    const tabelaCaracteres = obterTabelaCaracteres();
-
     // Divide a sequência de números em um array, separando por espaços
-    const numeros = sequenciaNumeros.split(' ');
-
-    // Define o número de colunas baseado na quantidade de números
+    const numeros = sequenciaNumeros.split(" ");
+    // Calcula o número de colunas baseado na quantidade de números
     const numColunas = Math.ceil(numeros.length / 2);
-
-    // Array para armazenar as letras correspondentes aos números
+    // Array para armazenar os números na matriz
     const matriz = [];
-
-    // Itera sobre cada número da sequência
-    for (let i = 0; i < numeros.length; i++) {
-        const numeroAtual = numeros[i];
-        // Verifica se o número existe na tabela de caracteres
-        if (tabelaCaracteres.hasOwnProperty(numeroAtual)) {
-            // Se existir, adiciona a letra correspondente à matriz
-            matriz.push(tabelaCaracteres[numeroAtual]);
+    // Itera sobre as duas linhas da matriz
+    for (let i = 0; i < 2; i++) {
+      const linha = [];
+      // Itera sobre as colunas da matriz
+      for (let j = 0; j < numColunas; j++) {
+        const index = i * numColunas + j;
+        // Verifica se ainda há números na sequência
+        if (index < numeros.length) {
+          // Adiciona o número convertido para inteiro na matriz
+          linha.push(parseInt(numeros[index]));
         } else {
-            // Se não existir, adiciona '0' à matriz
-            matriz.push('0');
+          // Se não houver mais números, adiciona 0 na matriz
+          linha.push(0);
         }
+      }
+      // Adiciona a linha na matriz final
+      matriz.push(linha);
     }
-
-    // Verifica se o número de colunas é maior que o número de elementos na matriz
-    if (numColunas > matriz.length) {
-        // Preenche com zeros até atingir o número de colunas
-        const diferenca = numColunas - matriz.length;
-        for (let i = 0; i < diferenca; i++) {
-            matriz.push('0');
-        }
-    }
-
-    // Divide a matriz em duas linhas
-    const primeiraLinha = matriz.slice(0, numColunas);
-    const segundaLinha = matriz.slice(numColunas);
-
-    // Verifica se a segunda linha tem o mesmo número de elementos que a primeira
-    if (segundaLinha.length < primeiraLinha.length) {
-        // Preenche com zeros até ter a mesma quantidade de elementos
-        const diferenca = primeiraLinha.length - segundaLinha.length;
-        for (let i = 0; i < diferenca; i++) {
-            segundaLinha.push('0');
-        }
-    }
-
     // Retorna a matriz resultante
-    return [primeiraLinha, segundaLinha];
-}
-
-// Função para transformar uma sequência de números em uma matriz de letras usando a tabela de caracteres
-function transformarNumerosEmMatriz(sequenciaNumeros) {
-    // Verifica se a sequência de números foi fornecida
-    if (!sequenciaNumeros) {
-        console.error("Nenhuma sequência de números fornecida.");
-        return []; // Retorna uma matriz vazia se nenhum número foi fornecido
-    }
-
-    // Obtém a tabela de caracteres
-    const tabelaCaracteres = obterTabelaCaracteres(); // Obtém a tabela de caracteres da função 'obterTabelaCaracteres()'
-
-    // Divide a sequência de números em um array, separando por espaços
-    const numeros = sequenciaNumeros.split(' '); // split: divide a sequência de números em um array usando o espaço como separador
-
-    // Define o número de colunas baseado na quantidade de números
-    const numColunas = Math.ceil(numeros.length / 2); // ceil: arredonda para cima o resultado da divisão dos números por 2
-
-    // Array para armazenar as letras correspondentes aos números
-    const matriz = [];
-
-    // Itera sobre cada número da sequência
-    for (let i = 0; i < numeros.length; i++) {
-        const numeroAtual = parseInt(numeros[i]); // Converte o número para inteiro usando parseInt
-        // Verifica se o número existe na tabela de caracteres
-        if (!isNaN(numeroAtual) && numeroAtual >= 1 && numeroAtual <= Object.keys(tabelaCaracteres).length) {
-            // Se existir, adiciona a letra correspondente à matriz
-            const letra = Object.keys(tabelaCaracteres)[numeroAtual - 1]; // Obtém a letra correspondente ao número atual
-            matriz.push(letra); // Adiciona a letra à matriz
-        } else {
-            // Se o número estiver fora do intervalo permitido, adiciona '0' à matriz
-            matriz.push('0');
-        }
-    }
-
-    // Verifica se o número de colunas é maior que o número de elementos na matriz
-    if (numColunas > matriz.length) {
-        // Preenche com zeros até atingir o número de colunas
-        const diferenca = numColunas - matriz.length;
-        for (let i = 0; i < diferenca; i++) {
-            matriz.push('0');
-        }
-    }
-
-    // Divide a matriz em duas linhas
-    const primeiraLinha = matriz.slice(0, numColunas); // slice: retorna uma parte da matriz, do índice 0 até numColunas
-    const segundaLinha = matriz.slice(numColunas); // slice: retorna uma parte da matriz, do índice numColunas até o final
-
-    // Verifica se a segunda linha tem o mesmo número de elementos que a primeira
-    if (segundaLinha.length < primeiraLinha.length) {
-        // Preenche com zeros até ter a mesma quantidade de elementos
-        const diferenca = primeiraLinha.length - segundaLinha.length;
-        for (let i = 0; i < diferenca; i++) {
-            segundaLinha.push('0');
-        }
-    }
-
-    // Retorna a matriz resultante
-    return [primeiraLinha, segundaLinha];
-}
-
+    return matriz;
+  }
+  
 // Função para ser chamada quando o botão de transformar texto for clicado
 function criptografar() {
     // Obtém o texto digitado no textarea
     const texto = document.getElementById('texto').value;
     // Chama a função para transformar a texto em matriz
-    const matriz = transformartextoEmMatriz(texto);
+    const matriz = transformarTextoEmMatriz(texto);
     // Exibe o resultado na div resultado
     document.getElementById('resultado').innerText = JSON.stringify(matriz);
     // Exibe a matriz no console
     console.log(matriz);
 }
 
-// Função para ser chamada quando o botão de transformar sequência de números for clicado
-function testarTransformacaoNumeros() {
-    // Obtém a sequência de números digitada no textarea
-    const sequenciaNumeros = document.getElementById('sequenciaNumeros').value;
-    // Chama a função para transformar a sequência de números em matriz de letras
-    const matrizLetras = transformarNumerosEmMatriz(sequenciaNumeros);
+// Função principal para descriptografar
+function Descriptografar() {
+    // Obtém a sequência de números digitada no input
+    const sequenciaNumeros = document.getElementById("sequenciaNumeros").value;
+    // Obtém os números das chaves
+    const numero1 = parseInt(document.getElementById("numero1").value);
+    const numero2 = parseInt(document.getElementById("numero2").value);
+    const numero3 = parseInt(document.getElementById("numero3").value);
+    const numero4 = parseInt(document.getElementById("numero4").value);
+  
+    // Calcula a matriz inversa das chaves
+    const matrizInversa = calcularMatrizInversa(numero1, numero2, numero3, numero4);
+    // Se a matriz inversa for nula, encerra a função
+    if (matrizInversa === null) return;
+  
+    // Exibe a matriz criptografada no console
+    console.log("Matriz Criptografada:");
+    const matrizCriptografada = transformarNumerosEmMatriz(sequenciaNumeros);
+    console.log(matrizCriptografada);
+  
+    // Exibe a matriz da chave no console
+    console.log("Matriz Chave:");
+    console.log(`[${numero1}, ${numero2}], [${numero3}, ${numero4}]`);
+  
+    // Exibe a matriz inversa no console
+    console.log("Matriz Inversa:");
+    console.log(matrizInversa);
+  
+    // Multiplica a matriz inversa pela matriz criptografada para obter a matriz resultante
+    const matrizResultado = multiplicarInversaPorCriptografada(matrizInversa, matrizCriptografada);
+    // Exibe a matriz resultante no console
+    console.log("Matriz Resultante:");
+    console.log(matrizResultado);
+  
+    // Converte os números da matriz resultante em letras
+    const matrizLetras = converterNumerosEmLetras(matrizResultado);
+    // Exibe as letras correspondentes no console
+    console.log("Letras Correspondentes:");
+    matrizLetras.forEach(row => {
+      row.forEach(letter => {
+        console.log(letter);
+      });
+    });
+  
     // Exibe o resultado na div resultado
-    document.getElementById('resultado').innerText = JSON.stringify(matrizLetras);
-    // Exibe a matriz no console
-    console.log(matrizLetras);
+    document.getElementById("resultado").innerText = JSON.stringify(matrizLetras);
 }
+
+// Aguarda o carregamento completo da página antes de executar o código
+document.addEventListener("DOMContentLoaded", () => {
+    // Adiciona o evento de clique ao botão "Descriptografar"
+    document.getElementById("btnDescriptografar").addEventListener("click", Descriptografar);
+});
