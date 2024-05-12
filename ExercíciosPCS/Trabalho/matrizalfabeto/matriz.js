@@ -38,3 +38,32 @@ function transformarNumerosEmMatriz(sequenciaNumeros) {
   // Retorna a matriz resultante
   return matriz;
 }
+
+// Função para converter números em letras
+function converterNumerosEmLetras(matrizNumeros) {
+  // Obtém a tabela de caracteres
+  const tabela = obterTabelaCaracteres();
+  // Inicializa o array de letras
+  const letras = [];
+  // Itera sobre as linhas da matriz de números
+  for (let i = 0; i < matrizNumeros.length; i++) {
+    const linha = [];
+    // Itera sobre as colunas da matriz de números
+    for (let j = 0; j < matrizNumeros[i].length; j++) {
+      let letra = null;
+      // Procura o número correspondente na tabela de caracteres
+      for (let caractere in tabela) {
+        if (tabela[caractere] === matrizNumeros[i][j]) {
+          letra = caractere;
+          break;
+        }
+      }
+      // Adiciona a letra encontrada à linha
+      linha.push(letra);
+    }
+    // Adiciona a linha ao array de letras
+    letras.push(linha);
+  }
+  // Retorna a matriz de letras correspondentes
+  return letras;
+}
