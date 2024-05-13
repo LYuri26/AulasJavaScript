@@ -1,0 +1,69 @@
+/* Estilos para o modal */
+#modal {
+  display: flex;
+  align-items: center; /* Centraliza verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Fundo branco semi-transparente */
+}
+
+/* Estilos para o conteúdo dentro do modal */
+#modalContent {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px; /* Borda arredondada */
+  max-width: 80%; /* Largura máxima do conteúdo */
+  max-height: 80%; /* Altura máxima do conteúdo */
+  overflow: auto; /* Adiciona barra de rolagem quando o conteúdo é muito grande */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center; /* Centraliza o texto */
+}
+
+/* Estilos para o título dentro do modal */
+#modalContent h2 {
+  margin-top: 0; /* Remove margem superior padrão */
+  margin-bottom: 20px; /* Adiciona margem inferior */
+}
+
+/* Estilos para o botão "X" */
+.close {
+  display: flex;
+  justify-content: flex-end; /* Alinha o conteúdo no final (lado direito) */
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Estilos para o formulário dentro do modal */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="submit"] {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}

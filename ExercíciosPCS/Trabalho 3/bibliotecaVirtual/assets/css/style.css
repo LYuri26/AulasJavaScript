@@ -1,0 +1,61 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#loginButton {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#loginButton:hover {
+  background-color: #0056b3;
+}
+
+.livros {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.livro {
+  width: 300px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  margin: 10px;
+}
+
+.livro h2 {
+  margin-top: 0;
+}
+
+.livro p {
+  margin: 10px 0;
+}
+
+/* Estilos para as imagens dos livros */
+.livro img {
+  width: 100%; /* Garante que a imagem preencha todo o espaço disponível */
+  height: auto; /* Permite que a altura da imagem seja ajustada automaticamente */
+  border-radius: 5px; /* Adiciona cantos arredondados */
+  margin: 0 auto 10px; /* Centraliza a imagem horizontalmente e adiciona espaço abaixo */
+}
