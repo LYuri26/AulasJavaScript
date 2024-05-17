@@ -1,0 +1,32 @@
+/* TodoList.css */
+
+ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+  }
+  
+  li button {
+    margin-left: 8px;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+  
+  button {
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #f0f0f0;
+  }
+  
