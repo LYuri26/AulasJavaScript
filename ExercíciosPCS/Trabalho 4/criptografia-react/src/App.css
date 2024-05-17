@@ -1,0 +1,151 @@
+/* Define o estilo para o corpo do documento */
+body {
+  font-family: Arial, sans-serif; /* Define a fonte */
+  background-color: #222; /* Cor de fundo do corpo */
+  margin: 0; /* Remove as margens padrão */
+  padding: 0; /* Remove o preenchimento padrão */
+  display: flex; /* Usa flexbox para centralizar o conteúdo verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  height: 100vh; /* Define a altura para ocupar 100% da altura da viewport */
+}
+
+/* Define o estilo para o contêiner principal */
+.container {
+  width: 80%; /* Define a largura */
+  max-width: 100%; /* Define a largura máxima */
+  background-color: #333; /* Cor de fundo do contêiner */
+  padding: 40px; /* Preenchimento interno */
+  border-radius: 8px; /* Raio da borda */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra */
+  color: #eee; /* Cor do texto */
+}
+
+/* Define o estilo para os títulos */
+h1 {
+  text-align: center; /* Centraliza o texto */
+  margin-bottom: 30px; /* Margem inferior */
+}
+
+/* Define o estilo para os formulários */
+form {
+  margin-bottom: 20px; /* Margem inferior */
+}
+
+/* Define o estilo para as etiquetas dos campos */
+label {
+  display: block; /* Mostra como bloco */
+  margin-bottom: 5px; /* Margem inferior */
+  font-weight: bold; /* Peso da fonte */
+}
+
+/* Define o estilo para os campos de texto, números e botões */
+input[type="text"],
+input[type="number"],
+button {
+  width: 100%; /* Largura total */
+  padding: 10px; /* Preenchimento */
+  margin-bottom: 10px; /* Margem inferior */
+  box-sizing: border-box; /* Inclui preenchimento e borda na largura total */
+  border: 1px solid #555; /* Borda */
+  border-radius: 4px; /* Raio da borda */
+  font-size: 16px; /* Tamanho da fonte */
+  background-color: #3d3d3d; /* Cor de fundo */
+  color: #eee; /* Cor do texto */
+}
+
+/* Define o estilo para a matriz chave */
+.matrizChave {
+  display: grid; /* Usa grid layout */
+  grid-template-columns: repeat(2, 1fr); /* Define as colunas */
+  gap: 10px; /* Espaçamento entre as células */
+}
+
+/* Define o estilo para o resultado */
+#resultado {
+  display: flex; /* Usa flexbox */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  margin-top: 20px; /* Margem superior */
+  font-size: 18px; /* Tamanho da fonte */
+}
+
+/* Define o estilo para cada linha da tabela */
+#resultado div {
+  display: table-row; /* Altera o display para linha de tabela */
+}
+
+/* Define o estilo para cada célula da tabela */
+#resultado span {
+  display: table-cell; /* Altera o display para célula de tabela */
+  padding: 8px; /* Preenchimento */
+  text-align: center; /* Alinhamento do texto */
+  border: 1px solid #eee; /* Borda */
+}
+
+/* Define o estilo para a matriz chave */
+.matrizChave {
+  border-collapse: separate; /* Separa as células */
+  border-spacing: 0; /* Espaçamento entre as células */
+  border-radius: 8px; /* Raio da borda */
+}
+
+/* Define o estilo para as células da matriz chave */
+.matrizChave div {
+  display: flex; /* Usa flexbox */
+  justify-content: space-between; /* Distribuição do espaço */
+}
+
+/* Define o estilo para os itens da matriz chave */
+.matrizChave span {
+  padding: 5px 10px; /* Preenchimento */
+  border: 1px solid #4f4f4f; /* Borda */
+  border-radius: 4px; /* Raio da borda */
+  background-color: #7b7b7b; /* Cor de fundo */
+  color: #eee; /* Cor do texto */
+}
+
+/* Define o estilo para os botões */
+button {
+  background-color: #c2194cc5; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  border: none; /* Remove a borda */
+  cursor: pointer; /* Cursor */
+  padding: 10px 20px; /* Preenchimento */
+  border-radius: 4px; /* Raio da borda */
+  transition: background-color 0.3s; /* Transição de cor de fundo */
+}
+
+/* Define o estilo para os botões quando hover */
+button:hover {
+  background-color: #911b3fc5; /* Cor de fundo ao passar o mouse */
+}
+
+/* Define o estilo para a matriz */
+.matriz {
+  border-collapse: separate; /* Separa as células */
+  border-radius: 8px; /* Raio da borda */
+  background-color: #444444; /* Cor de fundo */
+  width: 100%; /* Largura total */
+}
+
+/* Define o estilo para as células da matriz */
+.matriz td {
+  padding: 8px; /* Preenchimento */
+  text-align: center; /* Alinhamento do texto */
+}
+
+/* Define o estilo para as células da primeira linha da matriz */
+.matriz tr:first-child td {
+  border-top: none; /* Remove a borda superior */
+}
+
+/* Define o estilo para as células da última linha da matriz */
+.matriz tr:last-child td {
+  border-bottom: none; /* Remove a borda inferior */
+}
+
+/* Define o estilo para as linhas pares da matriz */
+.matriz tr:nth-child(2n) {
+  background-color: #444; /* Cor de fundo para linhas pares */
+}
