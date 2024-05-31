@@ -1,0 +1,16 @@
+/* Estilos para a página de produtos */
+#productsRow .card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#productsRow .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+#productsRow .card-img-top {
+  max-width: 60%;
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Centraliza a imagem horizontalmente */
+}
