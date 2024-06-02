@@ -1,0 +1,36 @@
+/* Estilo da galeria de imagens */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  ); /* Layout responsivo com colunas ajustáveis */
+  grid-gap: 20px; /* Espaçamento entre as imagens */
+  justify-items: center; /* Alinha as imagens no centro do grid */
+}
+
+/* Estilo das imagens na galeria */
+.gallery img {
+  width: 100%; /* Imagem ocupando 100% da largura do contêiner */
+  height: 100%; /* Definindo a altura fixa para todas as imagens */
+  object-fit: cover; /* Garante que a imagem mantenha a proporção e cubra completamente o espaço */
+  border-radius: 10px; /* Adiciona um perfil arredondado às imagens */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra suave às imagens */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave ao passar o mouse */
+}
+
+/* Efeito de hover nas imagens */
+.gallery img:hover {
+  transform: scale(
+    1.05
+  ); /* Aumenta ligeiramente a escala da imagem ao passar o mouse */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta a sombra ao passar o mouse */
+}
+
+/* Estilo básico para o corpo da página */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f2f2f2; /* Cor de fundo do corpo da página */
+}
