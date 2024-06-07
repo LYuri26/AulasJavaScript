@@ -1,31 +1,20 @@
-<!-- Document type declaration -->
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <!-- Meta tags -->
-        <meta charset="UTF-8"> <!-- Define a codificação de caracteres -->
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Define a viewport -->
-        <!-- Título da página -->
         <title>Desriptografia</title>
-        <!-- Link para o arquivo de estilos -->
         <link rel="stylesheet" href="estilos.css">
     </head>
     <body>
-        <!-- Contêiner principal -->
         <div class="container">
-            <!-- Título -->
             <h1>Descriptografia</h1>
-            <!-- Formulário -->
             <form id="formulario">
-                <!-- Campo de entrada para o texto -->
                 <label for="texto">Digite os números da matriz
                     criptografada:</label>
-                <input type="text" id="sequenciaNumeros" name="texto"
-                    required>
-                <!-- Matriz chave inversa -->
-                <label for="texto">Matriz Chave:</label>
+                <input type="text" id="sequenciaNumeros" name="texto" required>
 
+                <label for="texto">Matriz Chave:</label>
                 <div class="matrizChaveInversa">
                     <label for="numero1">Número 1:</label>
                     <input type="number" id="numero1" name="numero1" required>
@@ -36,16 +25,15 @@
                     <label for="numero4">Número 4:</label>
                     <input type="number" id="numero4" name="numero4" required>
                 </div>
-                <!-- Botão de criptografar -->
-                <button type="button" id="btnDescriptografar"
-                    onclick="Descriptografar()">Descriptografar</button>
+                <button type="button"
+                    id="btnDescriptografar"
+                    onclick="descriptografar()">Descriptografar</button>
             </form>
-            <!-- Resultado da criptografia -->
             <div id="resultado"></div>
         </div>
-    </body>
-    <!-- Inclusão de scripts -->
-    <script src="../matrizalfabeto/matriz.js"></script>
-    <!-- Script para manipulação de matrizes -->
-    <script src="./script.js"></script> <!-- Script personalizado -->
-</html>
+
+        <!-- Inclusão de scripts -->
+        <script src="../matrizalfabeto/matriz.js"></script>
+        <!-- Script para manipulação de matrizes -->
+        <script src="./script.js"></script> <!-- Script personalizado -->
+    </html>

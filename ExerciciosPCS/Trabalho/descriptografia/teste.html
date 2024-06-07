@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desriptografia</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Descriptografia</h1>
+        <form id="formulario">
+            <label for="texto">Digite os números da matriz criptografada:</label>
+            <input type="text" id="sequenciaNumeros" name="texto" required>
+            
+            <label for="texto">Matriz Chave:</label>
+            <div class="matrizChaveInversa">
+                <label for="numero1">Número 1:</label>
+                <input type="number" id="numero1" name="numero1" required>
+                <label for="numero2">Número 2:</label>
+                <input type="number" id="numero2" name="numero2" required>
+                <label for="numero3">Número 3:</label>
+                <input type="number" id="numero3" name="numero3" required>
+                <label for="numero4">Número 4:</label>
+                <input type="number" id="numero4" name="numero4" required>
+            </div>
+            <button type="button" id="btnDescriptografar">Descriptografar</button>
+        </form>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        // Função para calcular a matriz inversa
+        function calcularMatrizInversa(
+            primeiroElemento,
+            segundoElemento,
+            terceiroElemento,
+            quartoElemento
+        ) {
+            const determinante =
+                primeiroElemento * quartoElemento - segundoElemento * terceiroElemento;
+
+            if (determinante === 0) {
+                console.error("Não é possível calcular a matriz inversa.");
+                return null;
+            }
+
+            return [
+                [quartoElemento / determinante, -segundoElemento / determinante],
+                [-terceiroElemento / determinante, primeiroElemento / determinante],
+            ];
+        }
+
+        // Função para multiplicar matrizes
+        function multiplicarMatrizes(matriz1, matriz2) {
+            const resultado = [];
+
+            for (let i = 0; i < matriz1.length; i++) {
+                resultado[i] = [];
+
+                for (let j = 0; j < matriz2[0].length; j++) {
+                    let soma = 0;
+
+                    for (let k = 0; k < matriz1[0].length; k++) {
+                        soma += matriz1[i][k] * matriz2[k][j];
+                    }
+
+                    resultado[i][j] = Math.round(soma * 100) / 100;
+                }
+            }
+
+            return resultado;
+        }
+
+        // Função principal para descriptografar
+        function Descriptografar(
+            primeiroElemento,
+            segundoElemento,
+            terceiroElemento,
+            quartoElemento,
+            sequenciaNumeros
+        ) {
+            const matrizInversa = calcularMatrizInversa(
+                primeiroElemento,
+                segundoElemento,
+                terceiroElemento,
+                quartoElemento
+            );
+
+            if (matrizInversa === null) return null;
+
+            const matrizCriptografada = transformarNumerosEmMatriz(sequenciaNumeros);
+            const matrizDecifrada = multiplicarMatrizes(matrizInversa, matrizCriptografada);
+
+            return converterNumerosEmLetras(matrizDecifrada);
+        }
+
+        // Event listener for decryption button click
+        document.getElementById("btnDescriptografar").addEventListener("click", function() {
+            const primeiroElemento = parseFloat(document.getElementById("numero1").value);
+            const segundoElemento = parseFloat(document.getElementById("numero2").value);
+            const terceiroElemento = parseFloat(document.getElementById("numero3").value);
+            const quartoElemento = parseFloat(document.getElementById("numero4").value);
+            const sequenciaNumeros = document.getElementById("sequenciaNumeros").value;
+
+            const resultado = Descriptografar(primeiroElemento, segundoElemento, terceiroElemento, quartoElemento, sequenciaNumeros);
+            document.getElementById("resultado").innerText = resultado;
+        });
+
+        // Função para obter a tabela de caracteres
+        function obterTabelaCaracteres() {
+            return {
+                '1': 'A', '2': 'B', '3': 'C', '4': 'D', '5': 'E', '6': 'F', '7': 'G', '8': 'H', '9': 'I', '10': 'J',
+                '11': 'K', '12': 'L', '13': 'M', '14': 'N', '15': 'O', '16': 'P', '17': 'Q', '18': 'R', '19': 'S', '20': 'T',
+                '21': 'U', '22': 'V', '23': 'W', '24': 'X', '25': 'Y', '26': 'Z', '27': ' ', '28': '-', '29': '.', '30': ',',
+                '31': 'Á', '32': 'É', '33': 'Í', '34': 'Ó', '35': 'Ú', '36': 'À', '37': 'Ê', '38': 'Ì', '39': 'Ò', '40': 'Ù',
+                '41': 'Ã', '42': 'Õ', '43': 'Â', '44': 'Ê', '45': 'Î', '46': 'Ô', '47': 'Û', '48': 'Ç', '50': 'Ü', '52': '¬'
+            };
+        }
+
+        // Função para transformar uma sequência de números em uma matriz de números com duas linhas
+        function transformarNumerosEmMatriz(sequenciaNumeros) {
+            if (!sequenciaNumeros) {
+                console.error("Nenhuma sequência de números fornecida.");
+                return [];
+            }
+            const numeros = sequenciaNumeros.split(" ");
+            const numColunas = Math.ceil(numeros.length / 2);
+            const matriz = [];
+            for (let i = 0; i < 2; i++) {
+                const linha = [];
+                for (let j = 0; j < numColunas; j++) {
+                    const index = i * numColunas + j;
+                    linha.push(index < numeros.length ? parseInt(numeros[index]) : 0);
+                }
+                matriz.push(linha);
+            }
+            return matriz;
+        }
+
+// Função para converter números em letras
+function converterNumerosEmLetras(matrizNumeros) {
+    const tabela = obterTabelaCaracteres();
+    const letras = [];
+    for (let i = 0; i < matrizNumeros.length; i++) {
+        const linha = [];
+        for (let j = 0; j < matrizNumeros[i].length; j++) {
+            const codigo = matrizNumeros[i][j].toString(); // Convertendo para string para acessar a tabela de caracteres
+            if (codigo in tabela) {
+                linha.push(tabela[codigo]);
+            } else {
+                linha.push(''); // Adicionando um espaço em branco se o código não estiver na tabela
+            }
+        }
+        letras.push(linha);
+    }
+    return letras;
+}
+    </script>
+</body>
+</html>

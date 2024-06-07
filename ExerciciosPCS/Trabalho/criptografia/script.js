@@ -61,33 +61,6 @@ function criptografar() {
   exibirMatrizCriptografada(matrizCriptografada);
 }
 
-// Função para exibir a matriz criptografada na tabela HTML
-function exibirMatrizCriptografada(matrizCriptografada) {
-  // Obtém a referência ao elemento HTML onde a matriz será exibida
-  const resultadoDiv = document.getElementById("resultado");
-  resultadoDiv.innerHTML = ""; // Limpa o conteúdo anterior, se houver
-
-  // Cria uma tabela HTML para exibir a matriz criptografada
-  const table = document.createElement("table");
-  table.classList.add("matriz");
-
-  // Itera sobre cada linha da matriz criptografada
-  matrizCriptografada.forEach((linha) => {
-    const tr = document.createElement("tr");
-
-    // Adiciona cada elemento da linha como uma célula na tabela
-    linha.forEach((celula) => {
-      const td = document.createElement("td");
-      td.textContent = celula;
-      tr.appendChild(td);
-    });
-
-    table.appendChild(tr); // Adiciona a linha à tabela
-  });
-
-  resultadoDiv.appendChild(table); // Adiciona a tabela ao elemento de resultado
-}
-
 // Obtendo uma referência ao botão "Criptografar"
 const botaoCriptografar = document.getElementById("btnCriptografar");
 
@@ -152,4 +125,31 @@ function transformarTextoEmMatriz(texto) {
 
   // Retorna a matriz resultante
   return [primeiraLinha, segundaLinha];
+}
+
+// Função para exibir a matriz criptografada na tabela HTML
+function exibirMatrizCriptografada(matrizCriptografada) {
+  // Obtém a referência ao elemento HTML onde a matriz será exibida
+  const resultadoDiv = document.getElementById("resultado");
+  resultadoDiv.innerHTML = ""; // Limpa o conteúdo anterior, se houver
+
+  // Cria uma tabela HTML para exibir a matriz criptografada
+  const table = document.createElement("table");
+  table.classList.add("matriz");
+
+  // Itera sobre cada linha da matriz criptografada
+  matrizCriptografada.forEach((linha) => {
+    const tr = document.createElement("tr");
+
+    // Adiciona cada elemento da linha como uma célula na tabela
+    linha.forEach((celula) => {
+      const td = document.createElement("td");
+      td.textContent = celula;
+      tr.appendChild(td);
+    });
+
+    table.appendChild(tr); // Adiciona a linha à tabela
+  });
+
+  resultadoDiv.appendChild(table); // Adiciona a tabela ao elemento de resultado
 }
