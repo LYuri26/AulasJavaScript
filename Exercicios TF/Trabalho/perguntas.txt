@@ -70,60 +70,63 @@
 (e) Um animal que tem uma história interessante
 (f) Um bichinho curioso e sábio
 (g) Um guardião forte e protetor
-Pontuação
 
-Para a pergunta 1:
 
-    (a) +3 pontos para Fantasia
-    (b) +3 pontos para Ficção Científica / Distopia
-    (c) +3 pontos para Romance
-    (d) +3 pontos para Drama / Realismo
-    (e) +3 pontos para Biografia / Histórico
-    (f) +3 pontos para Clássico
-    (g) +3 pontos para Fantasia / Épico
+Sistema de Pontuação:
 
-Para as perguntas 2 a 8:
+Para a Pergunta 1:
 
-    (a) +1 ponto para Fantasia
-    (b) +1 ponto para Ficção Científica / Distopia
-    (c) +1 ponto para Romance
-    (d) +1 ponto para Drama / Realismo
-    (e) +1 ponto para Biografia / Histórico
-    (f) +1 ponto para Clássico
-    (g) +1 ponto para Fantasia / Épico
+    (a) 5 pontos para Fantasia
+    (b) 5 pontos para Ficção Científica / Distopia
+    (c) 5 pontos para Romance
+    (d) 5 pontos para Drama / Realismo
+    (e) 5 pontos para Outros (Biografia / Histórico)
+    (f) 5 pontos para Outros (Clássico)
+    (g) 5 pontos para Outros (Fantasia / Épico)
 
-Resultados
+Para as Perguntas 2 a 8:
 
-    Fantasia:
-        4-7 pontos: Harry Potter e a Pedra Filosofal
-        8-10 pontos: Percy Jackson e o Ladrão de Raios
-        11-13 pontos: O Senhor dos Anéis: A Sociedade do Anel
-        14-16 pontos: As Crônicas de Nárnia: O Leão, a Feiticeira e o Guarda-Roupa
-        17-19 pontos: O Hobbit
+    (a) 2 pontos para Fantasia
+    (b) 2 pontos para Ficção Científica / Distopia
+    (c) 2 pontos para Romance
+    (d) 2 pontos para Drama / Realismo
+    (e) 2 pontos para Outros (Biografia / Histórico)
+    (f) 2 pontos para Outros (Clássico)
+    (g) 2 pontos para Outros (Fantasia / Épico)
 
-    Ficção Científica / Distopia:
-        4-7 pontos: Jogos Vorazes
-        8-10 pontos: Divergente
-        11-13 pontos: Maze Runner: Correr ou Morrer
+Resultados Ajustados
 
-    Romance:
-        4-7 pontos: A Culpa é das Estrelas
-        8-10 pontos: Eleanor & Park
-        11-13 pontos: A Seleção
-        14-16 pontos: Cidades de Papel
+Fantasia:
 
-    Drama / Realismo:
-        4-7 pontos: Extraordinário
-        8-10 pontos: O Sol é Para Todos
-        11-13 pontos: Eu, Você e a Garota Que Vai Morrer
-        14-16 pontos: Os 13 Porquês
-        17-19 pontos: A Menina que Roubava Livros
+    10-15 pontos: Harry Potter e a Pedra Filosofal
+    16-21 pontos: Percy Jackson e o Ladrão de Raios
+    22-27 pontos: O Senhor dos Anéis: A Sociedade do Anel
+    28-33 pontos: As Crônicas de Nárnia: O Leão, a Feiticeira e o Guarda-Roupa
+    34-39 pontos: O Hobbit
 
-    Biografia / Histórico:
-        4-7 pontos: O Diário de Anne Frank
+Ficção Científica / Distopia:
 
-    Clássico:
-        4-7 pontos: O Pequeno Príncipe
+    10-15 pontos: Jogos Vorazes
+    16-21 pontos: Divergente
+    22-27 pontos: Maze Runner: Correr ou Morrer
 
-    Fantasia / Épico:
-        4-7 pontos: A Guerra dos Tronos
+Romance:
+
+    10-15 pontos: A Culpa é das Estrelas
+    16-21 pontos: Eleanor & Park
+    22-27 pontos: A Seleção
+    28-33 pontos: Cidades de Papel
+
+Drama / Realismo:
+
+    10-15 pontos: Extraordinário
+    16-21 pontos: O Sol é Para Todos
+    22-27 pontos: Eu, Você e a Garota Que Vai Morrer
+    28-33 pontos: Os 13 Porquês
+    34-39 pontos: A Menina que Roubava Livros
+
+Outros:
+
+    10-19 pontos: O Diário de Anne Frank
+    20-29 pontos: O Pequeno Príncipe
+    30-39 pontos: A Guerra dos Tronos
