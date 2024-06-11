@@ -43,7 +43,7 @@ label {
 
 /* Estilo para a área de texto */
 textarea {
-  width: 100%; /* Define a largura da área de texto para ocupar todo o espaço disponível */
+  width: 80%; /* Define a largura da área de texto para ocupar todo o espaço disponível */
   height: 150px; /* Aumenta a altura da área de texto */
   padding: 15px; /* Define o preenchimento interno da área de texto */
   border: none; /* Remove a borda */
@@ -55,7 +55,7 @@ textarea {
 
 /* Estilo para o campo de seleção */
 select {
-  width: 100%; /* Define a largura do campo de seleção para ocupar todo o espaço disponível */
+  width: 15%; /* Define a largura do campo de seleção para ocupar todo o espaço disponível */
   padding: 10px; /* Define o preenchimento interno */
   border: none; /* Remove a borda */
   border-radius: 5px; /* Define bordas arredondadas */
