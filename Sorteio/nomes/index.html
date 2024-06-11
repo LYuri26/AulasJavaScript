@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <!-- Define o conjunto de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Define a escala inicial da viewport para o tamanho do dispositivo -->
+    <title>Sorteio de Nomes</title>
+    <!-- Define o título da página -->
+    <link rel="stylesheet" href="styles.css"> <!-- Importa o arquivo CSS -->
+</head>
+<body>
+    <div class="container"> <!-- Container principal -->
+        <h1>Sorteio de Nomes</h1> <!-- Título da página -->
+        <div>
+            <label for="nomes">Lista de Nomes ou Grupos (um por linha, grupos separados por vírgula):</label>
+            <!-- Rótulo para o campo de lista de nomes -->
+            <textarea id="nomes" rows="10" cols="40" placeholder="Ex: aluno1, aluno2&#10;aluno3&#10;aluno1, aluno2"></textarea>
+            <!-- Área de texto para a entrada de nomes ou grupos -->
+        </div>
+        <div>
+            <label for="tamanho-grupo">Tamanho do Grupo:</label>
+            <!-- Rótulo para o campo de tamanho do grupo -->
+            <select id="tamanho-grupo">
+                <option value="1">Individual</option>
+                <option value="2">Dupla</option>
+                <option value="4">Quarteto</option>
+                <option value="5">Quinteto</option>
+                <option value="6">Sexteto</option>
+            </select>
+            <!-- Campo de seleção para o tamanho do grupo -->
+        </div>
+        <button onclick="sortearNomeUnico()">Sortear Nome Único</button>
+        <!-- Botão para sortear um nome único -->
+        <button onclick="sortearNomesEmGrupo()">Sortear Nomes em Grupo</button>
+        <!-- Botão para sortear nomes em grupos -->
+        <button onclick="sortearOrdemGrupos()">Sortear Ordem dos Grupos</button>
+        <!-- Botão para sortear a ordem dos grupos -->
+        <div id="resultado"></div> <!-- Local para exibir o resultado -->
+    </div>
+
+    <div id="fireworks-container"></div>
+    <!-- Container para os fogos de artifício -->
+
+    <script src="script.js"></script> <!-- Importa o arquivo JavaScript -->
+</body>
+</html>

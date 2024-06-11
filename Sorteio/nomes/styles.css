@@ -1,0 +1,189 @@
+/* Importa a fonte Roboto do Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+/* Define a fonte e a cor padrão para o corpo do documento */
+body {
+  font-family: "Roboto", sans-serif; /* Define a fonte */
+  background-color: #043ca4; /* Define a cor de fundo do corpo */
+  color: #ffffff; /* Define a cor do texto */
+  margin: 0; /* Remove as margens */
+  padding: 0; /* Remove o preenchimento */
+  display: flex; /* Define um layout flexível para o corpo */
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
+  align-items: center; /* Centraliza o conteúdo verticalmente */
+  min-height: 100vh; /* Define a altura mínima da tela inteira */
+  overflow: auto; /* Permite a rolagem da página */
+  box-sizing: border-box; /* Inclui padding e border no tamanho total dos elementos */
+}
+
+/* Define o estilo do container principal */
+.container {
+  text-align: center; /* Centraliza o conteúdo do container */
+  background-color: #062d7f; /* Define uma cor de fundo mais escura para o container */
+  padding: 30px; /* Define o preenchimento interno do container */
+  border-radius: 10px; /* Define bordas arredondadas para o container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra para dar profundidade */
+  max-width: 700px; /* Define a largura máxima do container */
+  width: 100%; /* Define a largura do container para ocupar todo o espaço disponível */
+  margin: 20px; /* Adiciona margem para evitar que o conteúdo encoste nas bordas da janela */
+}
+
+/* Estilo para o título */
+h1 {
+  font-size: 36px; /* Define o tamanho da fonte do título */
+  margin-bottom: 20px; /* Define a margem inferior do título */
+}
+
+/* Estilo para o rótulo do campo de texto */
+label {
+  font-size: 18px; /* Define o tamanho da fonte do rótulo */
+  display: block; /* Define o rótulo como um bloco para ocupar a largura total */
+  margin-bottom: 10px; /* Define a margem inferior do rótulo */
+}
+
+/* Estilo para a área de texto */
+textarea {
+  width: 100%; /* Define a largura da área de texto para ocupar todo o espaço disponível */
+  height: 150px; /* Aumenta a altura da área de texto */
+  padding: 15px; /* Define o preenchimento interno da área de texto */
+  border: none; /* Remove a borda */
+  border-radius: 5px; /* Define bordas arredondadas para a área de texto */
+  font-size: 16px; /* Define o tamanho da fonte da área de texto */
+  resize: vertical; /* Permite redimensionar apenas verticalmente */
+  margin-bottom: 20px; /* Define a margem inferior da área de texto */
+}
+
+/* Estilo para o campo de seleção */
+select {
+  width: 100%; /* Define a largura do campo de seleção para ocupar todo o espaço disponível */
+  padding: 10px; /* Define o preenchimento interno */
+  border: none; /* Remove a borda */
+  border-radius: 5px; /* Define bordas arredondadas */
+  font-size: 16px; /* Define o tamanho da fonte */
+  margin-bottom: 20px; /* Define a margem inferior */
+  background-color: #ffffff; /* Define a cor de fundo */
+  color: #083ca4; /* Define a cor do texto */
+  cursor: pointer; /* Define o cursor ao passar por cima */
+}
+
+/* Estilo para o campo de seleção quando focado */
+select:focus {
+  outline: none; /* Remove o contorno padrão */
+  background-color: #f0f0f0; /* Define uma cor de fundo ao focar */
+}
+
+/* Estilo para os botões */
+button {
+  margin-top: 10px; /* Define a margem superior */
+  padding: 15px 40px; /* Define o preenchimento interno */
+  background-color: #ffffff; /* Define a cor de fundo do botão */
+  color: #083ca4; /* Define a cor do texto nos botões */
+  border: none; /* Remove a borda */
+  cursor: pointer; /* Define o cursor ao passar por cima */
+  border-radius: 5px; /* Define o raio da borda */
+  font-size: 18px; /* Define o tamanho da fonte */
+  transition: background-color 0.3s ease; /* Adiciona uma transição suave na mudança de cor de fundo */
+}
+
+/* Estilo para os botões quando passados sobre */
+button:hover {
+  background-color: #0056b3; /* Define a cor de fundo ao passar o mouse */
+  color: #ffffff; /* Define a cor do texto ao passar o mouse */
+}
+
+/* Estilo para o resultado */
+#resultado {
+  margin-top: 30px; /* Define a margem superior */
+  font-size: 24px; /* Define o tamanho da fonte */
+}
+
+/* Estilo para o container dos fogos de artifício */
+#fireworks-container {
+  position: fixed; /* Define a posição fixa para ocupar a tela inteira */
+  top: 0; /* Alinha o container no topo */
+  left: 0; /* Alinha o container à esquerda */
+  width: 100%; /* Define a largura para ocupar a tela inteira */
+  height: 100%; /* Define a altura para ocupar a tela inteira */
+  pointer-events: none; /* Ignora os eventos do mouse para que não interfiram no conteúdo */
+  z-index: -1; /* Define um índice z negativo para ficar atrás do conteúdo principal */
+}
+
+/* Estilo para os fogos de artifício */
+.rocket {
+  position: absolute; /* Define a posição absoluta para os foguetes */
+  bottom: 0; /* Alinha os foguetes na parte inferior do container */
+  width: 2px; /* Define a largura dos foguetes */
+  height: 15px; /* Define a altura dos foguetes */
+  background-color: #fff; /* Define a cor dos foguetes */
+  animation: launch 2s forwards; /* Aplica a animação de lançamento */
+}
+
+.explosion {
+  position: absolute; /* Define a posição absoluta para as explosões */
+  bottom: 15px; /* Alinha as explosões abaixo dos foguetes */
+  width: 20px; /* Define a largura das explosões */
+  height: 20px; /* Define a altura das explosões */
+  border-radius: 50%; /* Define o raio da borda para criar uma forma circular */
+  animation: explode 2s forwards; /* Aplica a animação de explosão */
+}
+
+/* Animação de lançamento */
+@keyframes launch {
+  0% {
+    transform: translateY(0);
+  } /* Estado inicial: sem translação vertical */
+  100% {
+    transform: translateY(-100vh);
+  } /* Estado final: translação para cima, fora da tela */
+}
+
+/* Animação de explosão */
+@keyframes explode {
+  0% {
+    transform: scale(0);
+  } /* Estado inicial: sem escala (tamanho zero) */
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  } /* Estado final: escala ampliada e opacidade zero */
+}
+
+/* Estilos Responsivos */
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+  body {
+    padding: 10px; /* Adiciona preenchimento para evitar que o conteúdo encoste nas bordas */
+  }
+
+  .container {
+    padding: 20px; /* Reduz o preenchimento interno para melhor se ajustar em telas pequenas */
+    box-shadow: none; /* Remove a sombra para simplificar o layout */
+  }
+
+  button {
+    padding: 10px 20px; /* Reduz o preenchimento interno dos botões */
+    font-size: 16px; /* Reduz o tamanho da fonte para se ajustar melhor em telas pequenas */
+  }
+
+  textarea,
+  select {
+    font-size: 14px; /* Reduz o tamanho da fonte para se ajustar melhor em telas pequenas */
+    padding: 10px; /* Reduz o preenchimento interno para evitar que os campos pareçam muito grandes */
+  }
+}
+
+/* Ajustes para telas ainda menores */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 24px; /* Reduz o tamanho da fonte do título para se ajustar em telas muito pequenas */
+  }
+
+  textarea {
+    height: 100px; /* Reduz a altura da área de texto para melhor se ajustar em telas pequenas */
+  }
+
+  button {
+    padding: 10px; /* Reduz o preenchimento interno dos botões para melhor se ajustar em telas pequenas */
+  }
+}
