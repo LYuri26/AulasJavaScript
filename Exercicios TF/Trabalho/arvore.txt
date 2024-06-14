@@ -1,0 +1,59 @@
+📁 css
+│   ├─ index.css
+│   ├─ livros.css
+│   ├─ nao-encontrado.css
+│   └─ questionario.css
+│
+📁 html
+│   ├─ perguntas.html
+│   └─ livros
+│       ├─ a-culpa-e-das-estrelas.html
+│       ├─ a-guerra-dos-tronos.html
+│       ├─ a-menina-que-roubava-livros.html
+│       ├─ a-selecao.html
+│       ├─ cidades-de-papel.html
+│       ├─ cronicas-de-narnia.html
+│       ├─ divergente.html
+│       ├─ eleanor-e-park.html
+│       ├─ eu-voce-e-a-garota.html
+│       ├─ extraordinario.html
+│       ├─ harry-potter.html
+│       ├─ jogos-vorazes.html
+│       ├─ maze-runner.html
+│       ├─ nao-encontrado.html
+│       ├─ o-diario-de-anne-frank.html
+│       ├─ o-hobbit.html
+│       ├─ o-pequeno-principe.html
+│       ├─ o-sol-e-para-todos.html
+│       ├─ os-treze-porques.html
+│       └─ percy-jackson.html
+│
+📁 images
+│   └─── livros
+│       ├─ AnneFrank.jpg
+│       ├─ CidadesPapel.jpg
+│       ├─ CronicasNarnia.jpg
+│       ├─ CulpaEstrelas.jpg
+│       ├─ Divergente.jpg
+│       ├─ EleanorPark.jpg
+│       ├─ EuVoceGarota.jpg
+│       ├─ Extraordinario.jpg
+│       ├─ GuerraTronos.jpg
+│       ├─ HarryPotter.jpg
+│       ├─ Hobbit.jpg
+│       ├─ JogosVorazes.jpg
+│       ├─ MazeRunner.jpg
+│       ├─ OsTreze.jpg
+│       ├─ PequenoPríncipe.jpg
+│       ├─ PercyJackson.jpg
+│       ├─ RoubavaLivros.jpg
+│       ├─ Selecao.jpg
+│       ├─ senai.png
+│       └─ SenhorAneis.jpg
+│
+📁 js
+│   └─ perguntas.js
+│
+📄 generos.txt
+📄 index.html
+📄 perguntas.txt
