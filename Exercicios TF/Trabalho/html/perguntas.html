@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+    <header>
+        <h1>Biblioteca Virtual</h1>
+        <nav>
+            <a href="../index.html">Voltar ao Menu Inicial</a>
+        </nav>
+    </header>
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -164,10 +171,23 @@
                     forte e protetor</label>
             </div>
 
-            <button onclick="calcularPontuacao()">Enviar Respostas</button>
-            <div id="resultado"></div>
+            <!-- Botões de navegação -->
+            <button id="botaoAnterior"
+                onclick="perguntaAnterior()">Anterior</button>
+            <button id="botaoProximo"
+                onclick="proximaPergunta()">Próximo</button>
+            <button id="botaoFinalizar"
+                onclick="processarQuestionario()">Finalizar</button>
         </div>
 
-        <script src="../js/perguntas.js"></script>
+        <script src="../js/calculoPontuacao.js" defer></script>
+        <script src="../js/recomendacaoLivros.js" defer></script>
+        <script src="../js/navegacaoPerguntas.js" defer></script>
     </body>
+
+    <footer>
+        <p>Aplicação web desenvolvida pela turma de Informática para Internet
+            2024 Trilhas de Futuro 4 SENAI-MG Uberaba</p>
+        <p>Instrutor: Lenon Yuri</p>
+    </footer>
 </html>
