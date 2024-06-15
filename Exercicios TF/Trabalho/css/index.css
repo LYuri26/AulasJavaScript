@@ -1,0 +1,72 @@
+/* Estilo Geral do Corpo */
+body {
+  font-family: "Arial", sans-serif; /* Define a fonte principal como Arial */
+  background-color: #f8f9fa; /* Define a cor de fundo do corpo como um cinza claro */
+  padding-top: 60px; /* Adiciona um espaçamento superior para o cabeçalho fixo */
+  margin: 0; /* Remove a margem padrão do corpo */
+}
+
+/* Estilo do Cabeçalho */
+header {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+  position: fixed; /* Fixa o cabeçalho no topo da página */
+  width: 100%; /* Define a largura do cabeçalho como 100% da página */
+  top: 0; /* Posiciona o cabeçalho no topo da janela */
+  z-index: 1000; /* Define a profundidade do cabeçalho para garantir que ele fique sobre outros elementos */
+}
+
+header h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-top: 0;
+}
+
+header nav a {
+  color: white; /* Define a cor dos links de navegação como branco */
+  text-decoration: none; /* Remove o sublinhado dos links */
+  margin: 0 10px; /* Adiciona uma margem horizontal de 10px entre os links */
+  font-size: 16px; /* Define o tamanho da fonte dos links */
+}
+
+header nav a:hover {
+  text-decoration: underline; /* Adiciona sublinhado aos links quando o mouse passa sobre eles */
+}
+
+/* Estilo do Container de Boas-Vindas */
+#bemVindoContainer {
+  margin-top: 100px; /* Adiciona uma margem superior para evitar sobreposição com o cabeçalho fixo */
+  padding: 20px; /* Adiciona um preenchimento de 20px dentro do container */
+  background-color: white; /* Define a cor de fundo do container como branco */
+  border-radius: 10px; /* Adiciona bordas arredondadas ao container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra ao redor do container */
+}
+
+/* Estilo dos Parágrafos */
+#bemVindoContainer p {
+  font-size: 16px; /* Define o tamanho da fonte dos parágrafos */
+  margin-bottom: 20px; /* Adiciona uma margem inferior de 20px entre os parágrafos */
+}
+
+/* Estilo do Botão */
+#bemVindoContainer button {
+  font-size: 18px; /* Define o tamanho da fonte do texto dentro do botão */
+  padding: 10px 20px; /* Adiciona um preenchimento de 10px verticalmente e 20px horizontalmente dentro do botão */
+}
+
+/* Estilo do Rodapé */
+footer {
+  margin-top: 40px; /* Adiciona uma margem superior ao rodapé */
+  padding: 10px 0; /* Adiciona um preenchimento vertical de 10px ao rodapé */
+  text-align: center; /* Centraliza o texto dentro do rodapé */
+  background-color: #343a40; /* Define a cor de fundo do rodapé como cinza escuro */
+  color: white; /* Define a cor do texto do rodapé como branco */
+}
+
+footer p {
+  margin: 5px 0; /* Adiciona uma margem vertical de 5px ao redor dos parágrafos no rodapé */
+  font-size: 14px; /* Define o tamanho da fonte dos parágrafos no rodapé */
+}

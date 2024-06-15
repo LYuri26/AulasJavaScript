@@ -1,5 +1,3 @@
-// navegacaoPerguntas.js
-
 // Variável para armazenar o índice da pergunta atual
 let perguntaAtual = 0;
 
@@ -11,9 +9,9 @@ function mostrarPergunta() {
   // Esconde todas as perguntas
   perguntas.forEach((pergunta, index) => {
     if (index === perguntaAtual) {
-      pergunta.style.display = "block"; // Mostra a pergunta atual
+      pergunta.classList.remove("d-none"); // Mostra a pergunta atual
     } else {
-      pergunta.style.display = "none"; // Esconde as outras perguntas
+      pergunta.classList.add("d-none"); // Esconde as outras perguntas
     }
   });
 
@@ -57,4 +55,6 @@ function atualizarBotoesNavegacao(totalPerguntas) {
 }
 
 // Inicializa a exibição da primeira pergunta quando a página carregar
-window.onload = mostrarPergunta;
+document.addEventListener("DOMContentLoaded", function() {
+  mostrarPergunta();
+});

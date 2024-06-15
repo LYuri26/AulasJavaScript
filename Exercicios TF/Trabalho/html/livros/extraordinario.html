@@ -1,53 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <header>
-        <h1>Biblioteca Virtual</h1>
-        <nav>
-            <a href="../../index.html">Voltar ao Menu Inicial</a>
-        </nav>
-    </header>
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Extraordinário</title>
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            rel="stylesheet">
+        <!-- Custom CSS (optional, if you want to add any specific custom styles) -->
+        <link rel="stylesheet" href="../../css/livros.css">
     </head>
     <body>
-        <div>
-            <h1>Extraordinário</h1>
-            <img src="../../images/livros/Extraordinario.jpg"
-                alt="Capa do Livro Extraordinário">
+        <!-- Header Section -->
+        <header class="bg-primary text-white text-center py-3 mb-4">
+            <h1>Biblioteca Virtual</h1>
+            <nav>
+                <a href="../../index.html" class="btn btn-light mt-2">Voltar ao
+                    Menu Inicial</a>
+            </nav>
+        </header>
 
-            <div>
-                <p>"Extraordinário" é um livro que conta a história de August
-                    Pullman, um garoto com uma deformidade facial que enfrenta
-                    desafios ao frequentar a escola pela primeira vez. A obra,
-                    escrita por R.J. Palacio, explora temas como amizade,
-                    aceitação e empatia, inspirando leitores de todas as
-                    idades.</p>
+        <!-- Main Content -->
+        <div class="container">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h1 class="card-title">Extraordinário</h1>
+                    <img src="../../images/livros/Extraordinario.jpg"
+                        alt="Capa do Livro Extraordinário"
+                        class="img-fluid rounded mb-4">
+                    <p class="card-text">"Extraordinário" é um livro que conta a
+                        história de August Pullman, um garoto com uma
+                        deformidade facial que enfrenta desafios ao frequentar a
+                        escola pela primeira vez. A obra, escrita por R.J.
+                        Palacio, explora temas como amizade, aceitação e
+                        empatia, inspirando leitores de todas as idades.</p>
+                </div>
             </div>
 
-            <div>
-                <h2>Curiosidades</h2>
-                <ul>
-                    <li>Publicado em 2012, "Extraordinário" rapidamente se
-                        tornou um best-seller e foi adaptado para o cinema em
-                        2017.</li>
-                    <li>R.J. Palacio começou a escrever o livro após um
-                        incidente em que ela evitou uma criança com uma condição
-                        facial semelhante à de August, o que a fez refletir
-                        profundamente sobre o impacto de suas ações.</li>
-                    <li>O livro tem sido amplamente utilizado em escolas para
-                        promover a empatia e a compreensão das diferenças.</li>
-                </ul>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title">Curiosidades</h2>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">Publicado em 2012, "Extraordinário"
+                            rapidamente se tornou um best-seller e foi adaptado
+                            para o cinema em 2017.</li>
+                        <li class="mb-2">R.J. Palacio começou a escrever o livro
+                            após um incidente em que ela evitou uma criança com
+                            uma condição facial semelhante à de August, o que a
+                            fez refletir profundamente sobre o impacto de suas
+                            ações.</li>
+                        <li>O livro tem sido amplamente utilizado em escolas
+                            para promover a empatia e a compreensão das
+                            diferenças.</li>
+                    </ul>
+                </div>
             </div>
-            <a href="../../index.html">Voltar ao questionário</a>
+
+            <div class="text-center mt-4">
+                <a href="../../index.html" class="btn btn-secondary">Voltar ao
+                    questionário</a>
+            </div>
         </div>
-    </body>
 
-    <footer>
-        <p>Aplicação web desenvolvida pela turma de Informática para Internet
-            2024 Trilhas de Futuro 4 SENAI-MG Uberaba</p>
-        <p>Instrutor: Lenon Yuri</p>
-    </footer>
+        <!-- Footer Section -->
+        <footer class="bg-dark text-white text-center py-3 mt-4">
+            <p>Aplicação web desenvolvida pela turma de Informática para
+                Internet 2024 Trilhas de Futuro 4 SENAI-MG Uberaba</p>
+            <p>Instrutor: Lenon Yuri</p>
+        </footer>
+
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>

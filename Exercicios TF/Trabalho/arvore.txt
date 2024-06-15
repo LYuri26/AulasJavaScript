@@ -1,0 +1,65 @@
+📁 Trabalho
+├── 📁 css
+│   ├── 📄 creditos.css
+│   ├── 📄 index.css
+│   ├── 📄 livros.css
+│   └── 📄 nao-encontrado.css
+├── 📁 html
+│   ├── 📄 creditos.html
+│   └── 📄 perguntas.html
+├── 📁 images
+│   ├── 📁 livros
+│   │   ├── 🖼️ AnneFrank.jpg
+│   │   ├── 🖼️ CidadesPapel.jpg
+│   │   ├── 🖼️ CronicasNarnia.jpg
+│   │   ├── 🖼️ CulpaEstrelas.jpg
+│   │   ├── 🖼️ Divergente.jpg
+│   │   ├── 🖼️ EleanorPark.jpg
+│   │   ├── 🖼️ EuVoceGarota.jpg
+│   │   ├── 🖼️ Extraordinario.jpg
+│   │   ├── 🖼️ GuerraTronos.jpg
+│   │   ├── 🖼️ HarryPotter.jpg
+│   │   ├── 🖼️ Hobbit.jpg
+│   │   ├── 🖼️ JogosVorazes.jpg
+│   │   ├── 🖼️ MazeRunner.jpg
+│   │   ├── 🖼️ OsTreze.jpg
+│   │   ├── 🖼️ PequenoPríncipe.jpg
+│   │   ├── 🖼️ PercyJackson.jpg
+│   │   ├── 🖼️ RoubavaLivros.jpg
+│   │   ├── 🖼️ Selecao.jpg
+│   │   ├── 🖼️ senai.png
+│   │   └── 🖼️ SenhorAneis.jpg
+│   ├── 📁 logo
+│   │   └── 🖼️ logoqueeugostei.png
+│   └── 📁 perguntas
+│       └── 📄 perguntas.txt
+└── 📁 js
+    ├── 📄 calculoPontuacao.js
+    ├── 📄 navegacaoPerguntas.js
+    └── 📄 recomendacaoLivros.js
+📄 generos.txt
+
+
+Explicação dos Diretórios e Arquivos:
+
+    css/: Este diretório contém arquivos CSS que são utilizados para definir os estilos visuais das diferentes páginas do site.
+        creditos.css: Arquivo CSS responsável pelos estilos da página de créditos (creditos.html).
+        index.css: Arquivo CSS com estilos gerais aplicados em todo o site, utilizado provavelmente na página inicial ou em todas as páginas.
+        livros.css: Arquivo CSS que define estilos específicos para a exibição de informações sobre livros no site.
+        nao-encontrado.css: Arquivo CSS que estiliza a página de erro ou página não encontrada (nao-encontrado.html), caso exista.
+
+    html/: Neste diretório estão os arquivos HTML que compõem as diferentes páginas do site.
+        creditos.html: Página que apresenta créditos ou informações sobre os autores ou colaboradores do projeto.
+        perguntas.html: Página que contém perguntas frequentes ou questões comuns e suas respostas.
+
+    images/: Pasta que armazena imagens utilizadas no site, organizadas em subdiretórios para melhor organização.
+        livros/: Subdiretório que contém imagens das capas dos livros mencionados ou referenciados no site.
+        logo/: Subdiretório que guarda o logotipo do projeto, utilizado para identificação visual.
+        perguntas/: Subdiretório que pode conter arquivos de imagem relacionados às perguntas ou documentos pertinentes às questões do site.
+
+    js/: Diretório que contém scripts JavaScript responsáveis por adicionar funcionalidades interativas ao site.
+        calculoPontuacao.js: Script que realiza cálculos ou processamentos relacionados ao funcionamento do site.
+        navegacaoPerguntas.js: Script que gerencia a navegação entre as perguntas ou seções do site.
+        recomendacaoLivros.js: Script que pode fornecer recomendações de livros com base em critérios específicos.
+
+    generos.txt: Arquivo de texto que contém informações sobre os gêneros literários dos livros apresentados no site, proporcionando um recurso adicional para consulta ou referência.

@@ -1,53 +1,77 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-    <header>
-        <h1>Biblioteca Virtual</h1>
-        <nav>
-            <a href="../../index.html">Voltar ao Menu Inicial</a>
-        </nav>
-    </header>
-
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>A Menina que Roubava Livros</title>
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            rel="stylesheet">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="../../css/livros.css">
     </head>
     <body>
-        <div>
-            <h1>A Menina que Roubava Livros</h1>
-            <img src="../../images/livros/RoubavaLivros.jpg"
-                alt="Capa do Livro A Menina que Roubava Livros">
+        <!-- Header Section -->
+        <header class="bg-primary text-white text-center py-3 mb-4">
+            <h1>Biblioteca Virtual</h1>
+            <nav>
+                <a href="../../index.html" class="btn btn-light mt-2">Voltar ao
+                    Menu Inicial</a>
+            </nav>
+        </header>
 
-            <div>
-                <p>"A Menina que Roubava Livros" é um romance de Markus Zusak
-                    que narra a história de Liesel Meminger, uma jovem que
-                    encontra consolo nos livros durante os tempos sombrios da
-                    Segunda Guerra Mundial na Alemanha, onde ela aprende a ler e
-                    compartilhar livros com outras pessoas.</p>
+        <!-- Main Content -->
+        <div class="container">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h1 class="card-title">A Menina que Roubava Livros</h1>
+                    <img src="../../images/livros/RoubavaLivros.jpg"
+                        alt="Capa do Livro A Menina que Roubava Livros"
+                        class="img-fluid rounded mb-4">
+                    <p class="card-text">"A Menina que Roubava Livros" é um
+                        romance de Markus Zusak que narra a história de Liesel
+                        Meminger, uma jovem que encontra consolo nos livros
+                        durante os tempos sombrios da Segunda Guerra Mundial na
+                        Alemanha, onde ela aprende a ler e compartilhar livros
+                        com outras pessoas.</p>
+                </div>
             </div>
 
-            <div>
-                <h2>Curiosidades</h2>
-                <ul>
-                    <li>O livro foi publicado em 2005 e tornou-se um best-seller
-                        internacional, aclamado pela crítica e pelo
-                        público.</li>
-                    <li>Markus Zusak utilizou a narrativa da Morte como uma
-                        figura que testemunha e conta a história, trazendo uma
-                        perspectiva única aos eventos da Segunda Guerra
-                        Mundial.</li>
-                    <li>A adaptação cinematográfica do livro foi lançada em
-                        2013, recebendo críticas positivas por capturar a
-                        essência emocional da história.</li>
-                </ul>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title">Curiosidades</h2>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">O livro foi publicado em 2005 e
+                            tornou-se um best-seller internacional, aclamado
+                            pela crítica e pelo público.</li>
+                        <li class="mb-2">Markus Zusak utilizou a narrativa da
+                            Morte como uma figura que testemunha e conta a
+                            história, trazendo uma perspectiva única aos eventos
+                            da Segunda Guerra Mundial.</li>
+                        <li>A adaptação cinematográfica do livro foi lançada em
+                            2013, recebendo críticas positivas por capturar a
+                            essência emocional da história.</li>
+                    </ul>
+                </div>
             </div>
-            <a href="../../index.html">Voltar ao questionário</a>
+
+            <div class="text-center mt-4">
+                <a href="../../index.html" class="btn btn-secondary">Voltar ao
+                    questionário</a>
+            </div>
         </div>
-    </body>
 
-    <footer>
-        <p>Aplicação web desenvolvida pela turma de Informática para Internet
-            2024 Trilhas de Futuro 4 SENAI-MG Uberaba</p>
-        <p>Instrutor: Lenon Yuri</p>
-    </footer>
+        <!-- Footer Section -->
+        <footer class="bg-dark text-white text-center py-3 mt-4">
+            <p>Aplicação web desenvolvida pela turma de Informática para
+                Internet 2024 Trilhas de Futuro 4 SENAI-MG Uberaba</p>
+            <p>Instrutor: Lenon Yuri</p>
+        </footer>
+
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>

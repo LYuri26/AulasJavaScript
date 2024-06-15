@@ -1,193 +1,223 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <header>
-        <h1>Biblioteca Virtual</h1>
-        <nav>
-            <a href="../index.html">Voltar ao Menu Inicial</a>
-        </nav>
-    </header>
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Questionário de Livros - Biblioteca Senai</title>
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            rel="stylesheet">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="../css/perguntas.css">
     </head>
     <body>
-        <div id="questionarioContainer">
-            <!-- Pergunta 1 -->
-            <div class="question" id="pergunta1">
-                <p>1. Qual cenário você gostaria de explorar em um sonho?</p>
-                <label><input type="radio" name="q1" value="A"> Um castelo
-                    antigo cheio de segredos e criaturas
-                    maravilhosas</label><br>
-                <label><input type="radio" name="q1" value="B"> Um lugar
-                    futurista onde as pessoas lutam por suas vidas</label><br>
-                <label><input type="radio" name="q1" value="C"> Uma cidade cheia
-                    de encontros inesperados e momentos especiais</label><br>
-                <label><input type="radio" name="q1" value="D"> Um pequeno
-                    bairro onde cada pessoa tem uma história tocante</label><br>
-                <label><input type="radio" name="q1" value="E"> Um lugar marcado
-                    por eventos importantes e histórias reais</label><br>
-                <label><input type="radio" name="q1" value="F"> Um planeta onde
-                    cada dia é uma nova descoberta</label><br>
-                <label><input type="radio" name="q1" value="G"> Um reino com
-                    batalhas épicas e tramas complexas</label>
-            </div>
+        <!-- Header Section -->
+        <header class="bg-primary text-white text-center py-3">
+            <h1>Biblioteca Virtual</h1>
+            <nav>
+                <a href="../index.html" class="btn btn-light mt-2">Voltar ao
+                    Menu Inicial</a>
+            </nav>
+        </header>
 
-            <!-- Pergunta 2 -->
-            <div class="question" id="pergunta2">
-                <p>2. Qual atividade você prefere fazer em um fim de semana
-                    perfeito?</p>
-                <label><input type="radio" name="q2" value="A"> Descobrir
-                    mistérios antigos e aprender coisas novas</label><br>
-                <label><input type="radio" name="q2" value="B"> Participar de
-                    desafios emocionantes e cheios de ação</label><br>
-                <label><input type="radio" name="q2" value="C"> Passar tempo com
-                    pessoas especiais e viver momentos inesquecíveis</label><br>
-                <label><input type="radio" name="q2" value="D"> Refletir sobre a
-                    vida e ajudar amigos em momentos difíceis</label><br>
-                <label><input type="radio" name="q2" value="E"> Explorar
-                    histórias e lugares que marcaram o passado</label><br>
-                <label><input type="radio" name="q2" value="F"> Meditar e
-                    encontrar lições profundas em pequenas coisas</label><br>
-                <label><input type="radio" name="q2" value="G"> Planejar
-                    estratégias e desvendar segredos antigos</label>
-            </div>
+        <!-- Main Content -->
+        <div class="container my-4">
+            <div id="questionarioContainer" class="card p-4">
+                <!-- Pergunta 1 -->
+                <div class="question" id="pergunta1">
+                    <p>1. Qual cenário você gostaria de explorar em um
+                        sonho?</p>
+                    <label><input type="radio" name="q1" value="A"> Um castelo
+                        antigo cheio de segredos e criaturas
+                        maravilhosas</label><br>
+                    <label><input type="radio" name="q1" value="B"> Um lugar
+                        futurista onde as pessoas lutam por suas
+                        vidas</label><br>
+                    <label><input type="radio" name="q1" value="C"> Uma cidade
+                        cheia de encontros inesperados e momentos
+                        especiais</label><br>
+                    <label><input type="radio" name="q1" value="D"> Um pequeno
+                        bairro onde cada pessoa tem uma história
+                        tocante</label><br>
+                    <label><input type="radio" name="q1" value="E"> Um lugar
+                        marcado por eventos importantes e histórias
+                        reais</label><br>
+                    <label><input type="radio" name="q1" value="F"> Um planeta
+                        onde cada dia é uma nova descoberta</label><br>
+                    <label><input type="radio" name="q1" value="G"> Um reino com
+                        batalhas épicas e tramas complexas</label>
+                </div>
 
-            <!-- Pergunta 3 -->
-            <div class="question" id="pergunta3">
-                <p>3. Qual personagem de filme/seriado você gostaria de ser por
-                    um dia?</p>
-                <label><input type="radio" name="q3" value="A"> Um jovem
-                    aprendendo a dominar poderes especiais</label><br>
-                <label><input type="radio" name="q3" value="B"> Um herói lutando
-                    contra um futuro incerto</label><br>
-                <label><input type="radio" name="q3" value="C"> Um adolescente
-                    descobrindo o amor verdadeiro</label><br>
-                <label><input type="radio" name="q3" value="D"> Alguém que
-                    enfrenta desafios reais com coragem</label><br>
-                <label><input type="radio" name="q3" value="E"> Uma pessoa que
-                    viveu eventos históricos marcantes</label><br>
-                <label><input type="radio" name="q3" value="F"> Um pequeno
-                    explorador descobrindo o universo</label><br>
-                <label><input type="radio" name="q3" value="G"> Um líder ou
-                    guerreiro em busca de justiça</label>
-            </div>
+                <!-- Pergunta 2 -->
+                <div class="question d-none" id="pergunta2">
+                    <p>2. Qual atividade você prefere fazer em um fim de semana
+                        perfeito?</p>
+                    <label><input type="radio" name="q2" value="A"> Descobrir
+                        mistérios antigos e aprender coisas novas</label><br>
+                    <label><input type="radio" name="q2" value="B"> Participar
+                        de desafios emocionantes e cheios de ação</label><br>
+                    <label><input type="radio" name="q2" value="C"> Passar tempo
+                        com pessoas especiais e viver momentos
+                        inesquecíveis</label><br>
+                    <label><input type="radio" name="q2" value="D"> Refletir
+                        sobre a vida e ajudar amigos em momentos
+                        difíceis</label><br>
+                    <label><input type="radio" name="q2" value="E"> Explorar
+                        histórias e lugares que marcaram o passado</label><br>
+                    <label><input type="radio" name="q2" value="F"> Meditar e
+                        encontrar lições profundas em pequenas
+                        coisas</label><br>
+                    <label><input type="radio" name="q2" value="G"> Planejar
+                        estratégias e desvendar segredos antigos</label>
+                </div>
 
-            <!-- Pergunta 4 -->
-            <div class="question" id="pergunta4">
-                <p>4. Se você pudesse escolher um mentor, quem ele seria?</p>
-                <label><input type="radio" name="q4" value="A"> Alguém que
-                    conhece segredos antigos e poderosos</label><br>
-                <label><input type="radio" name="q4" value="B"> Um líder
-                    revolucionário determinado</label><br>
-                <label><input type="radio" name="q4" value="C"> Uma pessoa que
-                    entende os mistérios do coração</label><br>
-                <label><input type="radio" name="q4" value="D"> Um amigo que te
-                    ajuda a superar obstáculos emocionais</label><br>
-                <label><input type="radio" name="q4" value="E"> Alguém que viveu
-                    momentos históricos e pode contar tudo sobre
-                    eles</label><br>
-                <label><input type="radio" name="q4" value="F"> Um sábio que
-                    ensina lições de vida profundas</label><br>
-                <label><input type="radio" name="q4" value="G"> Um estrategista
-                    brilhante com muitas histórias para contar</label>
-            </div>
+                <!-- Pergunta 3 -->
+                <div class="question d-none" id="pergunta3">
+                    <p>3. Qual personagem de filme/seriado você gostaria de ser
+                        por um dia?</p>
+                    <label><input type="radio" name="q3" value="A"> Um jovem
+                        aprendendo a dominar poderes especiais</label><br>
+                    <label><input type="radio" name="q3" value="B"> Um herói
+                        lutando contra um futuro incerto</label><br>
+                    <label><input type="radio" name="q3" value="C"> Um
+                        adolescente descobrindo o amor verdadeiro</label><br>
+                    <label><input type="radio" name="q3" value="D"> Alguém que
+                        enfrenta desafios reais com coragem</label><br>
+                    <label><input type="radio" name="q3" value="E"> Uma pessoa
+                        que viveu eventos históricos marcantes</label><br>
+                    <label><input type="radio" name="q3" value="F"> Um pequeno
+                        explorador descobrindo o universo</label><br>
+                    <label><input type="radio" name="q3" value="G"> Um líder ou
+                        guerreiro em busca de justiça</label>
+                </div>
 
-            <!-- Pergunta 5 -->
-            <div class="question" id="pergunta5">
-                <p>5. Qual destes objetos você escolheria para levar sempre com
-                    você?</p>
-                <label><input type="radio" name="q5" value="A"> Um artefato
-                    mágico cheio de mistérios</label><br>
-                <label><input type="radio" name="q5" value="B"> Um símbolo de
-                    resistência e coragem</label><br>
-                <label><input type="radio" name="q5" value="C"> Uma carta
-                    especial cheia de sentimentos</label><br>
-                <label><input type="radio" name="q5" value="D"> Um diário
-                    repleto de memórias e histórias</label><br>
-                <label><input type="radio" name="q5" value="E"> Uma foto antiga
-                    com grande significado</label><br>
-                <label><input type="radio" name="q5" value="F"> Um livro com
-                    ensinamentos valiosos</label><br>
-                <label><input type="radio" name="q5" value="G"> Uma espada ou
-                    objeto de poder</label>
-            </div>
+                <!-- Pergunta 4 -->
+                <div class="question d-none" id="pergunta4">
+                    <p>4. Se você pudesse escolher um mentor, quem ele
+                        seria?</p>
+                    <label><input type="radio" name="q4" value="A"> Alguém que
+                        conhece segredos antigos e poderosos</label><br>
+                    <label><input type="radio" name="q4" value="B"> Um líder
+                        revolucionário determinado</label><br>
+                    <label><input type="radio" name="q4" value="C"> Uma pessoa
+                        que entende os mistérios do coração</label><br>
+                    <label><input type="radio" name="q4" value="D"> Um amigo que
+                        te ajuda a superar obstáculos emocionais</label><br>
+                    <label><input type="radio" name="q4" value="E"> Alguém que
+                        viveu momentos históricos e pode contar tudo sobre
+                        eles</label><br>
+                    <label><input type="radio" name="q4" value="F"> Um sábio que
+                        ensina lições de vida profundas</label><br>
+                    <label><input type="radio" name="q4" value="G"> Um
+                        estrategista brilhante com muitas histórias para
+                        contar</label>
+                </div>
 
-            <!-- Pergunta 6 -->
-            <div class="question" id="pergunta6">
-                <p>6. Qual desses lugares seria o seu refúgio perfeito?</p>
-                <label><input type="radio" name="q6" value="A"> Uma biblioteca
-                    cheia de livros mágicos e antigos</label><br>
-                <label><input type="radio" name="q6" value="B"> Um centro de
-                    treinamento cheio de desafios</label><br>
-                <label><input type="radio" name="q6" value="C"> Um parque
-                    tranquilo e romântico</label><br>
-                <label><input type="radio" name="q6" value="D"> Uma casa
-                    aconchegante onde você se sente seguro</label><br>
-                <label><input type="radio" name="q6" value="E"> Um museu cheio
-                    de histórias fascinantes</label><br>
-                <label><input type="radio" name="q6" value="F"> Um jardim onde
-                    você pode refletir sobre a vida</label><br>
-                <label><input type="radio" name="q6" value="G"> Uma fortaleza
-                    imponente e estratégica</label>
-            </div>
+                <!-- Pergunta 5 -->
+                <div class="question d-none" id="pergunta5">
+                    <p>5. Qual destes objetos você escolheria para levar sempre
+                        com você?</p>
+                    <label><input type="radio" name="q5" value="A"> Um artefato
+                        mágico cheio de mistérios</label><br>
+                    <label><input type="radio" name="q5" value="B"> Um símbolo
+                        de resistência e coragem</label><br>
+                    <label><input type="radio" name="q5" value="C"> Uma carta
+                        especial cheia de sentimentos</label><br>
+                    <label><input type="radio" name="q5" value="D"> Um diário
+                        repleto de memórias e histórias</label><br>
+                    <label><input type="radio" name="q5" value="E"> Uma foto
+                        antiga com grande significado</label><br>
+                    <label><input type="radio" name="q5" value="F"> Um livro com
+                        ensinamentos valiosos</label><br>
+                    <label><input type="radio" name="q5" value="G"> Uma espada
+                        ou objeto de poder</label>
+                </div>
 
-            <!-- Pergunta 7 -->
-            <div class="question" id="pergunta7">
-                <p>7. Qual dessas atividades te deixa mais animado?</p>
-                <label><input type="radio" name="q7" value="A"> Explorar lugares
-                    cheios de magia e encantamento</label><br>
-                <label><input type="radio" name="q7" value="B"> Enfrentar
-                    desafios que testam suas habilidades</label><br>
-                <label><input type="radio" name="q7" value="C"> Passar momentos
-                    especiais com alguém querido</label><br>
-                <label><input type="radio" name="q7" value="D"> Ajudar alguém a
-                    superar um problema</label><br>
-                <label><input type="radio" name="q7" value="E"> Descobrir
-                    histórias verdadeiras e inspiradoras</label><br>
-                <label><input type="radio" name="q7" value="F"> Ler e refletir
-                    sobre mensagens profundas</label><br>
-                <label><input type="radio" name="q7" value="G"> Planejar e
-                    liderar grandes empreitadas</label>
-            </div>
+                <!-- Pergunta 6 -->
+                <div class="question d-none" id="pergunta6">
+                    <p>6. Qual desses lugares seria o seu refúgio perfeito?</p>
+                    <label><input type="radio" name="q6" value="A"> Uma
+                        biblioteca cheia de livros mágicos e antigos</label><br>
+                    <label><input type="radio" name="q6" value="B"> Um centro de
+                        treinamento cheio de desafios</label><br>
+                    <label><input type="radio" name="q6" value="C"> Um parque
+                        tranquilo e romântico</label><br>
+                    <label><input type="radio" name="q6" value="D"> Uma casa
+                        aconchegante onde você se sente seguro</label><br>
+                    <label><input type="radio" name="q6" value="E"> Um museu
+                        cheio de histórias fascinantes</label><br>
+                    <label><input type="radio" name="q6" value="F"> Um jardim
+                        onde você pode refletir sobre a vida</label><br>
+                    <label><input type="radio" name="q6" value="G"> Uma
+                        fortaleza imponente e estratégica</label>
+                </div>
 
-            <!-- Pergunta 8 -->
-            <div class="question" id="pergunta8">
-                <p>8. Qual desses animais de estimação você gostaria de ter?</p>
-                <label><input type="radio" name="q8" value="A"> Um animal
-                    exótico e misterioso</label><br>
-                <label><input type="radio" name="q8" value="B"> Um companheiro
-                    leal e corajoso</label><br>
-                <label><input type="radio" name="q8" value="C"> Um animalzinho
-                    carinhoso e amável</label><br>
-                <label><input type="radio" name="q8" value="D"> Um amigo peludo
-                    que sempre está ao seu lado</label><br>
-                <label><input type="radio" name="q8" value="E"> Um animal que
-                    tem uma história interessante</label><br>
-                <label><input type="radio" name="q8" value="F"> Um bichinho
-                    curioso e sábio</label><br>
-                <label><input type="radio" name="q8" value="G"> Um guardião
-                    forte e protetor</label>
-            </div>
+                <!-- Pergunta 7 -->
+                <div class="question d-none" id="pergunta7">
+                    <p>7. Qual dessas atividades te deixa mais animado?</p>
+                    <label><input type="radio" name="q7" value="A"> Explorar
+                        lugares cheios de magia e encantamento</label><br>
+                    <label><input type="radio" name="q7" value="B"> Enfrentar
+                        desafios que testam suas habilidades</label><br>
+                    <label><input type="radio" name="q7" value="C"> Passar
+                        momentos especiais com alguém querido</label><br>
+                    <label><input type="radio" name="q7" value="D"> Ajudar
+                        alguém a superar um problema</label><br>
+                    <label><input type="radio" name="q7" value="E"> Descobrir
+                        histórias verdadeiras e inspiradoras</label><br>
+                    <label><input type="radio" name="q7" value="F"> Ler e
+                        refletir sobre mensagens profundas</label><br>
+                    <label><input type="radio" name="q7" value="G"> Planejar e
+                        liderar grandes empreitadas</label>
+                </div>
 
-            <!-- Botões de navegação -->
-            <button id="botaoAnterior"
-                onclick="perguntaAnterior()">Anterior</button>
-            <button id="botaoProximo"
-                onclick="proximaPergunta()">Próximo</button>
-            <button id="botaoFinalizar"
-                onclick="processarQuestionario()">Finalizar</button>
+                <!-- Pergunta 8 -->
+                <div class="question d-none" id="pergunta8">
+                    <p>8. Qual desses animais de estimação você gostaria de
+                        ter?</p>
+                    <label><input type="radio" name="q8" value="A"> Um animal
+                        exótico e misterioso</label><br>
+                    <label><input type="radio" name="q8" value="B"> Um
+                        companheiro leal e corajoso</label><br>
+                    <label><input type="radio" name="q8" value="C"> Um
+                        animalzinho carinhoso e amável</label><br>
+                    <label><input type="radio" name="q8" value="D"> Um amigo
+                        peludo que sempre está ao seu lado</label><br>
+                    <label><input type="radio" name="q8" value="E"> Um animal
+                        que tem uma história interessante</label><br>
+                    <label><input type="radio" name="q8" value="F"> Um bichinho
+                        curioso e sábio</label><br>
+                    <label><input type="radio" name="q8" value="G"> Um guardião
+                        forte e protetor</label>
+                </div>
+
+                <!-- Navegação do Questionário -->
+                <div class="d-flex justify-content-between mt-3">
+                    <button id="botaoAnterior" class="btn btn-secondary"
+                        onclick="perguntaAnterior()">Anterior</button>
+                    <button id="botaoProximo" class="btn btn-primary"
+                        onclick="proximaPergunta()">Próximo</button>
+                    <!-- Botão Finalizar -->
+                    <button id="botaoFinalizar" 
+                        onclick="processarQuestionario()">Finalizar</button>
+                </div>
+            </div>
         </div>
 
+        <!-- Footer Section -->
+        <footer class="bg-dark text-white text-center py-3">
+            <p>Aplicação web desenvolvida pela turma de Informática para
+                Internet 2024 Trilhas de Futuro 4 SENAI-MG Uberaba</p>
+            <p>Instrutor: Lenon Yuri</p>
+        </footer>
+
+        <!-- JavaScript -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="../js/calculoPontuacao.js" defer></script>
         <script src="../js/recomendacaoLivros.js" defer></script>
         <script src="../js/navegacaoPerguntas.js" defer></script>
     </body>
-
-    <footer>
-        <p>Aplicação web desenvolvida pela turma de Informática para Internet
-            2024 Trilhas de Futuro 4 SENAI-MG Uberaba</p>
-        <p>Instrutor: Lenon Yuri</p>
-    </footer>
 </html>
