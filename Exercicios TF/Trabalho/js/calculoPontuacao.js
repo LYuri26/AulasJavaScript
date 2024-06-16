@@ -4,23 +4,13 @@
 function calcularPontuacao() {
   // Objeto para armazenar as pontuações para cada categoria de livro
   const pontuacao = {
-    Fantasia: 0,
-    "Ficção Científica / Distopia": 0,
     Romance: 0,
-    "Drama / Realismo": 0,
-    "Outros (Biografia / Histórico)": 0,
-    "Outros (Clássico)": 0,
     "Outros (Fantasia / Épico)": 0,
   };
 
   // Mapeamento das opções de resposta para as categorias
   const mapeamento = {
-    A: "Fantasia",
-    B: "Ficção Científica / Distopia",
     C: "Romance",
-    D: "Drama / Realismo",
-    E: "Outros (Biografia / Histórico)",
-    F: "Outros (Clássico)",
     G: "Outros (Fantasia / Épico)",
   };
 
