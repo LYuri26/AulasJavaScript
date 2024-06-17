@@ -1,0 +1,59 @@
+/* Esconde todas as perguntas inicialmente */
+.question {
+  display: none;
+}
+
+/* Mostra a pergunta atual */
+.question:not(.d-none) {
+  display: block;
+}
+
+/* Estilo dos Botões de Navegação */
+#botaoAnterior,
+#botaoProximo,
+#botaoFinalizar {
+  font-size: 16px; /* Tamanho da fonte dos botões */
+  padding: 10px 20px; /* Preenchimento dos botões */
+  margin: 10px 5px; /* Margem ao redor dos botões */
+}
+
+#botaoAnterior {
+  background-color: #6c757d; /* Cor de fundo do botão anterior */
+  color: white;
+  border: none;
+  border-radius: 5px; /* Bordas arredondadas */
+}
+
+#botaoProximo {
+  background-color: #007bff; /* Cor de fundo do botão próximo */
+  color: white;
+  border: none;
+  border-radius: 5px; /* Bordas arredondadas */
+}
+
+#botaoFinalizar {
+  background-color: #28a745; /* Cor de fundo do botão finalizar */
+  color: white;
+  border: none;
+  border-radius: 5px; /* Bordas arredondadas */
+}
+
+#botaoAnterior:hover,
+#botaoProximo:hover,
+#botaoFinalizar:hover {
+  opacity: 0.8; /* Efeito de hover */
+}
+
+/* Estilo do Rodapé */
+footer {
+  margin-top: 40px; /* Margem superior */
+  padding: 10px 0; /* Preenchimento vertical */
+  text-align: center; /* Centraliza o texto */
+  background-color: #343a40; /* Cor de fundo */
+  color: white; /* Cor do texto */
+}
+
+footer p {
+  margin: 5px 0; /* Margem vertical */
+  font-size: 14px; /* Tamanho da fonte */
+}
