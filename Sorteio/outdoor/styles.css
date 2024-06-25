@@ -1,0 +1,73 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(
+    to right,
+    #ff7e5f,
+    #feb47b
+  ); /* Gradiente de fundo chamativo */
+  font-family: "Arial", sans-serif;
+  overflow: hidden;
+}
+
+.outdoor {
+  text-align: center;
+  perspective: 1000px; /* Necessário para o efeito 3D */
+}
+
+#texto {
+  font-size: 10vw; /* Tamanho gigante */
+  color: #ffffff; /* Cor branca */
+  text-transform: uppercase; /* Sempre em maiúsculas */
+  text-shadow: 0 0 10px #ff7e5f, 0 0 20px #ff7e5f, 0 0 30px #feb47b,
+    0 0 40px #feb47b; /* Brilho no texto */
+  animation: animateText 8s infinite; /* Animação combinada */
+  transform-style: preserve-3d; /* Necessário para efeito 3D */
+  transform: translateZ(30px); /* Efeito 3D */
+}
+
+/* Animação combinada */
+@keyframes animateText {
+  0%,
+  100% {
+    transform: rotateX(0deg) rotateY(0deg) scale(1) translateZ(30px); /* Rotação 3D */
+  }
+  25%,
+  50%,
+  75% {
+    transform: scale(1.1) translateZ(30px); /* Pulsar */
+  }
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: rotateX(360deg) rotateY(360deg) translateZ(30px); /* Rotação 3D */
+  }
+}
+
+/* Efeito de partículas simulando fogos de artifício */
+@keyframes fireworks {
+  0% {
+    transform: translateY(0) scale(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px) scale(1);
+    opacity: 0;
+  }
+}
+
+.fireworks {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, #fff, rgba(255, 255, 255, 0));
+  border-radius: 50%;
+  animation: fireworks 2s infinite;
+}
