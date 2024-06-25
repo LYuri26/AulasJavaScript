@@ -4,47 +4,48 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  background: linear-gradient(
-    to right,
-    #ff7e5f,
-    #feb47b
-  ); /* Gradiente de fundo chamativo */
-  font-family: "Arial", sans-serif;
+  background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradiente de fundo chamativo */
+  font-family: 'Arial', sans-serif;
   overflow: hidden;
 }
 
 .outdoor {
   text-align: center;
   perspective: 1000px; /* Necessário para o efeito 3D */
+  box-sizing: border-box; /* Inclui o padding no tamanho total do contêiner */
+  max-width: 90vw; /* Limita a largura a 90% da viewport */
+  max-height: 90vh; /* Limita a altura a 90% da viewport */
 }
 
 #texto {
-  font-size: 10vw; /* Tamanho gigante */
   color: #ffffff; /* Cor branca */
   text-transform: uppercase; /* Sempre em maiúsculas */
   text-shadow: 0 0 10px #ff7e5f, 0 0 20px #ff7e5f, 0 0 30px #feb47b,
-    0 0 40px #feb47b; /* Brilho no texto */
+              0 0 40px #feb47b; /* Brilho no texto */
   animation: animateText 8s infinite; /* Animação combinada */
   transform-style: preserve-3d; /* Necessário para efeito 3D */
   transform: translateZ(30px); /* Efeito 3D */
+  margin: 0 auto; /* Centraliza o texto */
+  white-space: pre-wrap; /* Permite quebra de linha */
+  word-wrap: break-word; /* Quebra palavras longas */
+  margin-left: 50px;
+  margin-right: 50px;
+
 }
 
 /* Animação combinada */
 @keyframes animateText {
-  0%,
-  100% {
-    transform: rotateX(0deg) rotateY(0deg) scale(1) translateZ(30px); /* Rotação 3D */
+  0%, 100% {
+      transform: rotateX(0deg) rotateY(0deg) scale(1) translateZ(30px);
   }
-  25%,
-  50%,
-  75% {
-    transform: scale(1.1) translateZ(30px); /* Pulsar */
+  12.5%, 37.5%, 62.5%, 87.5% {
+      transform: rotateX(360deg) rotateY(360deg) translateZ(30px);
   }
-  12.5%,
-  37.5%,
-  62.5%,
-  87.5% {
-    transform: rotateX(360deg) rotateY(360deg) translateZ(30px); /* Rotação 3D */
+  25%, 75% {
+      transform: scale(1.1) translateZ(30px);
+  }
+  50% {
+      transform: scale(1.2) translateZ(30px);
   }
 }
 

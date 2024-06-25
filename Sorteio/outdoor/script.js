@@ -5,11 +5,22 @@ function salvarFrase() {
         form.addEventListener('submit', (event) => {
             event.preventDefault(); // Impede o comportamento padrão do formulário
             const texto = document.getElementById('texto').value; // Obtém o texto digitado
-            console.log('Frase salva:', texto); // Log para verificar o valor salvo
             localStorage.setItem('outdoorTexto', texto); // Salva o texto no Local Storage
-            console.log('Texto salvo no Local Storage:', localStorage.getItem('outdoorTexto')); // Verificar após salvar
             window.location.href = 'outdoor.html'; // Redireciona para a página principal
         });
+    }
+}
+
+// Função para ajustar o tamanho da fonte para que o texto caiba dentro do contêiner
+function ajustarTamanhoFonte(elemento) {
+    const container = document.querySelector('.outdoor');
+    let fontSize = 10; // Tamanho inicial em vw
+    elemento.style.fontSize = `${fontSize}vw`;
+
+    // Reduz o tamanho da fonte até que o texto caiba no contêiner
+    while ((elemento.scrollWidth > container.clientWidth || elemento.scrollHeight > container.clientHeight) && fontSize > 0.5) {
+        fontSize -= 0.5; // Reduz o tamanho da fonte em passos pequenos
+        elemento.style.fontSize = `${fontSize}vw`;
     }
 }
 
@@ -18,29 +29,33 @@ function exibirFrase() {
     const h1 = document.getElementById('texto');
     if (h1) {
         const texto = localStorage.getItem('outdoorTexto');
-        console.log('Frase recuperada do Local Storage:', texto); // Log para verificar o valor recuperado
-
         if (texto) {
             h1.textContent = texto;
         } else {
-            console.log('Nenhum texto encontrado no Local Storage.');
             h1.textContent = "Sua frase aqui!";
         }
+        ajustarTamanhoFonte(h1); // Ajusta o tamanho da fonte
     }
 }
 
 // Determina a função a ser executada com base na presença de elementos específicos na página
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('outdoorForm')) {
-        console.log("Página de configuração carregada.");
         salvarFrase(); // Executa na página de entrada de texto
     } else if (document.getElementById('texto')) {
-        console.log("Página de exibição carregada.");
         exibirFrase(); // Executa na página de exibição
-    } else {
-        console.log("Nenhum formulário ou texto encontrado na página.");
     }
 });
+
+// Ajusta o tamanho da fonte quando a janela é redimensionada
+window.addEventListener('resize', () => {
+    const h1 = document.getElementById('texto');
+    if (h1) {
+        ajustarTamanhoFonte(h1);
+    }
+});
+
+
 
 // Função para criar partículas de fogos de artifício
 function createFirework() {
