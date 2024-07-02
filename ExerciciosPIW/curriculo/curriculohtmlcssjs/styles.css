@@ -52,6 +52,11 @@ header .informacoes a:hover {
   color: blue; /* Cor dos links ao passar o mouse */
 }
 
+img {
+  height: 20px;
+  width: auto;
+}
+
 /* Estilos para a div do nome */
 #nome {
   text-align: center; /* Centraliza o conteúdo */
