@@ -34,7 +34,9 @@ function recomendarLivro(pontuacao) {
   let maiorPontuacao = 0;
 
   // Itera sobre cada categoria para encontrar a que tem a maior pontuação
-  for (const categoria in pontuacao) {
+  const categorias = Object.keys(pontuacao);
+  for (let i = 0; i < categorias.length; i++) {
+    const categoria = categorias[i];
     // Se a pontuação atual é maior que a maior pontuação registrada
     if (pontuacao[categoria] > maiorPontuacao) {
       // Atualiza a maior pontuação e a categoria favorita
@@ -56,7 +58,8 @@ function recomendarLivro(pontuacao) {
     let menorDiferenca = Infinity;
 
     // Itera sobre as recomendações para encontrar o livro apropriado com base na pontuação
-    for (const recomendacao of recomendacoesCategoria) {
+    for (let j = 0; j < recomendacoesCategoria.length; j++) {
+      const recomendacao = recomendacoesCategoria[j];
       // Se a pontuação está dentro do intervalo da recomendação atual
       if (
         maiorPontuacao >= recomendacao.pontos[0] &&
@@ -66,11 +69,15 @@ function recomendarLivro(pontuacao) {
         urlLivroRecomendado = recomendacao.url;
         break; // Sai do loop após encontrar a primeira recomendação válida
       } else {
-        // Calcula a diferença absoluta entre a pontuação atual e o intervalo da recomendação
-        const diferencaMinima = Math.min(
-          Math.abs(maiorPontuacao - recomendacao.pontos[0]),
-          Math.abs(maiorPontuacao - recomendacao.pontos[1])
-        );
+        // Calcula a diferença sem usar Math.abs
+        let diferencaMinima;
+        if (maiorPontuacao < recomendacao.pontos[0]) {
+          // Pontuação está abaixo do intervalo
+          diferencaMinima = recomendacao.pontos[0] - maiorPontuacao;
+        } else {
+          // Pontuação está acima do intervalo
+          diferencaMinima = maiorPontuacao - recomendacao.pontos[1];
+        }
 
         // Se a diferença atual é menor que a menor diferença registrada
         if (diferencaMinima < menorDiferenca) {
