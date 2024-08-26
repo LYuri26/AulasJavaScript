@@ -1,11 +1,15 @@
 function somaNumeros() {
-  // Números fixos
-  const num1 = 3;
-  const num2 = 4;
+  // Array fixo de números
+  const numeros = [1, 2, 3, 4, 5];
 
-  // Retorna a soma dos números fixos
-  return num1 + num2;
+  // Usa reduce para somar todos os elementos do array
+  const soma = numeros.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  );
+
+  return soma;
 }
 
 // Exibindo o resultado
-console.log(somaNumeros()); // Saída: 7
+console.log(somaNumeros()); // Saída: 15
