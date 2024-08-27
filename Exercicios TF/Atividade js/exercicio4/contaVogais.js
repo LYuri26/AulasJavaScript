@@ -1,18 +1,19 @@
-function contaVogais() {
+function contarVogaisNaString() {
   // String fixa
-  const str = "Olá Mundo";
-  const vogais = ["a", "e", "i", "o", "u"];
-  let contador = 0;
+  const stringFixa = "Olá Mundo";
+  const listaDeVogais = ["a", "e", "i", "o", "u"];
+  let quantidadeDeVogais = 0;
 
   // Converte a string para minúsculas e conta as vogais
-  for (let char of str.toLowerCase()) {
-    if (vogais.includes(char)) {
-      contador++;
+  for (let indice = 0; indice < stringFixa.length; indice++) {
+    let caractereAtual = stringFixa[indice].toLowerCase();
+    if (listaDeVogais.includes(caractereAtual)) {
+      quantidadeDeVogais++;
     }
   }
 
-  return contador;
+  return quantidadeDeVogais;
 }
 
 // Exibindo o resultado
-console.log(`A string fixa tem ${contaVogais()} vogais.`); // Saída: 4
+console.log(`A string fixa tem ${contarVogaisNaString()} vogais.`); // Saída: 4
