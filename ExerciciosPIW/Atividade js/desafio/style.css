@@ -1,0 +1,136 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+header {
+  background-color: #003366; /* Azul Cobalto */
+  color: #fff;
+  padding: 20px 30px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 15px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 20px 30px;
+}
+
+section {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.slideshow {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.slideshow img {
+  width: 100%;
+  height: auto;
+  display: none;
+  border-radius: 12px;
+}
+
+button {
+  background-color: #003366; /* Azul Cobalto */
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #002244;
+  transform: scale(1.05);
+}
+
+footer {
+  background-color: #003366;
+  padding: 20px 30px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+  color: #fff; /* Texto do rodapé branco */
+}
+
+.social-media a {
+  margin: 0 8px;
+  display: inline-block;
+}
+
+.social-media img {
+  width: 36px;
+  height: 36px;
+  filter: invert(100%); /* Torna os ícones SVG brancos */
+}
+
+.news-item {
+  margin-bottom: 30px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.news-content {
+  display: none;
+  margin-top: 10px;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.read-more {
+  background-color: #003366; /* Azul Cobalto */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 10px;
+}
+
+.read-more:hover {
+  background-color: #002244;
+  transform: scale(1.05);
+}
