@@ -1,0 +1,70 @@
+/* Reseta margens e paddings padrão */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos globais */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
+}
+
+/* Container principal */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Título da página */
+h1 {
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Resultados */
+#resultado {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+/* Pontuação */
+#resultado h2 {
+  font-size: 2rem;
+  color: #28a745;
+  margin-bottom: 10px;
+}
+
+#resultado p {
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+}
+
+/* Botão de voltar */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+/* Ajusta a cor do texto do botão */
+.btn-primary {
+  color: #ffffff;
+}
+
+/* Margem inferior do botão */
+.btn-block {
+  margin-bottom: 20px;
+}
