@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Previsão do Tempo</title>
+        <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+    <body>
+
+        <!-- Cabeçalho -->
+        <header class="bg-primary text-white text-center p-3">
+            <h1>Previsão do Tempo</h1>
+        </header>
+
+        <!-- Seção de Pesquisa -->
+        <section class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="input-group mb-3">
+                        <input type="text" id="cityInput" class="form-control"
+                            placeholder="Digite o nome da cidade"
+                            aria-label="Nome da Cidade"
+                            aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button"
+                                id="searchButton">Buscar</button>
+                        </div>
+                    </div>
+                    <ul id="suggestionsList"
+                        style="list-style: none; padding: 0;"></ul>
+                    <!-- Lista de Sugestões -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Exibição do Clima -->
+        <section class="container mt-3">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div id="weatherInfo" class="card p-3 text-center">
+                        <h5>Informações do Clima</h5>
+                        <p>Temperatura: <span id="temperature"></span>°C</p>
+                        <p>Umidade: <span id="humidity"></span>%</p>
+                        <p>Descrição: <span id="weatherDescription"></span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rodapé -->
+        <footer class="bg-primary text-white text-center p-3 mt-5">
+            <p>Aplicação desenvolvida pelo Instrutor: Lenon Yuri</p>
+        </footer>
+
+        <!-- JavaScript -->
+        <script src="js/index.js"></script>
+        <!-- O caminho para o seu JS principal -->
+        <script src="js/imagens.js"></script>
+        <!-- Supondo que você tenha esse script -->
+        <script src="js/pesquisa.js"></script>
+        <!-- Supondo que você tenha esse script para a pesquisa -->
+    </body>
+</html>
