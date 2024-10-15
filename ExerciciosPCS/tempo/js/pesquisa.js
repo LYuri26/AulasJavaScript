@@ -38,7 +38,9 @@ function displayCitySuggestions(suggestions) {
     if (suggestions && suggestions.length > 0) {
         suggestionsList.style.display = 'block'; // Mostra a lista
 
-        suggestions.forEach(city => {
+        // Usando o loop for padrão
+        for (let i = 0; i < suggestions.length; i++) {
+            const city = suggestions[i]; // Obtém a cidade atual
             const listItem = document.createElement('li');
             const countryCode = city.sys.country; // Obter o código do país
 
@@ -52,7 +54,7 @@ function displayCitySuggestions(suggestions) {
             });
 
             suggestionsList.appendChild(listItem);
-        });
+        }
     } else {
         suggestionsList.style.display = 'none'; // Esconde a lista se não houver sugestões
     }

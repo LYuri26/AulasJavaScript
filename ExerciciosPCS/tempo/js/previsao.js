@@ -34,7 +34,9 @@ function displayFiveDayForecast(data) {
     // Filtra previsões para exibir o clima ao meio-dia de cada dia
     const dailyForecasts = forecastList.filter(forecast => forecast.dt_txt.includes('12:00:00'));
 
-    dailyForecasts.forEach(forecast => {
+    // Usando o loop for padrão
+    for (let i = 0; i < dailyForecasts.length; i++) {
+        const forecast = dailyForecasts[i];
         const date = new Date(forecast.dt_txt);
         const options = { weekday: 'long', day: 'numeric', month: 'long' };
         const formattedDate = date.toLocaleDateString('pt-BR', options);
@@ -56,7 +58,7 @@ function displayFiveDayForecast(data) {
             ${weatherImage ? `<img src="${weatherImage.image}" alt="${description}" style="width: 100%; height: auto;" />` : ''}
         `;
         forecastContainer.appendChild(forecastElement);
-    });
+    }
 }
 
 // Evento de clique no botão de busca para carregar previsão atual e de 5 dias
