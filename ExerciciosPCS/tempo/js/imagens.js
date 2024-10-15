@@ -1,7 +1,7 @@
 // Array de vetores para mapeamento de imagens e ícones
 const weatherImages = [
     ["clear sky", "assets/svg/sun-summertime-svgrepo-com.svg", "assets/images/sun-summertime-svgrepo-com.svg"],
-    ["few clouds", "assets/svg/clouds-sky-svgrepo-com.svg", "assets/images/clouds-sky-svgrepo-com.svg"],
+    ["few clouds", "assets/svg/cloudy-svgrepo-com.svg", "assets/images/cloudy-svgrepo-com.svg"],
     ["scattered clouds", "assets/svg/wind-svgrepo-com.svg", "assets/images/wind-svgrepo-com.svg"],
     ["broken clouds", "assets/svg/wind-windy-svgrepo-com.svg", "assets/images/wind-windy-svgrepo-com.svg"],
     ["shower rain", "assets/svg/weather-rain-svgrepo-com.svg", "assets/images/weather-rain-svgrepo-com.svg"],
@@ -11,6 +11,7 @@ const weatherImages = [
     ["mist", "assets/svg/sky-clear-sky-svgrepo-com.svg", "assets/images/sky-clear-sky-svgrepo-com.svg"],
     ["light rain", "assets/svg/weather-rain-svgrepo-com(1).svg", "assets/images/weather-rain-svgrepo-com(1).svg"],
     ["moderate rain", "assets/svg/weather-rain-svgrepo-com(2).svg", "assets/images/weather-rain-svgrepo-com(2).svg"],
+    ["overcast clouds", "assets/svg/clouds-sky-svgrepo-com.svg", "assets/images/clouds-sky-svgrepo-com.svg"],
 ];
 
 // Array de traduções
@@ -26,5 +27,6 @@ const translations = [
     ["thunderstorm", "tempestade"],
     ["snow", "neve"],
     ["mist", "neblina"],
+    ["overcast clouds", "nuvens nubladas"],
 ];
 

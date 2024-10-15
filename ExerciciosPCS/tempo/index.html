@@ -1,66 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Previsão do Tempo</title>
-        <link rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/index.css">
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão do Tempo</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
 
-        <!-- Cabeçalho -->
-        <header class="bg-primary text-white text-center p-3">
-            <h1>Previsão do Tempo</h1>
-        </header>
+    <!-- Cabeçalho -->
+    <header class="bg-primary text-white text-center p-3">
+        <h1>Previsão do Tempo</h1>
+    </header>
 
-        <!-- Seção de Pesquisa -->
-        <section class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="input-group mb-3">
-                        <input type="text" id="cityInput" class="form-control"
-                            placeholder="Digite o nome da cidade"
-                            aria-label="Nome da Cidade"
-                            aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button"
-                                id="searchButton">Buscar</button>
-                        </div>
-                    </div>
-                    <ul id="suggestionsList"
-                        style="list-style: none; padding: 0;"></ul>
-                    <!-- Lista de Sugestões -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção de Exibição do Clima -->
-        <section class="container mt-3">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div id="weatherInfo" class="card p-3 text-center">
-                        <h5>Informações do Clima</h5>
-                        <p>Temperatura: <span id="temperature"></span>°C</p>
-                        <p>Umidade: <span id="humidity"></span>%</p>
-                        <p>Descrição: <span id="weatherDescription"></span></p>
+    <!-- Seção de Pesquisa -->
+    <section class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <input type="text" id="cityInput" class="form-control" placeholder="Digite o nome da cidade" aria-label="Nome da Cidade" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="searchButton">Buscar</button>
                     </div>
                 </div>
+                <ul id="suggestionsList" style="list-style: none; padding: 0; display: none;"></ul> <!-- Lista de Sugestões -->
+                <p><strong>Cidade Selecionada:</strong> <span id="selectedCity"></span></p> <!-- Elemento para exibir a cidade selecionada -->
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Rodapé -->
-        <footer class="bg-primary text-white text-center p-3 mt-5">
-            <p>Aplicação desenvolvida pelo Instrutor: Lenon Yuri</p>
-        </footer>
+    <!-- Seção de Exibição do Clima Atual -->
+    <section class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div id="weatherInfo" class="card p-3 text-center">
+                    <h5>Informações do Clima Atual</h5>
+                    <p><strong>Cidade:</strong> <span id="cityName"></span></p>
+                    <p><strong>Temperatura:</strong> <span id="temperature"></span>°C</p>
+                    <p><strong>Umidade:</strong> <span id="humidity"></span>%</p>
+                    <p><strong>Descrição:</strong> <span id="weatherDescription"></span></p>
+                    <img id="weatherIcon" src="" alt="Ícone do Clima" style="width: 100px; height: auto;" />
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- JavaScript -->
-        <script src="js/index.js"></script>
-        <!-- O caminho para o seu JS principal -->
-        <script src="js/imagens.js"></script>
-        <!-- Supondo que você tenha esse script -->
-        <script src="js/pesquisa.js"></script>
-        <!-- Supondo que você tenha esse script para a pesquisa -->
-    </body>
+    <!-- Seção de Exibição da Previsão de 5 Dias -->
+    <section class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h5 class="text-center">Previsão dos Próximos 5 Dias</h5>
+                <div id="fiveDayForecast" class="d-flex flex-wrap justify-content-between">
+                    <!-- Previsões diárias serão exibidas aqui -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-primary text-white text-center p-3 mt-5">
+        <p>Aplicação desenvolvida pelo Instrutor: Lenon Yuri</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/index.js"></script>
+    <script src="js/imagens.js"></script>
+    <script src="js/pesquisa.js"></script>
+    <script src="js/previsao.js"></script>
+</body>
 </html>
