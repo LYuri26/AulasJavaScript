@@ -1,0 +1,128 @@
+/* src/style.css  */
+/* Resetando margens e preenchimentos padrões */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos gerais do body */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f7fc; /* Cor de fundo suave */
+  color: #333; /* Cor de texto */
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* Container principal da aplicação */
+.App {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff; /* Fundo branco para o conteúdo */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombras sutis */
+}
+
+/* Título principal */
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #4a90e2; /* Cor do título */
+  margin-bottom: 20px;
+}
+
+/* Estilo do formulário de cadastro */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input[type="text"],
+input[type="email"] {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+  border-color: #4a90e2; /* Cor do foco */
+  outline: none;
+}
+
+/* Botão de envio */
+button {
+  padding: 12px;
+  background-color: #4a90e2; /* Cor de fundo azul */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #357ab7; /* Cor ao passar o mouse */
+}
+
+/* Mensagem de feedback (sucesso ou erro) */
+p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #333;
+  margin-top: 10px;
+}
+
+p.success {
+  color: #4caf50; /* Verde para sucesso */
+}
+
+p.error {
+  color: #f44336; /* Vermelho para erro */
+}
+
+/* Estilo da lista de usuários */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  background-color: #f9f9f9;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+li strong {
+  color: #4a90e2; /* Cor azul para os nomes */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .App {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  input[type="text"],
+  input[type="email"] {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
+}
