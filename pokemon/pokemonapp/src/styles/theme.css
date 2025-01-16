@@ -1,0 +1,123 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Definições gerais para o corpo da página */
+body {
+  background-image: url("../assets/images/background.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: "Press Start 2P", cursive;
+  color: #333;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Estilos para o título */
+h1 {
+  color: #ffcb05;
+  font-size: 3rem;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  margin-top: 50px;
+  text-transform: uppercase;
+}
+
+/* Estilo para o formulário de busca */
+.pokemon-search {
+  margin-top: 30px;
+  width: 100%;
+}
+
+/* Estilo para o botão de busca */
+.pokemon-search button {
+  background-color: #ffcc00;
+  color: #333;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 15px;
+}
+
+.pokemon-search button:hover {
+  background-color: #ff8000;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo para o input de busca */
+.pokemon-search input {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 20px;
+  border: 2px solid #ffcc00;
+  margin-bottom: 20px;
+  width: 250px;
+  text-align: center;
+  outline: none;
+}
+
+.pokemon-search input:focus {
+  border-color: #ff8000;
+  box-shadow: 0 0 8px rgba(255, 128, 0, 0.6);
+}
+
+/* Estilo para a lista de Pokémons */
+.pokemon-list {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+/* Estilo para o card de Pokémon */
+.pokemon-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  text-align: center;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.pokemon-card:hover {
+  transform: scale(1.05);
+}
+
+/* Imagem do Pokémon */
+.pokemon-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+/* Ajustes para dispositivos menores */
+@media (max-width: 768px) {
+  .pokemon-card {
+    width: 180px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .pokemon-search input {
+    width: 220px;
+  }
+
+  .pokemon-search button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
