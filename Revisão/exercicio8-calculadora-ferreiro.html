@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculadora do Ferreiro</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+    </head>
+    <body>
+        <h1>A Calculadora do Ferreiro</h1>
+        <p>Insira dois números e selecione a operação desejada.</p>
+        <input type="number" id="numero1" placeholder="Primeiro número">
+        <input type="number" id="numero2" placeholder="Segundo número">
+        <br>
+        <button onclick="calcular('soma')">Somar</button>
+        <button onclick="calcular('subtracao')">Subtrair</button>
+        <button onclick="calcular('multiplicacao')">Multiplicar</button>
+        <button onclick="calcular('divisao')">Dividir</button>
+        <p id="resultado"></p>
+        <script>
+        function calcular(operacao) {
+            const num1 = parseFloat(document.getElementById('numero1').value);
+            const num2 = parseFloat(document.getElementById('numero2').value);
+            const resultado = document.getElementById('resultado');
+
+            if (isNaN(num1) || isNaN(num2)) {
+                resultado.textContent = 'Por favor, insira dois números válidos.';
+                return;
+            }
+
+            let res;
+            switch (operacao) {
+                case 'soma':
+                    res = num1 + num2;
+                    break;
+                case 'subtracao':
+                    res = num1 - num2;
+                    break;
+                case 'multiplicacao':
+                    res = num1 * num2;
+                    break;
+                case 'divisao':
+                    res = num2 !== 0 ? num1 / num2 : 'Erro: Divisão por zero!';
+                    break;
+            }
+            resultado.textContent = `Resultado: ${res}`;
+        }
+    </script>
+    </body>
+</html>

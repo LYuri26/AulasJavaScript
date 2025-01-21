@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>O Diário do Aventureiro</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        input, textarea, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .tarefa {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: left;
+        }
+    </style>
+    </head>
+    <body>
+        <h1>O Diário do Aventureiro</h1>
+        <p>Adicione tarefas ao diário do aventureiro!</p>
+        <input type="text" id="titulo" placeholder="Título da tarefa">
+        <textarea id="descricao" placeholder="Descrição da tarefa"></textarea>
+        <button onclick="adicionarTarefa()">Adicionar Tarefa</button>
+        <div id="tarefas"></div>
+        <script>
+        function adicionarTarefa() {
+            const titulo = document.getElementById('titulo').value;
+            const descricao = document.getElementById('descricao').value;
+
+            if (titulo.trim() === '' || descricao.trim() === '') {
+                alert('Por favor, preencha todos os campos!');
+                return;
+            }
+
+            const tarefaDiv = document.createElement('div');
+            tarefaDiv.className = 'tarefa';
+            tarefaDiv.innerHTML = `
+                <strong>${titulo}</strong>
+                <p>${descricao}</p>
+                <button onclick="this.parentElement.remove()">Excluir</button>
+            `;
+
+            document.getElementById('tarefas').appendChild(tarefaDiv);
+            document.getElementById('titulo').value = '';
+            document.getElementById('descricao').value = '';
+        }
+    </script>
+    </body>
+</html>

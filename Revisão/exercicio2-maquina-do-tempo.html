@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Máquina do Tempo</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #idade {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+    </head>
+    <body>
+        <h1>Máquina do Tempo do Doutor Temporal</h1>
+        <p>Digite seu ano de nascimento para saber sua idade!</p>
+        <input type="number" id="anoNascimento"
+            placeholder="Digite seu ano de nascimento">
+        <button onclick="calcularIdade()">Calcular Idade</button>
+        <p id="idade"></p>
+        <script>
+        function calcularIdade() {
+            const anoNascimento = parseInt(document.getElementById('anoNascimento').value);
+            const anoAtual = new Date().getFullYear();
+            const idade = anoAtual - anoNascimento;
+
+            const mensagem = document.getElementById('idade');
+            if (isNaN(anoNascimento) || anoNascimento > anoAtual || anoNascimento <= 1900) {
+                mensagem.textContent = 'Por favor, insira um ano de nascimento válido.';
+            } else {
+                mensagem.textContent = `Você tem ${idade} anos!`;
+            }
+        }
+    </script>
+    </body>
+</html>

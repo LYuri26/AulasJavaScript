@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Oráculo dos Números Pares</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+    </head>
+    <body>
+        <h1>Oráculo dos Números Pares</h1>
+        <p>Digite um número para saber se é par ou ímpar.</p>
+        <input type="number" id="numero" placeholder="Digite um número">
+        <button onclick="verificarPar()">Verificar</button>
+        <p id="resultado"></p>
+        <script>
+        function verificarPar() {
+            const numero = parseInt(document.getElementById('numero').value);
+            const resultado = document.getElementById('resultado');
+
+            if (isNaN(numero)) {
+                resultado.textContent = 'Por favor, insira um número válido.';
+            } else {
+                resultado.textContent = numero % 2 === 0 ? 'O número é par.' : 'O número é ímpar.';
+            }
+        }
+    </script>
+    </body>
+</html>

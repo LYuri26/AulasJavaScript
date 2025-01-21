@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Estilista do Reino Colorido</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .frase {
+            margin: 10px;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+    </style>
+    </head>
+    <body>
+        <h1>O Estilista do Reino Colorido</h1>
+        <p>Clique no botão para mudar o estilo das frases!</p>
+        <div id="frases">
+            <p class="frase">Frase 1: O céu é azul.</p>
+            <p class="frase">Frase 2: A grama é verde.</p>
+            <p class="frase">Frase 3: As flores são coloridas.</p>
+        </div>
+        <button onclick="alterarEstilo()">Alterar Estilo</button>
+        <script>
+        function alterarEstilo() {
+            const frases = document.querySelectorAll('.frase');
+            frases.forEach(frase => {
+                frase.style.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                frase.style.fontSize = Math.floor(Math.random() * (30 - 16 + 1) + 16) + 'px';
+            });
+        }
+    </script>
+    </body>
+</html>

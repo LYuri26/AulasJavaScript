@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Academia dos Heróis</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+    </head>
+    <body>
+        <h1>A Academia dos Heróis</h1>
+        <p>Cadastre novos heróis e veja a lista completa abaixo!</p>
+        <input type="text" id="nome" placeholder="Nome do herói">
+        <input type="number" id="idade" placeholder="Idade">
+        <input type="text" id="habilidade" placeholder="Habilidade especial">
+        <button onclick="cadastrarHeroi()">Cadastrar Herói</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Habilidade</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaHerois"></tbody>
+        </table>
+        <script>
+        function cadastrarHeroi() {
+            const nome = document.getElementById('nome').value;
+            const idade = document.getElementById('idade').value;
+            const habilidade = document.getElementById('habilidade').value;
+
+            if (!nome || !idade || !habilidade) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            const tabela = document.getElementById('tabelaHerois');
+            const linha = tabela.insertRow();
+            linha.insertCell(0).textContent = nome;
+            linha.insertCell(1).textContent = idade;
+            linha.insertCell(2).textContent = habilidade;
+
+            document.getElementById('nome').value = '';
+            document.getElementById('idade').value = '';
+            document.getElementById('habilidade').value = '';
+        }
+    </script>
+    </body>
+</html>

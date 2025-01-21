@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>O Mágico das Frases Secretas</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #fraseSecreta {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            visibility: hidden;
+        }
+    </style>
+    </head>
+    <body>
+        <h1>O Mágico das Frases Secretas</h1>
+        <p>Clique para revelar ou esconder a frase mágica do mago Frasílius!</p>
+        <button onclick="revelarFrase()">Revelar Frase</button>
+        <button onclick="esconderFrase()">Esconder Frase</button>
+        <p id="fraseSecreta">"A magia está dentro de você."</p>
+        <script>
+        function revelarFrase() {
+            document.getElementById('fraseSecreta').style.visibility = 'visible';
+        }
+        function esconderFrase() {
+            document.getElementById('fraseSecreta').style.visibility = 'hidden';
+        }
+    </script>
+    </body>
+</html>

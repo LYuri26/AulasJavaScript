@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>A Coletora de Estrelas</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+    </head>
+    <body>
+        <h1>A Coletora de Estrelas</h1>
+        <p>Adicione o número de estrelas coletadas e veja o total!</p>
+        <input type="number" id="estrelas" placeholder="Número de estrelas">
+        <button onclick="adicionarEstrelas()">Adicionar</button>
+        <p id="resultado">Total de estrelas: 0</p>
+        <script>
+        let totalEstrelas = 0;
+
+        function adicionarEstrelas() {
+            const estrelas = parseInt(document.getElementById('estrelas').value);
+            const resultado = document.getElementById('resultado');
+
+            if (isNaN(estrelas) || estrelas < 0) {
+                resultado.textContent = 'Por favor, insira um número válido de estrelas.';
+            } else {
+                totalEstrelas += estrelas;
+                resultado.textContent = `Total de estrelas: ${totalEstrelas}`;
+            }
+        }
+    </script>
+    </body>
+</html>

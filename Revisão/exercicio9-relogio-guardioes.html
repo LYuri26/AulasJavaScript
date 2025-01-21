@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Relógio dos Guardiões do Tempo</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #contador {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+    </head>
+    <body>
+        <h1>O Relógio dos Guardiões do Tempo</h1>
+        <p>Controle o contador mágico, mas lembre-se: ele não pode ultrapassar
+            10!</p>
+        <button onclick="alterarContador(1)">Incrementar</button>
+        <button onclick="alterarContador(-1)">Reduzir</button>
+        <p id="contador">0</p>
+        <script>
+        let contador = 0;
+
+        function alterarContador(valor) {
+            contador += valor;
+            if (contador > 10) contador = 10;
+            if (contador < 0) contador = 0;
+            document.getElementById('contador').textContent = contador;
+        }
+    </script>
+    </body>
+</html>
