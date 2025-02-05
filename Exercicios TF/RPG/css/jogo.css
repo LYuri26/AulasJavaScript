@@ -1,0 +1,50 @@
+/* Definindo a fonte padrão e a cor de fundo */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container geral para cada jogador */
+.player-container {
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin: 20px auto;
+  padding: 15px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #007bff;
+}
+
+/* Estilo para as informações dos personagens */
+.player-container div {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.player-container div strong {
+  font-weight: bold;
+  color: #555;
+}
+
+/* Estilo para os elementos de texto */
+span {
+  color: #444;
+  font-weight: normal;
+}
+
+/* Ajuste para tornar a página mais responsiva */
+@media (max-width: 600px) {
+  .player-container {
+    width: 95%;
+    padding: 10px;
+  }
+}

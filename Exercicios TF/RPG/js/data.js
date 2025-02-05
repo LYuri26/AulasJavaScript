@@ -21,11 +21,13 @@ function selectCharacter() {
   // Armazena o novo personagem selecionado pelo jogador atual
   if (currentPlayer === 1) {
     player1Character = character;
+    console.log("Jogador 1 escolheu:", player1Character);
     document.getElementById("player1Status").textContent =
       "Jogador 1: " + player1Character + " selecionado!";
     document.getElementById("continueButton").style.display = "block"; // Exibe o botão "Continuar"
   } else {
     player2Character = character;
+    console.log("Jogador 2 escolheu:", player2Character);
     document.getElementById("player2Status").textContent =
       "Jogador 2: " + player2Character + " selecionado!";
   }
@@ -123,9 +125,15 @@ function startGame() {
     return;
   }
 
-  // Salva os personagens no localStorage para manter os dados ao trocar de página
-  localStorage.setItem("player1Character", player1Character);
-  localStorage.setItem("player2Character", player2Character);
+  // Armazena os personagens e seus dados no localStorage para manter os dados ao trocar de página
+  const player1Data = characterData[player1Character];
+  const player2Data = characterData[player2Character];
+
+  console.log("Jogador 1 - Dados do Personagem:", player1Data);
+  console.log("Jogador 2 - Dados do Personagem:", player2Data);
+
+  localStorage.setItem("player1Character", JSON.stringify(player1Data));
+  localStorage.setItem("player2Character", JSON.stringify(player2Data));
 
   // Mensagem opcional antes de iniciar o jogo
   alert("Iniciando o jogo com " + player1Character + " e " + player2Character);

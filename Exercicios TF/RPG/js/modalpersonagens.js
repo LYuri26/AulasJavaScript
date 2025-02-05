@@ -2,6 +2,7 @@
 const characterData = {
   Guerreiro: {
     title: "Guerreiro", // Nome do personagem
+    name: "Vegeta",
     life: 30, // Vida do personagem
     damage: 3, // Dano causado pelo personagem
     armor: 5, // Armadura do personagem
@@ -14,6 +15,7 @@ const characterData = {
   },
   Ladino: {
     title: "Ladino",
+    name: "Mulher Gato",
     life: 25,
     damage: 2,
     armor: 2,
@@ -27,6 +29,7 @@ const characterData = {
   },
   Mago: {
     title: "Mago",
+    name: "Patolino",
     life: 20,
     damage: 4,
     armor: 1,
@@ -39,6 +42,7 @@ const characterData = {
   },
   Paladino: {
     title: "Paladino",
+    name: "Garen",
     life: 35,
     damage: 3,
     armor: 4,
@@ -51,6 +55,7 @@ const characterData = {
   },
   Barbaro: {
     title: "Bárbaro",
+    name: "Konan",
     life: 35,
     damage: 4,
     armor: 3,
@@ -64,6 +69,7 @@ const characterData = {
   },
   Arqueiro: {
     title: "Arqueiro",
+    name: "Legolas",
     life: 25,
     damage: 3,
     armor: 2,
@@ -76,6 +82,7 @@ const characterData = {
   },
   Monge: {
     title: "Monge",
+    name: "Liu Kang",
     life: 30,
     damage: 2,
     armor: 3,
@@ -88,6 +95,7 @@ const characterData = {
   },
   Cavaleiro: {
     title: "Cavaleiro",
+    name: "Seia",
     life: 35,
     damage: 3,
     armor: 5,
@@ -100,6 +108,7 @@ const characterData = {
   },
   Assassino: {
     title: "Assassino",
+    name: "Vetor",
     life: 25,
     damage: 4,
     armor: 2,
@@ -112,6 +121,7 @@ const characterData = {
   },
   Druida: {
     title: "Druida",
+    name: "Branca de Neve",
     life: 30,
     damage: 3,
     armor: 3,
@@ -124,6 +134,7 @@ const characterData = {
   },
   Gladiador: {
     title: "Gladiador",
+    name: "Maximus",
     life: 35,
     damage: 4,
     armor: 4,
@@ -136,6 +147,7 @@ const characterData = {
   },
   Cacador: {
     title: "Caçador",
+    name: "Hisoka",
     life: 25,
     damage: 3,
     armor: 3,
@@ -149,6 +161,7 @@ const characterData = {
   },
   Mercenario: {
     title: "Mercenário",
+    name: "Lady Deadpool",
     life: 30,
     damage: 3,
     armor: 4,
@@ -162,6 +175,7 @@ const characterData = {
   },
   Feiticeiro: {
     title: "Feiticeiro",
+    name: "Harry Potter",
     life: 20,
     damage: 4,
     armor: 1,
@@ -174,6 +188,7 @@ const characterData = {
   },
   Samurai: {
     title: "Samurai",
+    name: "Kenshin Himura",
     life: 30,
     damage: 4,
     armor: 4,
