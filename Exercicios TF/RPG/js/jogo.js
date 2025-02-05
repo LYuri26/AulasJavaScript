@@ -30,4 +30,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // Atualiza os dados dos jogadores
   updatePlayerInfo("player1", player1Character);
   updatePlayerInfo("player2", player2Character);
+
+  // Comparação de D20
+  const resultado = document.getElementById("resultadoDisputa");
+  if (player1D20 > player2D20) {
+    resultado.textContent = "Jogador 1 venceu a disputa!";
+  } else if (player2D20 > player1D20) {
+    resultado.textContent = "Jogador 2 venceu a disputa!";
+  } else {
+    resultado.textContent = "A disputa terminou em empate!";
+  }
 });
