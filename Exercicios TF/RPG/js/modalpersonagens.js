@@ -1,16 +1,16 @@
 // Dados dos personagens com base na tabela
 const characterData = {
   Guerreiro: {
-    title: "Guerreiro",
-    life: 30,
-    damage: 3,
-    armor: 5,
-    dodge: 2,
-    weight: 4,
-    stamina: 6,
-    skill: "Força Brutal: Rola um D8 extra no ataque.",
-    cost: "2 Stamina",
-    penalty: "-1 defesa no turno seguinte.",
+    title: "Guerreiro", // Nome do personagem
+    life: 30, // Vida do personagem
+    damage: 3, // Dano causado pelo personagem
+    armor: 5, // Armadura do personagem
+    dodge: 2, // Habilidade de esquiva do personagem
+    weight: 4, // Peso do personagem
+    stamina: 6, // Stamina (resistência) do personagem
+    skill: "Força Brutal: Rola um D8 extra no ataque.", // Habilidade especial do personagem
+    cost: "2 Stamina", // Custo para usar a habilidade
+    penalty: "-1 defesa no turno seguinte.", // Penalidade de usar a habilidade
   },
   Ladino: {
     title: "Ladino",
@@ -34,7 +34,7 @@ const characterData = {
     weight: 2,
     stamina: 9,
     skill: "Bola de Fogo: Pode rolar um D12 no ataque.",
-    cost: "3 Mana",
+    cost: "3 Mana", // O Mago usa Mana ao invés de Stamina
     penalty: "-1 esquiva no turno seguinte.",
   },
   Paladino: {
@@ -49,7 +49,7 @@ const characterData = {
     cost: "2 Stamina",
     penalty: "-2 no próximo ataque.",
   },
-  Bárbaro: {
+  Barbaro: {
     title: "Bárbaro",
     life: 35,
     damage: 4,
@@ -59,7 +59,7 @@ const characterData = {
     stamina: 6,
     skill:
       "Fúria: Quando a vida cair abaixo de 15, rola um D10 extra no ataque.",
-    cost: "3 Stamina",
+    cost: "6 Stamina",
     penalty: "Só pode ser usado uma vez por combate.",
   },
   Arqueiro: {
@@ -80,7 +80,7 @@ const characterData = {
     damage: 2,
     armor: 3,
     dodge: 5,
-    weight: 0,
+    weight: 0, // Peso do Monge é 0, o que pode indicar uma alta mobilidade
     stamina: 6,
     skill: "Reflexos Aguçados: Rola um D6 extra ao esquivar.",
     cost: "2 Stamina",
@@ -108,7 +108,7 @@ const characterData = {
     stamina: 6,
     skill: "Golpe Mortal: Se tirar 20 no D20 de ataque, rola um D12 extra.",
     cost: "3 Stamina",
-    penalty: "Custa 2 Stamina adicionais se falhar.",
+    penalty: "Custa 3 Stamina adicionais se falhar.",
   },
   Druida: {
     title: "Druida",
@@ -119,7 +119,7 @@ const characterData = {
     weight: 2,
     stamina: 9,
     skill: "Cura Natural: Rola um D8 e recupera vida.",
-    cost: "3 Mana",
+    cost: "3 Mana", // O Druida também usa Mana
     penalty: "Só pode ser usado 3 vezes por combate.",
   },
   Gladiador: {
@@ -134,7 +134,7 @@ const characterData = {
     cost: "2 Stamina",
     penalty: "Não pode usar outra habilidade no próximo turno.",
   },
-  Caçador: {
+  Cacador: {
     title: "Caçador",
     life: 25,
     damage: 3,
@@ -147,7 +147,7 @@ const characterData = {
     cost: "3 Stamina",
     penalty: "Só pode ser usado a cada 3 turnos.",
   },
-  Mercenário: {
+  Mercenario: {
     title: "Mercenário",
     life: 30,
     damage: 3,
@@ -169,7 +169,7 @@ const characterData = {
     weight: 2,
     stamina: 9,
     skill: "Explosão Arcana: Rola um D20 para ataque.",
-    cost: "3 Mana",
+    cost: "3 Mana", // Feiticeiro também utiliza Mana
     penalty: "Reduz 2 de vida ao usar.",
   },
   Samurai: {
@@ -189,42 +189,45 @@ const characterData = {
 
 // Função para abrir o modal e carregar os dados do personagem
 function openModal(character) {
-  // Verificar se o personagem existe
+  // Verificar se o personagem existe na lista de dados
   if (characterData[character]) {
-    // Atualiza as informações do modal
+    // Atualiza as informações do modal com os dados do personagem selecionado
     document.getElementById("characterTitle").textContent =
-      characterData[character].title;
+      characterData[character].title; // Nome do personagem
     document.getElementById("characterLife").textContent =
-      characterData[character].life;
+      characterData[character].life; // Vida do personagem
     document.getElementById("characterDamage").textContent =
-      characterData[character].damage;
+      characterData[character].damage; // Dano causado pelo personagem
     document.getElementById("characterArmor").textContent =
-      characterData[character].armor;
+      characterData[character].armor; // Armadura do personagem
     document.getElementById("characterDodge").textContent =
-      characterData[character].dodge;
+      characterData[character].dodge; // Habilidade de esquiva do personagem
     document.getElementById("characterWeight").textContent =
-      characterData[character].weight;
+      characterData[character].weight; // Peso do personagem
     document.getElementById("characterStamina").textContent =
-      characterData[character].stamina;
+      characterData[character].stamina; // Stamina do personagem
     document.getElementById("characterSkill").textContent =
-      characterData[character].skill;
+      characterData[character].skill; // Habilidade especial do personagem
     document.getElementById("characterCost").textContent =
-      characterData[character].cost;
+      characterData[character].cost; // Custo da habilidade especial
     document.getElementById("characterPenalty").textContent =
-      characterData[character].penalty;
+      characterData[character].penalty; // Penalidade por usar a habilidade
 
     // Exibe o modal utilizando o método show() do Bootstrap
     var modal = new bootstrap.Modal(document.getElementById("characterModal"));
     modal.show();
   } else {
+    // Se o personagem não existir, exibe um erro no console
     console.error("Personagem não encontrado: " + character);
   }
 }
 
 // Função para fechar o modal
 function closeModal() {
+  // Obtém a instância do modal do Bootstrap
   var modal = bootstrap.Modal.getInstance(
     document.getElementById("characterModal")
   );
+  // Fecha o modal
   modal.hide();
 }

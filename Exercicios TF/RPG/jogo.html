@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h2>Personagens Selecionados</h2>
+        <p id="player1Display">Carregando...</p>
+        <p id="player2Display">Carregando...</p>
+        <script>
+            // Recupera os personagens do localStorage
+const player1Character = localStorage.getItem("player1Character");
+const player2Character = localStorage.getItem("player2Character");
+
+if (player1Character && player2Character) {
+  document.getElementById("player1Display").textContent = "Jogador 1: " + player1Character;
+  document.getElementById("player2Display").textContent = "Jogador 2: " + player2Character;
+} else {
+  alert("Os personagens não foram selecionados corretamente! Retornando...");
+  window.location.href = "index.html"; // Volta para a seleção caso algo esteja errado
+}
+        </script>
+
+    </body>
+</html>
