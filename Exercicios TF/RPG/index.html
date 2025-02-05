@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Seleção de Personagem</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="./css/style.css" />
+    </head>
+
+    <body>
+        <div class="container text-center">
+            <h1 class="my-5">Escolha seu Personagem</h1>
+
+            <!-- Status dos jogadores -->
+            <div id="playerStatus">
+                <p id="player1Status">Jogador 1 Selecionando Personagem</p>
+                <p id="player2Status">Jogador 2 Aguardando...</p>
+            </div>
+
+            <!-- Botões de ação -->
+            <button
+                id="startGameButton"
+                class="btn btn-success mt-4"
+                onclick="startGame()"
+                style="display:none;">
+                Iniciar Jogo
+            </button>
+            <button
+                id="continueButton"
+                class="btn btn-warning mt-4"
+                onclick="continueGame()"
+                style="display:none;">
+                Continuar
+            </button>
+
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+                <!-- Cartões de Personagens -->
+                <!-- Guerreiro -->
+                <div class="col">
+                    <div class="card" id="GuerreiroCard">
+                        <img src="guerreiro.png" alt="Guerreiro"
+                            class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Guerreiro</h5>
+                            <p class="card-text">Força e resistência</p>
+                            <button id="GuerreiroBtn" class="btn btn-primary"
+                                onclick="openModal('Guerreiro')">Ver
+                                Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ladino -->
+                <div class="col">
+                    <div class="card" id="LadinoCard">
+                        <img src="ladino.png" alt="Ladino"
+                            class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Ladino</h5>
+                            <p class="card-text">Habilidade e agilidade</p>
+                            <button id="LadinoBtn" class="btn btn-primary"
+                                onclick="openModal('Ladino')">Ver
+                                Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mago -->
+                <div class="col">
+                    <div class="card" id="MagoCard">
+                        <img src="mago.png" alt="Mago"
+                            class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Mago</h5>
+                            <p class="card-text">Poder mágico</p>
+                            <button id="MagoBtn" class="btn btn-primary"
+                                onclick="openModal('Mago')">Ver
+                                Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paladino -->
+                <div class="col">
+                    <div class="card" id="PaladinoCard">
+                        <img src="paladino.png" alt="Paladino"
+                            class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Paladino</h5>
+                            <p class="card-text">Proteção divina</p>
+                            <button id="PaladinoBtn" class="btn btn-primary"
+                                onclick="openModal('Paladino')">Ver
+                                Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bárbaro -->
+                <div class="col">
+                    <div class="card" id="BarbaroCard">
+                        <img src="barbaro.png" alt="Bárbaro"
+                            class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Bárbaro</h5>
+                            <p class="card-text">Fúria e poder</p>
+                            <button id="BarbaroBtn" class="btn btn-primary"
+                                onclick="openModal('Barbaro')">Ver
+                                Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arqueiro -->
+                <div class="col">
+                    <div class="card" id="ArqueiroCard">
+                        <img src="arqueiro.png" alt="Arqueiro"
+                            class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Arqueiro</h5>
+                            <p class="card-text">Precisão e agilidade</p>
+                            <button id="ArqueiroBtn" class="btn btn-primary"
+                                onclick="openModal('Arqueiro')">Ver
+                                Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Monge -->
+                <div class="col">
+                    <div class="card" id="MongeCard">
+                        <img src="monge.png" alt="Monge"
+                            class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Monge</h5>
+                            <p class="card-text">Velocidade e destreza</p>
+                            <button id="MongeBtn" class="btn btn-primary"
+                                onclick="openModal('Monge')">Ver
+                                Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cavaleiro -->
+                <div class="col">
+                    <div class="card" id="CavaleiroCard">
+                        <img src="cavaleiro.png" alt="Cavaleiro"
+                            class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Cavaleiro</h5>
+                            <p class="card-text">Defesa e força</p>
+                            <button id="CavaleiroBtn" class="btn btn-primary"
+                                onclick="openModal('Cavaleiro')">Ver
+                                Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assassino -->
+                <div class="col">
+                    <div class="card" id="AssassinoCard">
+                        <img src="assassino.png" alt="Assassino"
+                            class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Assassino</h5>
+                            <p class="card-text">Silencioso e letal</p>
+                            <button id="AssassinoBtn" class="btn btn-primary"
+                                onclick="openModal('Assassino')">Ver
+                                Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Druida -->
+                <div class="col">
+                    <div class="card" id="DruidaCard">
+                        <img src="druida.png" alt="Druida"
+                            class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Druida</h5>
+                            <p class="card-text">Conexão com a natureza</p>
+                            <button id="DruidaBtn" class="btn btn-primary"
+                                onclick="openModal('Druida')">Ver
+                                Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gladiador -->
+                <div class="col">
+                    <div class="card" id="GladiadorCard">
+                        <img src="gladiador.png" alt="Gladiador"
+                            class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Gladiador</h5>
+                            <p class="card-text">Força bruta e resistência</p>
+                            <button id="GladiadorBtn" class="btn btn-primary"
+                                onclick="openModal('Gladiador')">Ver
+                                Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Caçador -->
+                <div class="col">
+                    <div class="card" id="CacadorCard">
+                        <img src="cacador.png" alt="Caçador"
+                            class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Caçador</h5>
+                            <p class="card-text">Precisão e armadilhas</p>
+                            <button id="CacadorBtn" class="btn btn-primary"
+                                onclick="openModal('Cacador')">Ver
+                                Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mercenário -->
+                <div class="col">
+                    <div class="card" id="MercenarioCard">
+                        <img src="mercenario.png" alt="Mercenário"
+                            class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Mercenário</h5>
+                            <p class="card-text">Combate e estratégias</p>
+                            <button id="MercenarioBtn" class="btn btn-primary"
+                                onclick="openModal('Mercenario')">Ver
+                                Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feiticeiro -->
+                <div class="col">
+                    <div class="card" id="FeiticeiroCard">
+                        <img src="feiticeiro.png" alt="Feiticeiro"
+                            class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Feiticeiro</h5>
+                            <p class="card-text">Magia pura</p>
+                            <button id="FeiticeiroBtn" class="btn btn-primary"
+                                onclick="openModal('Feiticeiro')">Ver
+                                Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Samurai -->
+                <div class="col">
+                    <div class="card" id="SamuraiCard">
+                        <img src="samurai.png" alt="Samurai"
+                            class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Samurai</h5>
+                            <p class="card-text">Honra e destreza</p>
+                            <button id="SamuraiBtn" class="btn btn-primary"
+                                onclick="openModal('Samurai')">Ver
+                                Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Detalhes do Personagem -->
+        <div id="characterModal" class="modal fade" tabindex="-1"
+            aria-labelledby="characterModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="characterTitle"
+                            class="modal-title">Personagem</h5>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"
+                            onclick="closeModal()"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Vida: <span id="characterLife"></span></p>
+                        <p>Dano: <span id="characterDamage"></span></p>
+                        <p>Armadura: <span id="characterArmor"></span></p>
+                        <p>Esquiva: <span id="characterDodge"></span></p>
+                        <p>Peso: <span id="characterWeight"></span></p>
+                        <p>Stamina: <span id="characterStamina"></span></p>
+                        <p>Habilidade: <span id="characterSkill"></span></p>
+                        <p>Custo: <span id="characterCost"></span></p>
+                        <p>Penalidade: <span id="characterPenalty"></span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary"
+                            onclick="selectCharacter()">Selecionar
+                            Personagem</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="./js/data.js"></script>
+        <script src="./js/modalpersonagens.js"></script>
+    </body>
+</html>
