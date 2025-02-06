@@ -1,10 +1,26 @@
 /* Definindo a fonte padrão e a cor de fundo */
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Arial", sans-serif;
   background-color: #f4f4f9;
   color: #333;
   margin: 0;
   padding: 0;
+}
+
+/* Container principal */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Título principal */
+h1 {
+  color: #007bff;
+  font-size: 28px;
+  margin-bottom: 30px;
 }
 
 /* Container geral para cada jogador */
@@ -12,16 +28,16 @@ body {
   background-color: #fff;
   border-radius: 8px;
   border: 1px solid #ccc;
-  margin: 20px auto;
+  margin: 20px 0;
   padding: 20px;
-  width: 90%;
-  max-width: 650px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
   text-align: center;
   color: #007bff;
+  font-size: 22px;
+  margin-bottom: 10px;
 }
 
 /* Estilo para as informações dos personagens */
@@ -51,6 +67,8 @@ button {
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
 }
 
 button:disabled {
@@ -62,7 +80,11 @@ button:hover:not(:disabled) {
   background-color: #0056b3;
 }
 
-/* Estilo para a seção de resultado do turno */
+/* Seção do turno e resultado */
+.turno-container {
+  margin-top: 20px;
+}
+
 #resultadoTurno,
 #resultadoDisputa {
   font-size: 18px;
@@ -71,6 +93,7 @@ button:hover:not(:disabled) {
   margin-top: 20px;
 }
 
+/* Estilo para o resultado do turno anterior */
 #resultadoTurnoAnterior {
   margin-top: 20px;
   padding: 15px;
@@ -98,7 +121,7 @@ button:hover:not(:disabled) {
   }
 
   h2 {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .player-container div {
@@ -106,21 +129,20 @@ button:hover:not(:disabled) {
   }
 
   button {
-    width: 100%;
     margin-top: 10px;
   }
 }
 
-/* Estilo para o contador de turno */
-#contadorTurno {
-  font-size: 20px;
-  text-align: center;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
 @media (max-width: 480px) {
+  h1 {
+    font-size: 24px;
+  }
+
   #contadorTurno {
     font-size: 18px;
+  }
+
+  button {
+    font-size: 14px;
   }
 }
