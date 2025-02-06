@@ -9,42 +9,70 @@ const guerreiro = {
   peso: 4,
   staminaMana: 6,
   dadoEspecial: "D8 extra no ataque", // Representa o dado extra que o Guerreiro usa no ataque
-  custo: 2, // Custo de Stamina
+  custoStamina: 2, // Corrigido para custoStamina
   penalidade: "-1 defesa no turno seguinte", // Penalidade após usar a habilidade
   ataqueEspecial: function () {
-    // Função para calcular o ataque especial
-    const dadoD8 = Math.floor(Math.random() * 8) + 1; // Dado D8
+    const dadoD8 = Math.floor(Math.random() * 8) + 1;
     const danoTotal = this.danoBase + dadoD8;
     console.log("Dano do ataque especial:", danoTotal);
-
-    // Decrementa a Stamina após o uso do ataque especial
-    this.staminaMana -= this.custo;
+    this.staminaMana -= this.custoStamina;
     console.log("Stamina restante:", this.staminaMana);
-
-    // Aplica a penalidade de defesa no turno seguinte
     this.aplicarPenalidade();
-
     return danoTotal;
   },
   aplicarPenalidade: function () {
-    // Aqui você pode implementar a lógica para aplicar a penalidade de -1 na defesa no próximo turno
     console.log(this.penalidade);
   },
   restaurarStamina: function () {
-    // Função para restaurar a Stamina (caso necessário no jogo)
-    this.staminaMana = 6; // Você pode ajustar esse valor conforme necessário
+    this.staminaMana = 6;
     console.log("Stamina restaurada para:", this.staminaMana);
+  },
+  mostrarJogador: function () {
+    const jogadorSelecionado =
+      localStorage.getItem("player1Character") === "Guerreiro"
+        ? "player1"
+        : localStorage.getItem("player2Character") === "Guerreiro"
+        ? "player2"
+        : null;
+
+    if (jogadorSelecionado) {
+      console.log(`O Guerreiro foi selecionado pelo ${jogadorSelecionado}`);
+      this.adicionarDadosNaTela(jogadorSelecionado);
+    } else {
+      console.log("Nenhum jogador selecionou o Guerreiro.");
+    }
+  },
+  adicionarDadosNaTela: function (playerId) {
+    const playerSection = document.getElementById(playerId);
+    if (!playerSection) {
+      console.error(`Elemento ${playerId} não encontrado.`);
+      return;
+    }
+
+    // Criar contêiner para os dados
+    const diceContainer = document.createElement("div");
+    diceContainer.id = `${playerId}-dados-container`;
+
+    // Criar botão para D6
+    const d6Button = document.createElement("button");
+    d6Button.textContent = "D6";
+    d6Button.id = `${playerId}-d6`;
+    d6Button.classList.add("dice-button");
+
+    // Criar botão para D8
+    const d8Button = document.createElement("button");
+    d8Button.textContent = "D8";
+    d8Button.id = `${playerId}-d8`;
+    d8Button.classList.add("dice-button");
+
+    // Adicionar botões ao contêiner
+    diceContainer.appendChild(d6Button);
+    diceContainer.appendChild(d8Button);
+
+    // Adicionar contêiner ao jogador correspondente
+    playerSection.appendChild(diceContainer);
   },
 };
 
-// Exemplo de como usar o Guerreiro no jogo
-console.log("Personagem:", guerreiro.classe);
-console.log("Vida:", guerreiro.vida);
-console.log("Armadura:", guerreiro.armadura);
-console.log("Esquiva:", guerreiro.esquiva);
-
-// Exemplo de uso do ataque especial do Guerreiro
-const dano = guerreiro.ataqueEspecial(); // Usando o ataque especial
-
-// Função de restaurar Stamina
-guerreiro.restaurarStamina(); // Restaurando Stamina após o uso do ataque especial
+// Chamar a função para exibir os dados apenas no jogador correto
+guerreiro.mostrarJogador();

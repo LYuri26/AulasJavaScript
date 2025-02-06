@@ -9,8 +9,8 @@ const ladino = {
   peso: 1,
   staminaMana: 6,
   dadoEspecial: "D10 extra no ataque (se não foi atacado)", // Representa o dado extra que o Ladino usa no ataque
-  custo: 3, // Custo de Stamina
-  maxUsos: 2, // Quantas vezes o Ladino pode usar a habilidade especial
+  custoStamina: 3, // Custo de Stamina
+  penalidade: 2, // Quantas vezes o Ladino pode usar a habilidade especial
   usosRestantes: 2, // Contador de usos restantes para a habilidade especial
   ataqueEspecial: function () {
     // Verifica se o Ladino ainda pode usar a habilidade especial
@@ -27,7 +27,7 @@ const ladino = {
       console.log("Dano do ataque especial:", danoTotal);
 
       // Decrementa a Stamina após o uso do ataque especial
-      this.staminaMana -= this.custo;
+      this.staminaMana -= this.custoStamina;
       console.log("Stamina restante:", this.staminaMana);
 
       // Decrementa os usos restantes da habilidade
@@ -58,18 +58,52 @@ const ladino = {
     );
   },
   foiAtacado: false, // Verifica se o Ladino foi atacado antes de usar a habilidade
+  mostrarJogador: function () {
+    const jogadorSelecionado =
+      localStorage.getItem("player1Character") === "Ladino"
+        ? "player1"
+        : localStorage.getItem("player2Character") === "Ladino"
+        ? "player2"
+        : null;
+
+    if (jogadorSelecionado) {
+      console.log(`O Ladino foi selecionado pelo ${jogadorSelecionado}`);
+      this.adicionarDadosNaTela(jogadorSelecionado);
+    } else {
+      console.log("Nenhum jogador selecionou o Ladino.");
+    }
+  },
+  adicionarDadosNaTela: function (playerId) {
+    const playerSection = document.getElementById(playerId);
+    if (!playerSection) {
+      console.error(`Elemento ${playerId} não encontrado.`);
+      return;
+    }
+
+    // Criar contêiner para os dados
+    const diceContainer = document.createElement("div");
+    diceContainer.id = `${playerId}-dados-container`;
+
+    // Criar botão para D6
+    const d6Button = document.createElement("button");
+    d6Button.textContent = "D6";
+    d6Button.id = `${playerId}-d6`;
+    d6Button.classList.add("dice-button");
+
+    // Criar botão para D10
+    const d10Button = document.createElement("button");
+    d10Button.textContent = "D10";
+    d10Button.id = `${playerId}-d10`;
+    d10Button.classList.add("dice-button");
+
+    // Adicionar botões ao contêiner
+    diceContainer.appendChild(d6Button);
+    diceContainer.appendChild(d10Button);
+
+    // Adicionar contêiner ao jogador correspondente
+    playerSection.appendChild(diceContainer);
+  },
 };
 
-// Exemplo de como usar o Ladino no jogo
-console.log("Personagem:", ladino.classe);
-console.log("Vida:", ladino.vida);
-console.log("Armadura:", ladino.armadura);
-
-// Exemplo de uso do ataque especial do Ladino
-const danoLadino = ladino.ataqueEspecial(); // Usando a habilidade especial
-
-// Função de restaurar Stamina
-ladino.restaurarStamina(); // Restaurando Stamina após o uso do ataque especial
-
-// Função de resetar o status de ataque especial
-ladino.resetarAtaqueEspecial(); // Resetando o status para permitir o uso da habilidade no próximo turno
+// Chamar a função para exibir os dados apenas no jogador correto
+ladino.mostrarJogador();

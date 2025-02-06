@@ -26,7 +26,8 @@ function selectCharacter() {
     loadCharacterScript(player1Character);
 
     // Salva o personagem de Jogador 1 no localStorage
-    localStorage.setItem("player1Character", JSON.stringify(player1Character));
+    localStorage.setItem("player1Character", player1Character);
+    localStorage.setItem("player1Name", "Jogador 1"); // Salva o nome do Jogador 1
   } else {
     player2Character = character;
     console.log("Jogador 2 escolheu:", player2Character);
@@ -35,7 +36,8 @@ function selectCharacter() {
     loadCharacterScript(player2Character);
 
     // Salva o personagem de Jogador 2 no localStorage
-    localStorage.setItem("player2Character", JSON.stringify(player2Character));
+    localStorage.setItem("player2Character", player2Character);
+    localStorage.setItem("player2Name", "Jogador 2"); // Salva o nome do Jogador 2
   }
 
   // Torna o card do personagem selecionado mais escuro e esconde o botão de seleção

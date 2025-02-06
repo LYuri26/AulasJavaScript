@@ -2,10 +2,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // Recupera os dados dos jogadores do localStorage
   let player1Character = localStorage.getItem("player1Character");
   let player2Character = localStorage.getItem("player2Character");
+  let player1Name = localStorage.getItem("player1Name");
+  let player2Name = localStorage.getItem("player2Name");
 
   // Verifica se os dados dos jogadores estão disponíveis
-  if (!player1Character || !player2Character) {
-    console.error("Erro: Personagens não encontrados no localStorage.");
+  if (!player1Character || !player2Character || !player1Name || !player2Name) {
+    console.error(
+      "Erro: Personagens ou nomes não encontrados no localStorage."
+    );
     alert("Os personagens não foram selecionados corretamente! Retornando...");
     window.location.href = "../index.html"; // Volta para a tela de seleção
     return;
@@ -17,7 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   console.log(
     "Jogadores carregados do localStorage:",
+    player1Name,
     player1Character,
+    player2Name,
     player2Character
   );
 
@@ -51,9 +57,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Atualiza as informações no HTML com o personagem carregado
       if (nomePersonagem === player1Character) {
-        updatePlayerInfo("player1", personagem);
+        updatePlayerInfo("player1", personagem, player1Name);
       } else if (nomePersonagem === player2Character) {
-        updatePlayerInfo("player2", personagem);
+        updatePlayerInfo("player2", personagem, player2Name);
       }
     };
     script.onerror = () => {
@@ -64,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Função para atualizar as informações do jogador no HTML
-  function updatePlayerInfo(playerId, character) {
+  function updatePlayerInfo(playerId, character, playerName) {
     if (!character) {
       console.error(`Erro: Características de ${playerId} não encontradas`);
       return;
@@ -76,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const elements = [
       {
         id: `${playerId}Character`,
-        value: `${character.classe} - ${character.nome}`,
+        value: `${playerName} - ${character.classe} - ${character.nome}`,
       },
       { id: `${playerId}Vida`, value: character.vida || "Desconhecido" },
       { id: `${playerId}Dano`, value: character.danoBase || "Desconhecido" },
@@ -96,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         id: `${playerId}Custo`,
-        value: character.custoStamina || "Desconhecido",
+        value: character.custoStamina || "Desconhecido", // Corrigido para custoStamina
       },
       {
         id: `${playerId}Penalidade`,

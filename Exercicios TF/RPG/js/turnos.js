@@ -31,17 +31,20 @@ function alternarTurno() {
 // Função para verificar quem venceu a disputa de dados
 function verificarVencedor() {
   if (dadosRolados.player1 !== 0 && dadosRolados.player2 !== 0) {
-    const venceu = dadosRolados.player1 > dadosRolados.player2;
-
-    // Modificado para não deixar o atacante vencer em caso de empate
+    // Verifica se os dados são iguais
     if (dadosRolados.player1 === dadosRolados.player2) {
       document.getElementById("mensagemBatalha").textContent =
         "Empate! Nenhum vencedor neste turno.";
-      trocarTurno();
-    } else if ((venceu && jogador1Atacante) || (!venceu && jogador2Atacante)) {
-      iniciarBatalha();
+      trocarTurno(); // Troca o turno em caso de empate
     } else {
-      trocarTurno();
+      const venceu = dadosRolados.player1 > dadosRolados.player2;
+
+      // Modificado para não deixar o atacante vencer em caso de empate
+      if ((venceu && jogador1Atacante) || (!venceu && jogador2Atacante)) {
+        iniciarBatalha();
+      } else {
+        trocarTurno();
+      }
     }
   }
 }
