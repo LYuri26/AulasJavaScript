@@ -1,3 +1,4 @@
+let jogadorAtivo = 1; // Definindo o jogador ativo inicialmente como Jogador 1
 let dadosRolados = { player1: 0, player2: 0 };
 
 function rolarDado(dado, jogador) {
@@ -42,6 +43,7 @@ function prepararRolagemD20() {
   document.getElementById("player1D20").textContent = "";
   document.getElementById("player2D20").textContent = "";
 
+  // Verifica o jogador ativo e habilita/desabilita os botões de rolagem
   if (jogadorAtivo === 1) {
     document.getElementById("player1D20Btn").disabled = false;
     document.getElementById("player2D20Btn").disabled = true;
@@ -59,6 +61,7 @@ function atualizarResultadoTurno() {
   resultadoTurno.textContent = `Jogador 1 rolou: ${dadosRolados.player1}, Jogador 2 rolou: ${dadosRolados.player2}`;
 }
 
+// Chama prepararRolagemD20 ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
   prepararRolagemD20();
 });

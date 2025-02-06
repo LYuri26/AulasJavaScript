@@ -1,8 +1,10 @@
 let atacante = null;
 let defensor = null;
+let jogoPausado = false; // Flag para pausar o jogo enquanto o jogador está atacando
+let avisoExibido = false; // Flag para garantir que o aviso seja mostrado apenas uma vez
 
 function iniciarBatalha() {
-  if (atacante) {
+  if (atacante && !jogoPausado) {
     console.log(`Iniciando batalha com o Jogador ${atacante.nome} ativo.`);
 
     // Exibe a mensagem no HTML
@@ -30,10 +32,31 @@ function iniciarBatalha() {
     document.getElementById(
       "mensagemBatalha"
     ).textContent += ` Dano total: ${danoTotal}. Vida restante de ${defensor.nome}: ${defensor.vida}`;
-  } else {
-    console.log(`Jogador ${jogadorAtivo} perdeu. Próximo turno.`);
-    trocarPapeis(); // Se o atacante perdeu, só troca o turno
+
+    // Pausa o jogo para impedir que outro jogador execute ações enquanto o atacante causa dano
+    jogoPausado = true;
+
+    // Exibe a mensagem de aviso uma única vez
+    if (!avisoExibido) {
+      avisoExibido = true;
+      setTimeout(() => {
+        alert(`${defensor.nome} perdeu. Próximo turno.`);
+      }, 1000); // Atraso para exibir a mensagem de aviso
+    }
+
+    // Chama a função para finalizar o turno
+    finalizarTurno();
   }
+}
+
+// Função para finalizar o turno após o atacante causar dano
+function finalizarTurno() {
+  // Despausa o jogo e alterna os turnos
+  setTimeout(() => {
+    jogoPausado = false; // Retorna ao estado normal
+    alternarTurno(); // Chama a função para alternar os turnos
+    avisoExibido = false; // Reseta a flag para o próximo turno
+  }, 1000); // Atraso de 1 segundo para simular a pausa
 }
 
 function usarDadoGuerreiro(guerreiro) {
@@ -50,11 +73,4 @@ function usarDadoLadino(ladino) {
   ladino.staminaMana -= ladino.custoStamina;
   console.log("Dano do Ladino:", danoTotal);
   return danoTotal;
-}
-
-function batalha(jogadorAtivo, callback) {
-  console.log(`Iniciando batalha do Jogador ${jogadorAtivo}`);
-  // Lógica da batalha, considerando as condições de vitória, habilidades, etc.
-  alternarTurno();
-  callback();
 }

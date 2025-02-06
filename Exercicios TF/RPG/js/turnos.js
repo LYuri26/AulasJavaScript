@@ -1,4 +1,3 @@
-let jogadorAtivo = 1;
 let jogador1Jogou = false;
 let jogador2Jogou = false;
 let turno = 1;
@@ -31,20 +30,23 @@ function alternarTurno() {
 // Função para verificar quem venceu a disputa de dados
 function verificarVencedor() {
   if (dadosRolados.player1 !== 0 && dadosRolados.player2 !== 0) {
-    // Verifica se os dados são iguais
-    if (dadosRolados.player1 === dadosRolados.player2) {
-      document.getElementById("mensagemBatalha").textContent =
-        "Empate! Nenhum vencedor neste turno.";
-      trocarTurno(); // Troca o turno em caso de empate
-    } else {
-      const venceu = dadosRolados.player1 > dadosRolados.player2;
+    // Verifica se o atacante tem um valor maior que o defensor
+    const venceu =
+      (jogador1Atacante && dadosRolados.player1 > dadosRolados.player2) ||
+      (jogador2Atacante && dadosRolados.player2 > dadosRolados.player1);
 
-      // Modificado para não deixar o atacante vencer em caso de empate
-      if ((venceu && jogador1Atacante) || (!venceu && jogador2Atacante)) {
-        iniciarBatalha();
-      } else {
-        trocarTurno();
-      }
+    if (venceu) {
+      // Se o atacante vencer
+      let atacanteNome = jogador1Atacante ? "Jogador 1" : "Jogador 2";
+      let defensorNome = jogador1Atacante ? "Jogador 2" : "Jogador 1";
+      console.log(`${atacanteNome} venceu o turno!`);
+      iniciarBatalha(); // Inicia a batalha com o vencedor
+    } else {
+      // Se o atacante perder
+      let atacanteNome = jogador1Atacante ? "Jogador 1" : "Jogador 2";
+      let defensorNome = jogador1Atacante ? "Jogador 2" : "Jogador 1";
+      console.log(`${atacanteNome} perdeu para o ${defensorNome}.`);
+      trocarTurno(); // Troca o turno em caso de derrota
     }
   }
 }
