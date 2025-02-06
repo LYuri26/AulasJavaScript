@@ -1,11 +1,9 @@
-// Variável para acompanhar o jogador atual (1 = Jogador 1, 2 = Jogador 2)
-let currentPlayer = 1;
-
-// Variáveis para armazenar os personagens selecionados pelos jogadores
+// Variáveis globais para armazenar os personagens selecionados pelos jogadores
 let player1Character = null;
 let player2Character = null;
+let currentPlayer = 1; // Declaração da variável currentPlayer
 
-// Função chamada quando um jogador seleciona um personagem
+// Função para selecionar o personagem
 function selectCharacter() {
   // Obtém o nome do personagem selecionado do modal
   const character = document.getElementById("characterTitle").textContent;
@@ -25,27 +23,23 @@ function selectCharacter() {
     document.getElementById("player1Status").textContent =
       "Jogador 1: " + player1Character + " selecionado!";
     document.getElementById("continueButton").style.display = "block"; // Exibe o botão "Continuar"
+    loadCharacterScript(player1Character);
+
+    // Salva o personagem de Jogador 1 no localStorage
+    localStorage.setItem("player1Character", JSON.stringify(player1Character));
   } else {
     player2Character = character;
     console.log("Jogador 2 escolheu:", player2Character);
     document.getElementById("player2Status").textContent =
       "Jogador 2: " + player2Character + " selecionado!";
+    loadCharacterScript(player2Character);
+
+    // Salva o personagem de Jogador 2 no localStorage
+    localStorage.setItem("player2Character", JSON.stringify(player2Character));
   }
 
   // Torna o card do personagem selecionado mais escuro e esconde o botão de seleção
-  const card = document.getElementById(character + "Card");
-  if (card) {
-    card.style.opacity = 0.5; // Reduz a opacidade do card para indicar que já foi escolhido
-  } else {
-    console.error("Card não encontrado para:", character);
-  }
-
-  const button = document.getElementById(character + "Btn");
-  if (button) {
-    button.style.display = "none"; // Oculta o botão de seleção do personagem já escolhido
-  } else {
-    console.error("Botão não encontrado para:", character);
-  }
+  updateCardSelection(character);
 
   // Exibe o botão "Iniciar Jogo" apenas quando ambos os jogadores tiverem escolhido um personagem
   if (player1Character !== null && player2Character !== null) {
@@ -59,7 +53,7 @@ function selectCharacter() {
   closeModal();
 }
 
-// Função para restaurar um personagem ao estado original (caso o jogador troque de escolha)
+// Função para restaurar um personagem ao estado original
 function resetCharacter(character) {
   const card = document.getElementById(character + "Card");
   if (card) {
@@ -70,6 +64,33 @@ function resetCharacter(character) {
   if (button) {
     button.style.display = "block"; // Reexibe o botão de seleção
   }
+}
+
+// Função para atualizar o card de seleção do personagem
+function updateCardSelection(character) {
+  const card = document.getElementById(character + "Card");
+  if (card) {
+    card.style.opacity = 0.5; // Reduz a opacidade do card para indicar que já foi escolhido
+  } else {
+    console.error("Card não encontrado para:", character);
+  }
+
+  const button = document.getElementById(character + "Btn");
+  if (button) {
+    button.style.display = "none"; // Oculta o botão de seleção do personagem já escolhido
+  } else {
+    console.error("Botão não encontrado para:", character);
+  }
+}
+
+// Função para carregar o arquivo JS do personagem correspondente
+function loadCharacterScript(character) {
+  // Converte o nome do personagem para minúsculas para garantir que o arquivo correto seja carregado
+  const script = document.createElement("script");
+  // Ajuste no caminho para corresponder ao local correto no servidor
+  script.src = `/js/personagens/${character.toLowerCase()}.js`; // Agora sempre em minúsculas
+  script.type = "module"; // Caso o arquivo seja um módulo ES6
+  document.head.appendChild(script); // Adiciona o script ao head do HTML
 }
 
 // Função para avançar para a seleção do segundo jogador
@@ -125,20 +146,14 @@ function startGame() {
     return;
   }
 
-  // Armazena os personagens e seus dados no localStorage para manter os dados ao trocar de página
-  const player1Data = characterData[player1Character];
-  const player2Data = characterData[player2Character];
-
-  console.log("Jogador 1 - Dados do Personagem:", player1Data);
-  console.log("Jogador 2 - Dados do Personagem:", player2Data);
-
-  localStorage.setItem("player1Character", JSON.stringify(player1Data));
-  localStorage.setItem("player2Character", JSON.stringify(player2Data));
+  // Carregar os arquivos JS dos personagens
+  loadCharacterScript(player1Character);
+  loadCharacterScript(player2Character);
 
   // Mensagem opcional antes de iniciar o jogo
   alert("Iniciando o jogo com " + player1Character + " e " + player2Character);
 
-  // Redireciona para jogo.html
+  // Redireciona para o jogo.html
   window.location.href = "../jogo.html";
 }
 
@@ -147,3 +162,7 @@ document.getElementById("player1Status").textContent =
   "Jogador 1 Selecionando Personagem";
 document.getElementById("player2Status").textContent =
   "Jogador 2 Aguardando...";
+
+// Mostrar o conteúdo armazenado no localStorage e no console
+console.log("Jogador 1 selecionou:", localStorage.getItem("player1Character"));
+console.log("Jogador 2 selecionou:", localStorage.getItem("player2Character"));

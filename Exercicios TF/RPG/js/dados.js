@@ -29,22 +29,6 @@ function rolarDado(playerId) {
   verificarEAlternarTurno();
 }
 
-// Função para rolar dados individuais e chamar a verificação de vencedor
-function rolarDadoIndividual(playerId, lados) {
-  const resultado = Math.floor(Math.random() * lados) + 1;
-  document.getElementById(`${playerId}D${lados}`).textContent = resultado;
-  dadosRolados[playerId] = resultado; // Armazenar o resultado
-
-  // Feedback de rolagem
-  console.log(
-    `Jogador ${
-      playerId === "player1" ? 1 : 2
-    } rolou o D${lados}! Resultado: ${resultado}`
-  );
-
-  verificarVencedor(); // Verificar vencedor sempre que um dado for rolado
-}
-
 function verificarVencedor() {
   const d20Player1 =
     parseInt(document.getElementById("player1D20").textContent) || 0;

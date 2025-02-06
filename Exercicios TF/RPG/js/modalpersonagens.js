@@ -1,17 +1,17 @@
 // Dados dos personagens com base na tabela
 const characterData = {
   Guerreiro: {
-    title: "Guerreiro", // Nome do personagem
+    title: "Guerreiro",
     name: "Vegeta",
-    life: 30, // Vida do personagem
-    damage: 3, // Dano causado pelo personagem
-    armor: 5, // Armadura do personagem
-    dodge: 2, // Habilidade de esquiva do personagem
-    weight: 4, // Peso do personagem
-    stamina: 6, // Stamina (resistência) do personagem
-    skill: "Força Brutal: Rola um D8 extra no ataque.", // Habilidade especial do personagem
-    cost: "2 Stamina", // Custo para usar a habilidade
-    penalty: "-1 defesa no turno seguinte.", // Penalidade de usar a habilidade
+    life: 30,
+    damage: 3,
+    armor: 5,
+    dodge: 2,
+    weight: 4,
+    stamina: 6,
+    specialDice: "D8 extra no ataque",
+    cost: "2 Stamina",
+    penalty: "-1 defesa no turno seguinte",
   },
   Ladino: {
     title: "Ladino",
@@ -22,10 +22,9 @@ const characterData = {
     dodge: 5,
     weight: 1,
     stamina: 6,
-    skill:
-      "Ataque Sorrateiro: Se não foi atacado no turno anterior, rola um D10 extra.",
+    specialDice: "D10 extra no ataque (se não foi atacado)",
     cost: "3 Stamina",
-    penalty: "Só pode ser usado a cada 2 turnos.",
+    penalty: "Só pode ser usado 2 vezes no jogo",
   },
   Mago: {
     title: "Mago",
@@ -36,9 +35,9 @@ const characterData = {
     dodge: 3,
     weight: 2,
     stamina: 9,
-    skill: "Bola de Fogo: Pode rolar um D12 no ataque.",
-    cost: "3 Mana", // O Mago usa Mana ao invés de Stamina
-    penalty: "-1 esquiva no turno seguinte.",
+    specialDice: "D12 extra no ataque",
+    cost: "3 Mana",
+    penalty: "-1 esquiva no turno seguinte",
   },
   Paladino: {
     title: "Paladino",
@@ -49,12 +48,12 @@ const characterData = {
     dodge: 3,
     weight: 3,
     stamina: 6,
-    skill: "Proteção Divina: Rola um D8 extra na defesa.",
+    specialDice: "D8 extra na defesa",
     cost: "2 Stamina",
-    penalty: "-2 no próximo ataque.",
+    penalty: "-2 no próximo ataque",
   },
   Barbaro: {
-    title: "Bárbaro",
+    title: "Barbaro",
     name: "Konan",
     life: 35,
     damage: 4,
@@ -62,10 +61,9 @@ const characterData = {
     dodge: 3,
     weight: 3,
     stamina: 6,
-    skill:
-      "Fúria: Quando a vida cair abaixo de 15, rola um D10 extra no ataque.",
+    specialDice: "D10 extra no ataque (se vida < 15)",
     cost: "6 Stamina",
-    penalty: "Só pode ser usado uma vez por combate.",
+    penalty: "Só pode ser usado uma vez por combate",
   },
   Arqueiro: {
     title: "Arqueiro",
@@ -76,9 +74,9 @@ const characterData = {
     dodge: 4,
     weight: 1,
     stamina: 6,
-    skill: "Tiro Preciso: Rola um D8 extra no ataque.",
+    specialDice: "D8 extra no ataque",
     cost: "2 Stamina",
-    penalty: "-1 esquiva no turno seguinte.",
+    penalty: "-1 esquiva no turno seguinte",
   },
   Monge: {
     title: "Monge",
@@ -87,24 +85,24 @@ const characterData = {
     damage: 2,
     armor: 3,
     dodge: 5,
-    weight: 0, // Peso do Monge é 0, o que pode indicar uma alta mobilidade
+    weight: 0,
     stamina: 6,
-    skill: "Reflexos Aguçados: Rola um D6 extra ao esquivar.",
+    specialDice: "D6 extra ao esquivar",
     cost: "2 Stamina",
-    penalty: "-1 dano no próximo ataque.",
+    penalty: "-1 dano no próximo ataque",
   },
   Cavaleiro: {
     title: "Cavaleiro",
-    name: "Seia",
+    name: "Seiya",
     life: 35,
     damage: 3,
     armor: 5,
     dodge: 2,
     weight: 4,
     stamina: 6,
-    skill: "Defesa Absoluta: Ignora um ataque fraco ou médio.",
+    specialDice: "Ignora um ataque fraco/médio",
     cost: "3 Stamina",
-    penalty: "Não pode atacar no turno seguinte.",
+    penalty: "Não pode atacar no turno seguinte",
   },
   Assassino: {
     title: "Assassino",
@@ -115,9 +113,9 @@ const characterData = {
     dodge: 4,
     weight: 1,
     stamina: 6,
-    skill: "Golpe Mortal: Se tirar 20 no D20 de ataque, rola um D12 extra.",
+    specialDice: "D12 extra no ataque (se D20 for 20)",
     cost: "3 Stamina",
-    penalty: "Custa 3 Stamina adicionais se falhar.",
+    penalty: "Custa 3 Stamina adicionais se falhar",
   },
   Druida: {
     title: "Druida",
@@ -128,9 +126,9 @@ const characterData = {
     dodge: 3,
     weight: 2,
     stamina: 9,
-    skill: "Cura Natural: Rola um D8 e recupera vida.",
-    cost: "3 Mana", // O Druida também usa Mana
-    penalty: "Só pode ser usado 3 vezes por combate.",
+    specialDice: "D8 extra para recuperar vida",
+    cost: "3 Mana",
+    penalty: "Só pode ser usado 3 vezes por combate",
   },
   Gladiador: {
     title: "Gladiador",
@@ -141,12 +139,12 @@ const characterData = {
     dodge: 2,
     weight: 3,
     stamina: 6,
-    skill: "Resistência Extrema: Rola um D6 extra para reduzir dano recebido.",
+    specialDice: "D6 extra para reduzir dano recebido",
     cost: "2 Stamina",
-    penalty: "Não pode usar outra habilidade no próximo turno.",
+    penalty: "Não pode usar outra habilidade no próximo turno",
   },
   Cacador: {
-    title: "Caçador",
+    title: "Cacador",
     name: "Hisoka",
     life: 25,
     damage: 3,
@@ -154,13 +152,12 @@ const characterData = {
     dodge: 4,
     weight: 2,
     stamina: 6,
-    skill:
-      "Armadilha Oculta: O inimigo rola um D12 em vez do D20 para esquiva.",
+    specialDice: "Oponente rola D12 em vez de D20 para esquiva",
     cost: "3 Stamina",
-    penalty: "Só pode ser usado a cada 3 turnos.",
+    penalty: "Só pode ser usado a cada 3 turnos",
   },
   Mercenario: {
-    title: "Mercenário",
+    title: "Mercenario",
     name: "Lady Deadpool",
     life: 30,
     damage: 3,
@@ -168,10 +165,9 @@ const characterData = {
     dodge: 3,
     weight: 3,
     stamina: 6,
-    skill:
-      "Golpe Oportunista: Se esquivar, pode contra-atacar com um D6 extra.",
+    specialDice: "D6 extra no contra-ataque (se esquivar)",
     cost: "2 Stamina",
-    penalty: "-1 esquiva no turno seguinte.",
+    penalty: "-1 esquiva no turno seguinte",
   },
   Feiticeiro: {
     title: "Feiticeiro",
@@ -182,9 +178,9 @@ const characterData = {
     dodge: 3,
     weight: 2,
     stamina: 9,
-    skill: "Explosão Arcana: Rola um D20 para ataque.",
-    cost: "3 Mana", // Feiticeiro também utiliza Mana
-    penalty: "Reduz 2 de vida ao usar.",
+    specialDice: "D20 extra no ataque",
+    cost: "3 Mana",
+    penalty: "Reduz 2 de vida ao usar",
   },
   Samurai: {
     title: "Samurai",
@@ -195,10 +191,10 @@ const characterData = {
     dodge: 3,
     weight: 3,
     stamina: 6,
-    skill:
-      "Foco Perfeito: Se não usou habilidade no turno anterior, rola um D10 extra.",
+    specialDice:
+      "D10 extra no ataque (se não usou habilidade no turno anterior)",
     cost: "3 Stamina",
-    penalty: "Só pode ser usado 2 vezes por combate.",
+    penalty: "Só pode ser usado 2 vezes por combate",
   },
 };
 
@@ -222,7 +218,7 @@ function openModal(character) {
     document.getElementById("characterStamina").textContent =
       characterData[character].stamina; // Stamina do personagem
     document.getElementById("characterSkill").textContent =
-      characterData[character].skill; // Habilidade especial do personagem
+      characterData[character].specialDice; // Habilidade especial do personagem (corrigido para specialDice)
     document.getElementById("characterCost").textContent =
       characterData[character].cost; // Custo da habilidade especial
     document.getElementById("characterPenalty").textContent =
@@ -245,4 +241,22 @@ function closeModal() {
   );
   // Fecha o modal
   modal.hide();
+
+  // Exemplo de como obter os personagens selecionados
+  const urlParams = new URLSearchParams(window.location.search);
+  const player1Character = urlParams.get("player1Character");
+  const player2Character = urlParams.get("player2Character");
+
+  // Carregar os arquivos JS dos personagens
+  if (player1Character) {
+    const script1 = document.createElement("script");
+    script1.src = `./js/${player1Character}.js`;
+    document.head.appendChild(script1);
+  }
+
+  if (player2Character) {
+    const script2 = document.createElement("script");
+    script2.src = `./js/${player2Character}.js`;
+    document.head.appendChild(script2);
+  }
 }
