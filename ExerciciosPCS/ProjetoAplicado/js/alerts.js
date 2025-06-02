@@ -1,1 +1,0 @@
-// Arquivo alerts.js criado
