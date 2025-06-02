@@ -1,0 +1,1 @@
+// Arquivo weather.js criado
