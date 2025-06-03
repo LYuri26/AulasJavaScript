@@ -1,198 +1,167 @@
-// =======================================
-// LogisTech - app.js
-// Controle do Painel
-// =======================================
+// ===============================
+// LogisTech - app.js (Corrigido + Melhorado)
+// ===============================
 
-// === CONSTANTES DO DOM ===
 const statusOperacional = document.getElementById("status-operacional");
 const mensagemOperacional = document.getElementById("mensagem-operacional");
-const body = document.body;
-
-const btnAtualizarClima = document.getElementById("atualizar-clima");
-const btnConsultar = document.getElementById("btn-consultar");
-const alertasContainer = document.getElementById("alertas");
-
-const inputCidadeConsulta = document.getElementById("cidade-input");
-
 const distanciaDisplay = document.getElementById("distancia");
+const btnConsultar = document.getElementById("btn-consultar");
+const btnAtualizarAlertas = document.getElementById("atualizar-alertas");
+const alertasContainer = document.getElementById("alertas");
+const nomeCidadeTitulo = document.getElementById("nome-cidade");
+const tituloDistancia = document.getElementById("titulo-distancia");
 
-// === CONSTANTES DE LOCALIZAÇÃO ===
 const origem = {
   nome: "Uberaba - MG",
   lat: -19.7483,
   lon: -47.9319,
 };
 
-// === FUNÇÕES AUXILIARES ===
+let ultimaCoordenadaCidade = null;
+let ultimoNomeCidade = "";
 
-// Atualiza o status operacional na interface
+// ===============================
+// Gerenciamento de Status
+// ===============================
 function atualizarStatusOperacional(nivel, mensagem) {
-  statusOperacional.classList.remove(
-    "status-verde",
-    "status-amarelo",
-    "status-vermelho"
-  );
-  body.classList.remove(
-    "operacao-normal",
-    "operacao-atencao",
-    "operacao-alerta"
-  );
+  statusOperacional.className = "badge";
+  mensagemOperacional.className = "alert mb-0";
 
   switch (nivel) {
     case "verde":
-      statusOperacional.classList.add("status-verde");
-      body.classList.add("operacao-normal");
+      statusOperacional.classList.add("bg-success");
       statusOperacional.textContent = "Status: Operação Normal";
-      mensagemOperacional.className = "alert alert-success";
+      mensagemOperacional.classList.add("alert-success");
       mensagemOperacional.textContent =
         mensagem || "Operação normal. Nenhum risco ambiental identificado.";
+      document.body.style.backgroundColor = "#f8f9fa";
       break;
     case "amarelo":
-      statusOperacional.classList.add("status-amarelo");
-      body.classList.add("operacao-atencao");
+      statusOperacional.classList.add("bg-warning", "text-dark");
       statusOperacional.textContent = "Status: Atenção";
-      mensagemOperacional.className = "alert alert-warning";
+      mensagemOperacional.classList.add("alert-warning");
       mensagemOperacional.textContent =
         mensagem || "Atenção: Condições ambientais exigem cuidado.";
+      document.body.style.backgroundColor = "#fff3cd";
       break;
     case "vermelho":
-      statusOperacional.classList.add("status-vermelho");
-      body.classList.add("operacao-alerta");
+      statusOperacional.classList.add("bg-danger");
       statusOperacional.textContent = "Status: Alerta Crítico";
-      mensagemOperacional.className = "alert alert-danger";
+      mensagemOperacional.classList.add("alert-danger");
       mensagemOperacional.textContent =
         mensagem ||
         "Alerta Crítico: Operação em risco devido a condições severas.";
+      document.body.style.backgroundColor = "#f8d7da";
       break;
-    default:
-      console.warn("Nível de alerta desconhecido:", nivel);
   }
 }
 
-// Obter coordenadas pela API Geocoding do OpenWeatherMap
-function obterCoordenadasPorCidade(cidade, callback) {
-  const urlGeo = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
-    cidade
-  )}&limit=1&appid=${API_KEY}`;
-
-  fetch(urlGeo)
-    .then((response) => {
-      if (!response.ok) throw new Error("Erro na consulta de geocodificação.");
-      return response.json();
-    })
-    .then((dados) => {
-      if (dados.length === 0) {
-        alert("Cidade não encontrada. Verifique a grafia.");
-        return;
-      }
-      const local = dados[0];
-      callback({
-        lat: local.lat,
-        lon: local.lon,
-        nome: local.name,
-        uf: local.state || "",
-      });
-    })
-    .catch((erro) => {
-      console.error("Erro ao obter coordenadas:", erro);
-      alert("Erro ao buscar localização da cidade.");
-    });
-}
-
-// Calcular distância entre dois pontos (Haversine)
+// ===============================
+// Calcular Distância (Haversine)
+// ===============================
 function calcularDistancia(lat1, lon1, lat2, lon2) {
-  const rad = (x) => (x * Math.PI) / 180;
-  const R = 6371; // km
-  const dLat = rad(lat2 - lat1);
-  const dLon = rad(lon2 - lon1);
+  const rad = Math.PI / 180;
+  const R = 6371;
+  const dLat = (lat2 - lat1) * rad;
+  const dLon = (lon2 - lon1) * rad;
   const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(rad(lat1)) *
-      Math.cos(rad(lat2)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1 * rad) * Math.cos(lat2 * rad) * Math.sin(dLon / 2) ** 2;
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c;
 }
 
-// Atualiza a interface do clima para Uberaba ou outra cidade
-function atualizarClimaInterface(cidade, dados) {
-  if (cidade === "uberaba") {
-    document.getElementById("temp-uberaba").textContent =
-      dados.temperatura.toFixed(1) + " °C";
-    document.getElementById("umidade-uberaba").textContent =
-      dados.umidade + " %";
-    document.getElementById("vento-uberaba").textContent =
-      dados.vento + " km/h";
-    document.getElementById("direcao-uberaba").textContent = dados.direcao;
-    document.getElementById("condicao-uberaba").textContent = dados.condicao;
-    document.getElementById("icone-uberaba").src = dados.icone;
-  } else if (cidade === "cidade") {
-    document.getElementById("temp-cidade").textContent =
-      dados.temperatura.toFixed(1) + " °C";
-    document.getElementById("umidade-cidade").textContent =
-      dados.umidade + " %";
-    document.getElementById("vento-cidade").textContent = dados.vento + " km/h";
-    document.getElementById("direcao-cidade").textContent = dados.direcao;
-    document.getElementById("condicao-cidade").textContent = dados.condicao;
-    document.getElementById("icone-cidade").src = dados.icone;
-  }
-}
-
-// Atualiza alertas simulados
-function atualizarAlertasCidade(lat, lon) {
-  alertasContainer.innerHTML = "";
-
-  // Simulação de alerta
-  const alertaExemplo = {
-    nivel: "amarelo",
-    mensagem:
-      "Possibilidade de chuva forte nas próximas horas. Fique atento às condições locais.",
-  };
-
-  const alertaEl = document.createElement("div");
-  alertaEl.classList.add("alert");
-  if (alertaExemplo.nivel === "verde") alertaEl.classList.add("alert-success");
-  else if (alertaExemplo.nivel === "amarelo")
-    alertaEl.classList.add("alert-warning");
-  else if (alertaExemplo.nivel === "vermelho")
-    alertaEl.classList.add("alert-danger");
-
-  alertaEl.textContent = alertaExemplo.mensagem;
-  alertasContainer.appendChild(alertaEl);
-
-  atualizarStatusOperacional(alertaExemplo.nivel, alertaExemplo.mensagem);
-}
-
-// === EVENTO DO BOTÃO CONSULTAR ===
+// ===============================
+// Consultar cidade digitada
+// ===============================
 btnConsultar.addEventListener("click", () => {
-  const cidadeDigitada = inputCidadeConsulta.value.trim();
+  const cidadeDigitada = document.getElementById("cidade-input").value.trim();
   if (!cidadeDigitada) {
-    alert("Por favor, informe uma cidade.");
+    alert("Por favor, insira uma cidade.");
     return;
   }
 
-  obterCoordenadasPorCidade(cidadeDigitada, ({ lat, lon, nome, uf }) => {
-    // Busca o clima de Uberaba
-    obterClimaPorCoordenadas(origem.lat, origem.lon, (dadosUberaba) => {
-      atualizarClimaInterface("uberaba", dadosUberaba);
+  btnConsultar.textContent = "🔄 Buscando...";
+  btnConsultar.disabled = true;
 
-      // Busca o clima da cidade digitada
-      obterClimaPorCoordenadas(lat, lon, (dadosCidade) => {
-        atualizarClimaInterface("cidade", dadosCidade);
+  // Coordenadas fixas de Uberaba
+  const origem = { lat: -19.7483, lon: -47.9319 };
 
-        // Calcula e mostra a distância
-        const dist = calcularDistancia(origem.lat, origem.lon, lat, lon);
-        distanciaDisplay.textContent = dist.toFixed(2) + " km";
+  obterCoordenadasPorCidade(
+    cidadeDigitada,
+    ({ lat, lon, nome }) => {
+      // Atualiza variáveis globais se necessário
+      ultimaCoordenadaCidade = { lat, lon };
+      ultimoNomeCidade = nome;
+      nomeCidadeTitulo.textContent = nome;
+      tituloDistancia.textContent = `Distância entre Uberaba e ${nome}:`;
 
-        // Atualiza alertas (simulado)
-        atualizarAlertasCidade(lat, lon);
-      });
-    });
-  });
+      // Obter clima de Uberaba primeiro
+      obterClimaPorCoordenadas(
+        origem.lat,
+        origem.lon,
+        (dadosUberaba) => {
+          atualizarClimaInterface("uberaba", dadosUberaba);
+
+          // Em seguida, obter clima da cidade digitada
+          obterClimaPorCoordenadas(
+            lat,
+            lon,
+            (dadosCidade) => {
+              atualizarClimaInterface("cidade", dadosCidade);
+
+              // Calcular e exibir distância
+              const distancia = calcularDistancia(
+                origem.lat,
+                origem.lon,
+                lat,
+                lon
+              );
+              distanciaDisplay.textContent = distancia.toFixed(2) + " km";
+
+              // Buscar alertas para a cidade digitada e distância calculada
+              buscarAlertas(lat, lon, distancia);
+
+              // Reabilitar botão e atualizar texto
+              btnConsultar.textContent = "Consultar Clima e Alertas";
+              btnConsultar.disabled = false;
+            },
+            btnConsultar
+          );
+        },
+        btnConsultar
+      );
+    },
+    btnConsultar
+  );
 });
 
-// === INICIALIZAÇÃO ===
+// ===============================
+// Atualizar alertas manualmente
+// ===============================
+btnAtualizarAlertas.addEventListener("click", () => {
+  if (!ultimaCoordenadaCidade) {
+    alert("Consulte uma cidade primeiro.");
+    return;
+  }
+
+  btnAtualizarAlertas.textContent = "🔄 Atualizando...";
+  btnAtualizarAlertas.disabled = true;
+
+  const { lat, lon } = ultimaCoordenadaCidade;
+  const distancia = calcularDistancia(origem.lat, origem.lon, lat, lon);
+
+  buscarAlertas(lat, lon, distancia);
+
+  setTimeout(() => {
+    btnAtualizarAlertas.textContent = "Atualizar Alertas";
+    btnAtualizarAlertas.disabled = false;
+  }, 1500); // Feedback de atualização de pelo menos 1.5 segundos
+});
+
+// ===============================
+// Inicialização
+// ===============================
 document.addEventListener("DOMContentLoaded", () => {
   atualizarStatusOperacional("verde");
   obterClimaPorCoordenadas(origem.lat, origem.lon, (dadosUberaba) => {
