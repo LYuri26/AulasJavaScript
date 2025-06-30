@@ -1,0 +1,59 @@
+/* Estilos personalizados */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.card {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  margin-bottom: 20px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+#main-content {
+  min-height: 70vh;
+}
+
+/* Ícones SVG embutidos */
+.icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+/* Estilos para a tabela de agendamentos */
+#tabela-agendamentos tr td:last-child {
+  white-space: nowrap;
+}
+
+/* Estilos para mensagens de validação */
+.invalid-feedback {
+  display: none;
+  color: #dc3545;
+}
+
+.is-invalid ~ .invalid-feedback {
+  display: block;
+}
+
+/* Estilos para logs */
+.log-error {
+  color: #dc3545;
+}
+
+.log-warning {
+  color: #fd7e14;
+}
+
+.log-success {
+  color: #198754;
+}
+
+.log-info {
+  color: #0dcaf0;
+}

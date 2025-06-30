@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras - Demonstração</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/styles/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mb-4">Carrinho de Compras</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Demonstração
+                    </div>
+                    <div class="card-body">
+                        <button id="calculateBtn" class="btn btn-primary">
+                            Calcular Total do Carrinho
+                        </button>
+                        <div class="result-box mt-3">
+                            <h5>Resultado:</h5>
+                            <div id="result"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        Testes Unitários
+                    </div>
+                    <div class="card-body">
+                        <p>Os testes unitários validam o funcionamento da lógica do carrinho.</p>
+                        <a href="tests/testRunner.html" class="btn btn-success">
+                            Executar Testes
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/shoppingCart.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+/* Estilos específicos para a página de testes */
+.test-card {
+  margin-bottom: 20px;
+  border-left: 4px solid #0d6efd;
+}
+
+.test-passed {
+  border-left-color: #198754;
+}
+
+.test-failed {
+  border-left-color: #dc3545;
+}
+
+.test-skipped {
+  border-left-color: #6c757d;
+}
+
+.test-header {
+  cursor: pointer;
+}
+
+.test-details {
+  display: none;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+}
+
+.log-entry {
+  font-family: monospace;
+  font-size: 0.9em;
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.log-error {
+  color: #dc3545;
+}
+
+.log-warning {
+  color: #fd7e14;
+}
+
+.log-success {
+  color: #198754;
+}
+
+.log-info {
+  color: #0dcaf0;
+}
+
+.progress {
+  height: 25px;
+}
+
+#summary-cards .card {
+  margin-bottom: 15px;
+}
+
+.incident-card {
+  border-left: 4px solid #dc3545;
+}
+
+#test-results {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+#incidents-container {
+  max-height: 300px;
+  overflow-y: auto;
+}
