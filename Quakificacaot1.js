@@ -1,12 +1,36 @@
-// Sistema de Cadastro de Vendas - Ultra Básico
+// ================================================
+// SISTEMA DE CADASTRO DE VENDAS - TEMPLATE INICIANTE
+// Usando vetores puros (cada vetor armazena apenas um tipo de dado)
+// ================================================
 
-// Arrays para armazenar os dados do sistema
-var clientes = []; // guarda os clientes cadastrados
-var produtos = []; // guarda os produtos cadastrados
-var vendas = []; // guarda as vendas registradas
+// =====================
+// 1. Vetores de dados
+// =====================
 
-// Função que exibe o menu principal e retorna a opção escolhida
+// Vetores para armazenar informações de clientes
+var nomesClientes = []; // Vetor que armazena os nomes dos clientes
+var cpfsClientes = []; // Vetor que armazena os CPFs dos clientes
+var telefonesClientes = []; // Vetor que armazena os telefones dos clientes
+
+// Vetores para armazenar informações de produtos
+var nomesProdutos = []; // Vetor que armazena os nomes dos produtos
+var codigosProdutos = []; // Vetor que armazena os códigos dos produtos
+var precosProdutos = []; // Vetor que armazena os preços unitários dos produtos
+var quantidadesProdutos = []; // Vetor que armazena as quantidades em estoque
+
+// Vetores para registrar vendas
+var clientesVendas = []; // Armazena o índice do cliente que realizou a compra
+var produtosVendas = []; // Armazena o índice do produto vendido
+var quantidadesVendas = []; // Armazena a quantidade vendida
+var valoresUnitariosVendas = []; // Armazena o valor unitário do produto na venda
+var valoresTotaisVendas = []; // Armazena o valor total da venda
+
+// =====================
+// 2. Menu principal
+// =====================
 function menuPrincipal() {
+  // Exibe o menu de opções para o usuário
+  // Retorna a opção escolhida como número inteiro
   return parseInt(
     prompt(
       "=== MENU ===\n" +
@@ -21,132 +45,173 @@ function menuPrincipal() {
   );
 }
 
-// Função para cadastrar clientes
+// =====================
+// 3. Cadastro de cliente
+// =====================
 function cadastrarCliente() {
-  var nome = prompt("Nome do cliente:"); // solicita o nome
-  var cpf = prompt("CPF do cliente:"); // solicita o CPF
-  var telefone = prompt("Telefone do cliente:"); // solicita o telefone
-  clientes.push({ nome: nome, cpf: cpf, telefone: telefone }); // adiciona ao array
-  alert("Cliente cadastrado: " + nome + " | " + cpf + " | " + telefone); // confirma cadastro
+  // Solicita ao usuário os dados do cliente
+  var nome = prompt("Digite o nome do cliente:"); // Nome do cliente
+  var cpf = prompt("Digite o CPF do cliente:"); // CPF do cliente
+  var telefone = prompt("Digite o telefone do cliente:"); // Telefone do cliente
+
+  // Adiciona os dados nos vetores correspondentes
+  nomesClientes.push(nome);
+  cpfsClientes.push(cpf);
+  telefonesClientes.push(telefone);
+
+  // Confirma cadastro
+  alert("Cliente cadastrado com sucesso!");
 }
 
-// Função para cadastrar produtos
+// =====================
+// 4. Cadastro de produto
+// =====================
 function cadastrarProduto() {
-  var nome = prompt("Nome do produto:"); // solicita o nome
-  var codigo = prompt("Código do produto:"); // solicita o código
-  var preco = parseFloat(prompt("Preço unitário:")); // solicita o preço
-  var quantidade = parseInt(prompt("Quantidade em estoque:")); // solicita a quantidade
-  produtos.push({
-    // adiciona ao array
-    nome: nome,
-    codigo: codigo,
-    preco: preco,
-    quantidade: quantidade,
-  });
-  alert(
-    "Produto cadastrado: " +
-      nome +
-      " | " +
-      codigo +
-      " | " +
-      preco +
-      " | " +
-      quantidade
-  ); // confirma cadastro
+  // Solicita ao usuário os dados do produto
+  var nome = prompt("Digite o nome do produto:");
+  var codigo = prompt("Digite o código do produto:");
+  var preco = parseFloat(prompt("Digite o preço unitário:")); // Converte para número decimal
+  var quantidade = parseInt(prompt("Digite a quantidade em estoque:")); // Converte para número inteiro
+
+  // Adiciona os dados nos vetores correspondentes
+  nomesProdutos.push(nome);
+  codigosProdutos.push(codigo);
+  precosProdutos.push(preco);
+  quantidadesProdutos.push(quantidade);
+
+  // Confirma cadastro
+  alert("Produto cadastrado com sucesso!");
 }
 
-// Função para registrar uma venda
+// =====================
+// 5. Registrar venda
+// =====================
 function registrarVenda() {
-  var cliente = prompt("Nome do cliente:"); // solicita o nome do cliente
-  var produto = prompt("Nome do produto:"); // solicita o nome do produto
-  var quantidade = parseInt(prompt("Quantidade vendida:")); // solicita a quantidade vendida
-  var valorUnitario = parseFloat(prompt("Valor unitário do produto:")); // solicita o preço unitário
-  var valorTotal = quantidade * valorUnitario; // calcula o valor total
+  // Solicita os índices do cliente e produto
+  // No caso de iniciantes, o índice é o número da posição no vetor
+  var indiceCliente = parseInt(prompt("Digite o índice do cliente:"));
+  var indiceProduto = parseInt(prompt("Digite o índice do produto:"));
+  var quantidadeVendida = parseInt(prompt("Digite a quantidade vendida:"));
 
-  vendas.push({
-    // adiciona a venda ao array
-    cliente: cliente,
-    produto: produto,
-    quantidade: quantidade,
-    valorUnitario: valorUnitario,
-    valorTotal: valorTotal,
-  });
-  alert(
-    "Venda registrada: " +
-      cliente +
-      " comprou " +
-      quantidade +
-      " de " +
-      produto +
-      " | Total: R$" +
-      valorTotal
-  ); // confirma registro da venda
+  // Recupera o valor unitário do produto usando o índice
+  var valorUnitario = precosProdutos[indiceProduto];
+  var valorTotal = quantidadeVendida * valorUnitario; // Calcula o valor total da venda
+
+  // Registra a venda nos vetores correspondentes
+  clientesVendas.push(indiceCliente);
+  produtosVendas.push(indiceProduto);
+  quantidadesVendas.push(quantidadeVendida);
+  valoresUnitariosVendas.push(valorUnitario);
+  valoresTotaisVendas.push(valorTotal);
+
+  // Confirma registro da venda
+  alert("Venda registrada com sucesso!");
 }
 
-// Função para consultar todas as vendas
+// =====================
+// 6. Consultar vendas
+// =====================
 function consultarVendas() {
-  var resultado = "=== VENDAS ===\n"; // cabeçalho do relatório
-  for (var i = 0; i < vendas.length; i++) {
-    // percorre todas as vendas
+  // Inicializa string para mostrar todas as vendas
+  var resultado = "=== VENDAS ===\n";
+
+  // Percorre todos os registros de vendas
+  for (var i = 0; i < clientesVendas.length; i++) {
     resultado +=
       "Cliente: " +
-      vendas[i].cliente +
+      nomesClientes[clientesVendas[i]] + // Nome do cliente
       " | Produto: " +
-      vendas[i].produto +
+      nomesProdutos[produtosVendas[i]] + // Nome do produto
       " | Quantidade: " +
-      vendas[i].quantidade +
+      quantidadesVendas[i] + // Quantidade vendida
       " | Valor Unitário: " +
-      vendas[i].valorUnitario +
+      valoresUnitariosVendas[i] + // Valor unitário
       " | Total: " +
-      vendas[i].valorTotal +
-      "\n"; // adiciona cada venda à string
+      valoresTotaisVendas[i] +
+      "\n"; // Valor total da venda
   }
-  alert(resultado); // exibe todas as vendas
+
+  // Exibe o relatório completo
+  alert(resultado);
 }
 
-// Função para atualizar dados de um cliente
+// =====================
+// 7. Atualizar cliente
+// =====================
 function atualizarCliente() {
-  var cpf = prompt("CPF do cliente para atualizar:"); // solicita CPF
-  for (var i = 0; i < clientes.length; i++) {
-    // percorre o array
-    if (clientes[i].cpf === cpf) {
-      // encontra o cliente pelo CPF
-      clientes[i].nome = prompt("Novo nome:"); // solicita novo nome
-      clientes[i].telefone = prompt("Novo telefone:"); // solicita novo telefone
-      alert(
-        "Cliente atualizado: " + clientes[i].nome + " | " + clientes[i].telefone
-      ); // confirma atualização
-      return; // encerra a função
+  // Solicita o CPF do cliente que deseja atualizar
+  var cpf = prompt("Digite o CPF do cliente para atualizar:");
+
+  // Procura o CPF no vetor
+  for (var i = 0; i < cpfsClientes.length; i++) {
+    if (cpfsClientes[i] === cpf) {
+      // Solicita novos dados do cliente
+      nomesClientes[i] = prompt("Digite o novo nome:");
+      telefonesClientes[i] = prompt("Digite o novo telefone:");
+      alert("Cliente atualizado com sucesso!");
+      return; // Encerra a função após atualizar
     }
   }
+
+  // Caso não encontre o CPF
+  alert("Cliente não encontrado.");
 }
 
-// Função para remover um cliente
+// =====================
+// 8. Remover cliente
+// =====================
 function removerCliente() {
-  var cpf = prompt("CPF do cliente para remover:"); // solicita CPF
-  for (var i = 0; i < clientes.length; i++) {
-    // percorre o array
-    if (clientes[i].cpf === cpf) {
-      // encontra o cliente
-      alert("Cliente removido: " + clientes[i].nome); // confirma remoção
-      clientes.splice(i, 1); // remove do array
-      return; // encerra função
+  // Solicita o CPF do cliente que deseja remover
+  var cpf = prompt("Digite o CPF do cliente para remover:");
+
+  // Procura o CPF no vetor
+  for (var i = 0; i < cpfsClientes.length; i++) {
+    if (cpfsClientes[i] === cpf) {
+      // Remove o cliente de todos os vetores usando splice
+      nomesClientes.splice(i, 1);
+      cpfsClientes.splice(i, 1);
+      telefonesClientes.splice(i, 1);
+      alert("Cliente removido com sucesso!");
+      return;
     }
   }
+
+  // Caso não encontre o CPF
+  alert("Cliente não encontrado.");
 }
 
-// Loop principal do sistema
+// =====================
+// 9. Loop principal (com SWITCH)
+// =====================
 var opcao = 0;
 while (opcao !== 7) {
-  // enquanto não escolher encerrar
-  opcao = menuPrincipal(); // exibe menu e lê opção
+  // Exibe o menu e captura a opção do usuário
+  opcao = menuPrincipal();
 
-  if (opcao === 1) cadastrarCliente(); // chama função de cadastro de cliente
-  else if (opcao === 2)
-    cadastrarProduto(); // chama função de cadastro de produto
-  else if (opcao === 3) registrarVenda(); // chama função de registrar venda
-  else if (opcao === 4) consultarVendas(); // chama função de consultar vendas
-  else if (opcao === 5) atualizarCliente(); // chama função de atualizar cliente
-  else if (opcao === 6) removerCliente(); // chama função de remover cliente
-  else if (opcao === 7) alert("Encerrando sistema..."); // encerra o sistema
+  // Executa a ação correspondente usando SWITCH
+  switch (opcao) {
+    case 1:
+      cadastrarCliente(); // Chama função de cadastro de cliente
+      break;
+    case 2:
+      cadastrarProduto(); // Chama função de cadastro de produto
+      break;
+    case 3:
+      registrarVenda(); // Chama função de registrar venda
+      break;
+    case 4:
+      consultarVendas(); // Chama função de consultar vendas
+      break;
+    case 5:
+      atualizarCliente(); // Chama função de atualizar cliente
+      break;
+    case 6:
+      removerCliente(); // Chama função de remover cliente
+      break;
+    case 7:
+      alert("Encerrando sistema..."); // Finaliza o sistema
+      break;
+    default:
+      alert("Opção inválida, tente novamente."); // Valida entrada
+  }
 }
