@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha os posts no topo */
+    height: 100vh;
+  }
+  
+  .posts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Centraliza o conteúdo dentro do contêiner */
+    max-width: 1000px; /* Limita a largura máxima para centralização */
+    margin: 0 auto; /* Centraliza horizontalmente o contêiner */
+  }
+  
+  .post {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .post img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #007bff;
+    font-size: 16px;
+    padding: 10px;
+  }
+  
+  .actions button img {
+    margin-right: 5px;
+    width: 24px;
+    height: 24px;
+    transition: filter 0.3s;
+  }
+  
+  .actions button img.liked {
+    filter: invert(21%) sepia(89%) saturate(7031%) hue-rotate(356deg)
+      brightness(102%) contrast(114%);
+  }
+  
+  .comments {
+    margin-top: 10px;
+  }
+  
+  .comments textarea {
+    width: 90%;
+    height: 50px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .comments ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .comments ul li {
+    background: #f8f8f8;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    word-wrap: break-word; /* Adicionado para permitir a quebra de linha */
+  }
+  

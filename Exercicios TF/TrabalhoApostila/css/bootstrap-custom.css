@@ -1,0 +1,46 @@
+/* Personalizações do Bootstrap */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+.card-header {
+  font-weight: 600;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Estilos para o turno */
+.badge-turno {
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 0.75em;
+}
+
+.badge-manha {
+  background-color: #ffe69c;
+  color: #664d03;
+}
+
+.badge-tarde {
+  background-color: #b6d4fe;
+  color: #084298;
+}
+
+.badge-noite {
+  background-color: #cfe2ff;
+  color: #052c65;
+}

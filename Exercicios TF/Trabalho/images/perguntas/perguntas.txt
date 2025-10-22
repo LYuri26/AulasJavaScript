@@ -1,0 +1,132 @@
+1. Qual cenário você gostaria de explorar em um sonho?
+
+(a) Um castelo antigo cheio de segredos e criaturas maravilhosas
+(b) Um lugar futurista onde as pessoas lutam por suas vidas
+(c) Uma cidade cheia de encontros inesperados e momentos especiais
+(d) Um pequeno bairro onde cada pessoa tem uma história tocante
+(e) Um lugar marcado por eventos importantes e histórias reais
+(f) Um planeta onde cada dia é uma nova descoberta
+(g) Um reino com batalhas épicas e tramas complexas
+2. Qual atividade você prefere fazer em um fim de semana perfeito?
+
+(a) Descobrir mistérios antigos e aprender coisas novas
+(b) Participar de desafios emocionantes e cheios de ação
+(c) Passar tempo com pessoas especiais e viver momentos inesquecíveis
+(d) Refletir sobre a vida e ajudar amigos em momentos difíceis
+(e) Explorar histórias e lugares que marcaram o passado
+(f) Meditar e encontrar lições profundas em pequenas coisas
+(g) Planejar estratégias e desvendar segredos antigos
+3. Qual personagem de filme/seriado você gostaria de ser por um dia?
+
+(a) Um jovem aprendendo a dominar poderes especiais
+(b) Um herói lutando contra um futuro incerto
+(c) Um adolescente descobrindo o amor verdadeiro
+(d) Alguém que enfrenta desafios reais com coragem
+(e) Uma pessoa que viveu eventos históricos marcantes
+(f) Um pequeno explorador descobrindo o universo
+(g) Um líder ou guerreiro em busca de justiça
+4. Se você pudesse escolher um mentor, quem ele seria?
+
+(a) Alguém que conhece segredos antigos e poderosos
+(b) Um líder revolucionário determinado
+(c) Uma pessoa que entende os mistérios do coração
+(d) Um amigo que te ajuda a superar obstáculos emocionais
+(e) Alguém que viveu momentos históricos e pode contar tudo sobre eles
+(f) Um sábio que ensina lições de vida profundas
+(g) Um estrategista brilhante com muitas histórias para contar
+5. Qual destes objetos você escolheria para levar sempre com você?
+
+(a) Um artefato mágico cheio de mistérios
+(b) Um símbolo de resistência e coragem
+(c) Uma carta especial cheia de sentimentos
+(d) Um diário repleto de memórias e histórias
+(e) Uma foto antiga com grande significado
+(f) Um livro com ensinamentos valiosos
+(g) Uma espada ou objeto de poder
+6. Qual desses lugares seria o seu refúgio perfeito?
+
+(a) Uma biblioteca cheia de livros mágicos e antigos
+(b) Um centro de treinamento cheio de desafios
+(c) Um parque tranquilo e romântico
+(d) Uma casa aconchegante onde você se sente seguro
+(e) Um museu cheio de histórias fascinantes
+(f) Um jardim onde você pode refletir sobre a vida
+(g) Uma fortaleza imponente e estratégica
+7. Qual dessas atividades te deixa mais animado?
+
+(a) Explorar lugares cheios de magia e encantamento
+(b) Enfrentar desafios que testam suas habilidades
+(c) Passar momentos especiais com alguém querido
+(d) Ajudar alguém a superar um problema
+(e) Descobrir histórias verdadeiras e inspiradoras
+(f) Ler e refletir sobre mensagens profundas
+(g) Planejar e liderar grandes empreitadas
+8. Qual desses animais de estimação você gostaria de ter?
+
+(a) Um animal exótico e misterioso
+(b) Um companheiro leal e corajoso
+(c) Um animalzinho carinhoso e amável
+(d) Um amigo peludo que sempre está ao seu lado
+(e) Um animal que tem uma história interessante
+(f) Um bichinho curioso e sábio
+(g) Um guardião forte e protetor
+
+
+Sistema de Pontuação:
+
+Para a Pergunta 1:
+
+    (a) 5 pontos para Fantasia
+    (b) 5 pontos para Ficção Científica / Distopia
+    (c) 5 pontos para Romance
+    (d) 5 pontos para Drama / Realismo
+    (e) 5 pontos para Outros (Biografia / Histórico)
+    (f) 5 pontos para Outros (Clássico)
+    (g) 5 pontos para Outros (Fantasia / Épico)
+
+Para as Perguntas 2 a 8:
+
+    (a) 2 pontos para Fantasia
+    (b) 2 pontos para Ficção Científica / Distopia
+    (c) 2 pontos para Romance
+    (d) 2 pontos para Drama / Realismo
+    (e) 2 pontos para Outros (Biografia / Histórico)
+    (f) 2 pontos para Outros (Clássico)
+    (g) 2 pontos para Outros (Fantasia / Épico)
+
+Resultados Ajustados
+
+Fantasia:
+
+    10-15 pontos: Harry Potter e a Pedra Filosofal
+    16-21 pontos: Percy Jackson e o Ladrão de Raios
+    22-27 pontos: O Senhor dos Anéis: A Sociedade do Anel
+    28-33 pontos: As Crônicas de Nárnia: O Leão, a Feiticeira e o Guarda-Roupa
+    34-39 pontos: O Hobbit
+
+Ficção Científica / Distopia:
+
+    10-15 pontos: Jogos Vorazes
+    16-21 pontos: Divergente
+    22-27 pontos: Maze Runner: Correr ou Morrer
+
+Romance:
+
+    10-15 pontos: A Culpa é das Estrelas
+    16-21 pontos: Eleanor & Park
+    22-27 pontos: A Seleção
+    28-33 pontos: Cidades de Papel
+
+Drama / Realismo:
+
+    10-15 pontos: Extraordinário
+    16-21 pontos: O Sol é Para Todos
+    22-27 pontos: Eu, Você e a Garota Que Vai Morrer
+    28-33 pontos: Os 13 Porquês
+    34-39 pontos: A Menina que Roubava Livros
+
+Outros:
+
+    10-19 pontos: O Diário de Anne Frank
+    20-29 pontos: O Pequeno Príncipe
+    30-39 pontos: A Guerra dos Tronos

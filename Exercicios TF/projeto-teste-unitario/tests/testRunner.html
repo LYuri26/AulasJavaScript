@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Runner - Carrinho de Compras</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/testRunner.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/jasmine.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mb-4">Testes Unitários - Carrinho de Compras</h1>
+
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                Princípios FIRST
+            </div>
+            <div class="card-body">
+                <ul class="first-principles">
+                    <li><strong>Fast</strong> (Rápidos): Executam em milissegundos</li>
+                    <li><strong>Independent</strong> (Independentes): Não dependem de estado externo</li>
+                    <li><strong>Repeatable</strong> (Reproduzíveis): Mesmo resultado em qualquer ambiente</li>
+                    <li><strong>Self-validating</strong> (Auto-validáveis): Resultado booleano</li>
+                    <li><strong>Timely</strong> (Oportunos): Escritos antes ou junto do código</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="jasmine-container"></div>
+    </div>
+
+    <!-- Bibliotecas de teste -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/jasmine.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/jasmine-html.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/boot.js"></script>
+
+    <!-- Sistema de módulos para testes -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+    <script src="/src/shoppingCart.js"></script>
+</body>
+
+</html>

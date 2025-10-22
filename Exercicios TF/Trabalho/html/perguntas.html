@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Questionário de Livros - Biblioteca Senai</title>
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="../css/perguntas.css">
+    </head>
+    <body>
+        <!-- Header Section -->
+        <header class="bg-primary text-white text-center py-3">
+            <h1>Biblioteca Virtual</h1>
+            <nav>
+                <a href="../index.html" class="btn btn-light mt-2">Voltar ao
+                    Menu Inicial</a>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <div class="container my-4">
+            <div id="questionarioContainer" class="card p-4">
+                <!-- Pergunta 1 -->
+                <div class="question" id="pergunta1">
+                    <p>1. Qual cenário você gostaria de explorar em um
+                        sonho?</p>
+                    <label><input type="radio" name="q1" value="A"> Um castelo
+                        antigo cheio de segredos e criaturas
+                        maravilhosas</label><br>
+                    <label><input type="radio" name="q1" value="B"> Um lugar
+                        futurista onde as pessoas lutam por suas
+                        vidas</label><br>
+                    <label><input type="radio" name="q1" value="C"> Uma cidade
+                        cheia de encontros inesperados e momentos
+                        especiais</label><br>
+                    <label><input type="radio" name="q1" value="D"> Um pequeno
+                        bairro onde cada pessoa tem uma história
+                        tocante</label><br>
+                    <label><input type="radio" name="q1" value="E"> Um lugar
+                        marcado por eventos importantes e histórias
+                        reais</label><br>
+                    <label><input type="radio" name="q1" value="F"> Um planeta
+                        onde cada dia é uma nova descoberta</label><br>
+                    <label><input type="radio" name="q1" value="G"> Um reino com
+                        batalhas épicas e tramas complexas</label>
+                </div>
+
+                <!-- Pergunta 2 -->
+                <div class="question d-none" id="pergunta2">
+                    <p>2. Qual atividade você prefere fazer em um fim de semana
+                        perfeito?</p>
+                    <label><input type="radio" name="q2" value="A"> Descobrir
+                        mistérios antigos e aprender coisas novas</label><br>
+                    <label><input type="radio" name="q2" value="B"> Participar
+                        de desafios emocionantes e cheios de ação</label><br>
+                    <label><input type="radio" name="q2" value="C"> Passar tempo
+                        com pessoas especiais e viver momentos
+                        inesquecíveis</label><br>
+                    <label><input type="radio" name="q2" value="D"> Refletir
+                        sobre a vida e ajudar amigos em momentos
+                        difíceis</label><br>
+                    <label><input type="radio" name="q2" value="E"> Explorar
+                        histórias e lugares que marcaram o passado</label><br>
+                    <label><input type="radio" name="q2" value="F"> Meditar e
+                        encontrar lições profundas em pequenas
+                        coisas</label><br>
+                    <label><input type="radio" name="q2" value="G"> Planejar
+                        estratégias e desvendar segredos antigos</label>
+                </div>
+
+                <!-- Navegação do Questionário -->
+                <div class="d-flex justify-content-between mt-3">
+                    <button id="botaoAnterior" class="btn btn-secondary"
+                        onclick="perguntaAnterior()">Anterior</button>
+                    <button id="botaoProximo" class="btn btn-primary"
+                        onclick="proximaPergunta()">Próximo</button>
+                    <!-- Botão Finalizar -->
+                    <button id="botaoFinalizar" 
+                        onclick="processarQuestionario()">Finalizar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <footer class="bg-dark text-white text-center py-3">
+            <p>Aplicação web desenvolvida pela turma de Informática para
+                Internet 2024 Trilhas de Futuro 4 SENAI-MG Uberaba</p>
+            <p>Instrutor: Lenon Yuri</p>
+        </footer>
+
+        <!-- JavaScript -->
+        <script src="../js/calculoPontuacao.js" defer></script>
+        <script src="../js/recomendacaoLivros.js" defer></script>
+        <script src="../js/navegacaoPerguntas.js" defer></script>
+    </body>
+</html>
