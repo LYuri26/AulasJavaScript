@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu interativo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin-top: 50px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .menu-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 10px;
+        }
+
+        .menu-button:hover {
+            background-color: #45a049;
+        }
+
+        .output {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Menu Interativo</h1>
+    <button class="menu-button" onclick="exibirAcao(1)">Opção 1</button>
+    <button class="menu-button" onclick="exibirAcao(2)">Opção 2</button>
+    <button class="menu-button" onclick="exibirAcao(3)">Opção 3</button>
+    <div class="output" id="output"></div>
+
+    <script>
+        function exibirAcao(opcao) {
+            let mensagem = "";
+            switch (opcao) {
+                case 1: mensagem = "Você selecionou a Opção 1:Exibir relatório!"; break;
+                case 2: mensagem = "Você selecionou a Opção 2: Adicionar novo usuário!"; break;
+                case 3: mensagem = "Você selecionou a Opção 3:Excluir usuário!"; break;
+                default: mensagem = "Opção inválida!"; break;
+            }
+            document.getElementById("output").innerText = mensagem;
+        }
+    </script>
+</body>
+
+</html>
