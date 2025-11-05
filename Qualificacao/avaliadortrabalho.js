@@ -1,7 +1,7 @@
 // ==================================================
-// avaliadorVendasOficial_v4.js — Avaliador Técnico de Lógica Estruturada
+// avaliadorVendasOficial_v5.js — Avaliador Técnico de Lógica Estruturada
 // Node.js v18+
-// Uso: node avaliadorVendasOficial_v4.js <arquivo_aluno.js>
+// Uso: node avaliadorVendasOficial_v5.js <arquivo_aluno.js>
 // ==================================================
 
 const fs = require("fs");
@@ -11,7 +11,7 @@ const path = require("path");
 // Validação CLI
 // ==============================
 if (process.argv.length < 3) {
-  console.log("Uso: node avaliadorVendasOficial_v4.js <arquivo_aluno.js>");
+  console.log("Uso: node avaliadorVendasOficial_v5.js <arquivo_aluno.js>");
   process.exit(1);
 }
 
@@ -41,6 +41,7 @@ const criterios = [
 function avaliarCodigo(codigo) {
   let pontos = {};
   let feedback = [];
+  let observacoes = [];
   criterios.forEach((c) => (pontos[c.nome] = 0));
 
   // --- 1. Variáveis ---
@@ -69,24 +70,26 @@ function avaliarCodigo(codigo) {
     (codigo.match(/\/\*[\s\S]*?\*\//g) || []).length;
   if (comentarios === 0) {
     pontos["Comentário da atividade"] = 0;
-    feedback.push("✖ Nenhum comentário encontrado (0 pts)");
+    observacoes.push("Ausência total de comentários explicativos.");
   } else if (comentarios > 40) {
-    pontos["Comentário da atividade"] = 5; // Excesso suspeito (IA)
-    feedback.push(
-      `⚠ Comentários excessivos (${comentarios}) — padrão IA suspeito (5 pts)`
+    pontos["Comentário da atividade"] = 5; // Excesso suspeito
+    observacoes.push(
+      "Número excessivo de comentários — padrão automatizado detectado."
     );
   } else {
     pontos["Comentário da atividade"] =
       comentarios >= 8 ? 10 : (comentarios / 8) * 10;
-    feedback.push(
-      `✔ Comentários encontrados: ${comentarios} (${pontos[
-        "Comentário da atividade"
-      ].toFixed(1)} pts)`
-    );
   }
+  feedback.push(
+    `✔ Comentários encontrados: ${comentarios} (${pontos[
+      "Comentário da atividade"
+    ].toFixed(1)} pts)`
+  );
 
   // --- 4. Switch ---
   pontos["Uso de switch"] = /\bswitch\s*\(.*\)/.test(codigo) ? 10 : 0;
+  if (pontos["Uso de switch"] === 0)
+    observacoes.push("Ausência de estrutura switch.");
   feedback.push(
     pontos["Uso de switch"]
       ? "✔ Estrutura switch detectada"
@@ -97,16 +100,19 @@ function avaliarCodigo(codigo) {
   const arrays = codigo.match(/\[\s*\]/g) || [];
   pontos["Uso de vetores (arrays)"] =
     arrays.length >= 4 ? 10 : (arrays.length / 4) * 10;
+  if (arrays.length === 0) observacoes.push("Nenhum vetor identificado.");
   feedback.push(
     `✔ Vetores detectados: ${arrays.length} (${pontos[
       "Uso de vetores (arrays)"
     ].toFixed(1)} pts)`
   );
 
-  // --- 6. If/Else (independentes) ---
+  // --- 6. If/Else ---
   const ifs = (codigo.match(/\bif\s*\(/g) || []).length;
   const elses = (codigo.match(/\belse\b/g) || []).length;
   pontos["Uso de if/else"] = Math.min((ifs + elses) * 5, 10);
+  if (ifs === 0 && elses === 0)
+    observacoes.push("Nenhuma estrutura condicional (if/else) identificada.");
   feedback.push(
     `✔ Estruturas condicionais detectadas: if(${ifs}) else(${elses}) → ${pontos[
       "Uso de if/else"
@@ -116,6 +122,7 @@ function avaliarCodigo(codigo) {
   // --- 7. For ---
   const fors = (codigo.match(/\bfor\s*\(/g) || []).length;
   pontos["Uso de for"] = fors > 0 ? 10 : 0;
+  if (fors === 0) observacoes.push("Laço for ausente.");
   feedback.push(
     fors > 0 ? "✔ Estrutura for detectada" : "✖ Nenhum for encontrado (0 pts)"
   );
@@ -123,6 +130,7 @@ function avaliarCodigo(codigo) {
   // --- 8. While ---
   const whiles = (codigo.match(/\bwhile\s*\(/g) || []).length;
   pontos["Uso de while"] = whiles > 0 ? 10 : 0;
+  if (whiles === 0) observacoes.push("Laço while ausente.");
   feedback.push(
     whiles > 0
       ? "✔ Estrutura while detectada"
@@ -130,7 +138,7 @@ function avaliarCodigo(codigo) {
   );
 
   // ==================================================
-  // TESTES DE EXECUÇÃO (inserção/recuperação de dados)
+  // TESTES DE INSERÇÃO E SAÍDA DE DADOS
   // ==================================================
   const entrada = /(prompt\s*\(|push\s*\(|parseInt\s*\(|parseFloat\s*\()/g;
   const saida = /(alert\s*\(|splice\s*\(|console\.log\s*\()/g;
@@ -138,16 +146,20 @@ function avaliarCodigo(codigo) {
   const saidas = (codigo.match(saida) || []).length;
 
   if (entradas > 0 && saidas > 0) {
-    feedback.push("✔ Teste simulado: inserção e exibição de dados detectadas");
+    feedback.push(
+      "✔ Teste prático simulado: inserção e exibição de dados detectadas."
+    );
   } else if (entradas > 0 || saidas > 0) {
     feedback.push(
-      "⚠ Teste parcial: detectado apenas inserção ou exibição de dados"
+      "⚠ Teste parcial: apenas inserção ou exibição identificadas → penalização -10%"
     );
+    observacoes.push("Execução prática incompleta (falta entrada ou saída).");
     for (let k in pontos) pontos[k] *= 0.9;
   } else {
     feedback.push(
       "✖ Nenhuma simulação de entrada/saída detectada → penalização -15%"
     );
+    observacoes.push("Código sem testes práticos de funcionamento.");
     for (let k in pontos) pontos[k] *= 0.85;
   }
 
@@ -183,17 +195,23 @@ function avaliarCodigo(codigo) {
       "\n⚠ SUSPEITA DE USO DE IA OU CÓDIGO ACIMA DO NÍVEL ENSINADO:"
     );
     violacoes.forEach((v) => feedback.push(`   - ${v.desc}`));
-    if (formatoIA) feedback.push("   - Código muito compacto (padrão IA)");
+    if (formatoIA)
+      feedback.push(
+        "   - Código muito compacto e denso (característica de IA)."
+      );
     if (comentarios > 40)
-      feedback.push("   - Excesso de comentários automáticos");
+      feedback.push("   - Excesso de comentários automatizados detectado.");
     penalIA = violacoes.length >= 3 ? 0.5 : 0.7;
+    observacoes.push(
+      "Padrões avançados ou automatizados encontrados. Redução aplicada por possível uso de IA."
+    );
     feedback.push(
       `   → Penalização aplicada: -${Math.round((1 - penalIA) * 100)}%`
     );
     for (let k in pontos) pontos[k] *= penalIA;
   } else {
     feedback.push(
-      "\n✔ Nenhum indício de IA detectado. Código autêntico e compatível com o conteúdo."
+      "\n✔ Nenhum indício de IA detectado. Código autêntico e compatível com o nível técnico exigido."
     );
   }
 
@@ -202,6 +220,7 @@ function avaliarCodigo(codigo) {
   // ==================================================
   const faltantes = Object.values(pontos).filter((p) => p === 0).length;
   if (faltantes >= 3) {
+    observacoes.push("Trabalho incompleto com ausência de partes essenciais.");
     feedback.push(
       `⚠ Trabalho incompleto (${faltantes} critérios zerados) → penalização adicional de 15%.`
     );
@@ -229,19 +248,43 @@ function avaliarCodigo(codigo) {
   );
 
   // ==================================================
-  // RELATÓRIO FINAL EXPLICATIVO
+  // RELATÓRIO FINAL PROFISSIONAL E EXPLICATIVO
   // ==================================================
-  feedback.push("\n📋 RELATÓRIO TÉCNICO:");
-  if (penalIA < 1)
+  feedback.push("\n=====================================================");
+  feedback.push("📊 RELATÓRIO TÉCNICO DETALHADO");
+  feedback.push("=====================================================");
+  feedback.push(`📄 Arquivo avaliado: ${arquivoAluno}`);
+  feedback.push(`🧮 Pontuação total obtida: ${total.toFixed(1)} / 80`);
+  feedback.push(`🏷️ Conceito final: ${conceito}`);
+  feedback.push("\n🔍 Análise conclusiva:");
+  if (total >= 70)
     feedback.push(
-      " - Redução aplicada por possível uso de IA ou código acima do nível do curso."
+      "✔ Código bem estruturado, funcional e compatível com o conteúdo ensinado. Demonstra domínio lógico."
     );
-  if (faltantes >= 3)
-    feedback.push(" - Trabalho incompleto: estruturas obrigatórias ausentes.");
-  if (entradas === 0 && saidas === 0)
-    feedback.push(" - Nenhum teste prático de entrada/saída detectado.");
+  else if (total >= 55)
+    feedback.push(
+      "⚠ Código apresenta pequenas falhas de estrutura, mas mantém lógica funcional e coerente."
+    );
+  else if (total >= 40)
+    feedback.push(
+      "⚠ Código incompleto, com deficiências conceituais e estrutura fraca."
+    );
+  else
+    feedback.push(
+      "❌ Código insuficiente ou possivelmente automatizado, sem demonstrar aprendizado real."
+    );
+
+  if (observacoes.length > 0) {
+    feedback.push("\n🛠️ Pontos que afetaram a nota:");
+    observacoes.forEach((o) => feedback.push(` - ${o}`));
+  }
+
+  feedback.push("\n💡 Observação geral:");
   feedback.push(
-    " - Avaliação considera clareza, estrutura, autenticidade e completude lógica."
+    "A nota reflete não apenas a presença de estruturas, mas a coerência e autenticidade da lógica apresentada."
+  );
+  feedback.push(
+    "O avaliador considera clareza, originalidade, uso adequado de sintaxe e compatibilidade com o conteúdo do curso."
   );
 
   return { feedback: feedback.join("\n"), total: total.toFixed(1), conceito };
@@ -256,8 +299,8 @@ const resultado = avaliarCodigo(codigo);
 const nomeFeedback = path.basename(arquivoAluno, ".js") + "_feedback.txt";
 fs.writeFileSync(
   nomeFeedback,
-  `=== FEEDBACK DETALHADO: ${arquivoAluno} ===\n\n${resultado.feedback}\n`,
+  `=== RELATÓRIO DE AVALIAÇÃO TÉCNICA ===\n\n${resultado.feedback}\n`,
   "utf-8"
 );
 
-console.log(`✅ Avaliação concluída! Feedback salvo em: ${nomeFeedback}`);
+console.log(`✅ Avaliação concluída! Relatório salvo em: ${nomeFeedback}`);
