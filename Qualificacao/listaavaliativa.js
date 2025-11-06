@@ -8,7 +8,7 @@ function cadastrarInscrito() {
   nomesInscritos.push(nome);
   idsInscritos.push(id);
   telefonesInscritos.push(telefone);
-  console.log("Inscrito cadastrado com sucesso!");
+  alert("Inscrito cadastrado com sucesso!");
 }
 
 // ==================================================
@@ -23,7 +23,7 @@ function cadastrarVideo() {
   titulosVideos.push(titulo);
   codigosVideos.push(codigo);
   visualizacoesVideos.push(visualizacoes);
-  console.log("Vídeo cadastrado com sucesso!");
+  alert("Vídeo cadastrado com sucesso!");
 }
 
 // ==================================================
@@ -42,7 +42,7 @@ function registrarVisualizacao() {
     indiceVideo < 0 ||
     indiceVideo >= titulosVideos.length
   ) {
-    console.log("Índice inválido! Verifique e tente novamente.");
+    alert("Índice inválido! Verifique e tente novamente.");
     return;
   }
 
@@ -50,7 +50,7 @@ function registrarVisualizacao() {
   indicesInscritosVisualizacoes.push(indiceInscrito);
   indicesVideosVisualizacoes.push(indiceVideo);
   quantidadesVisualizacoes.push(quantidade);
-  console.log("Visualizações registradas com sucesso!");
+  alert("Visualizações registradas com sucesso!");
 }
 
 // ==================================================
@@ -58,7 +58,7 @@ function registrarVisualizacao() {
 // ==================================================
 function consultarRegistrosVisualizacoes() {
   if (quantidadesVisualizacoes.length === 0) {
-    console.log("Nenhum registro de visualização encontrado.");
+    alert("Nenhum registro de visualização encontrado.");
     return;
   }
 
@@ -79,7 +79,7 @@ function consultarRegistrosVisualizacoes() {
       total +
       "\n";
   }
-  console.log(resultado);
+  alert(resultado);
 }
 
 // ==================================================
@@ -93,14 +93,14 @@ function atualizarInscrito() {
     if (idsInscritos[i] === idBusca) {
       nomesInscritos[i] = prompt("Digite o novo nome do inscrito:");
       telefonesInscritos[i] = prompt("Digite o novo telefone:");
-      console.log("Inscrito atualizado com sucesso!");
+      alert("Inscrito atualizado com sucesso!");
       encontrado = true;
       break;
     }
   }
 
   if (!encontrado) {
-    console.log("Inscrito não encontrado.");
+    alert("Inscrito não encontrado.");
   }
 }
 
@@ -116,14 +116,14 @@ function removerInscrito() {
       nomesInscritos.splice(i, 1);
       idsInscritos.splice(i, 1);
       telefonesInscritos.splice(i, 1);
-      console.log("Inscrito removido com sucesso!");
+      alert("Inscrito removido com sucesso!");
       encontrado = true;
       break;
     }
   }
 
   if (!encontrado) {
-    console.log("Inscrito não encontrado.");
+    alert("Inscrito não encontrado.");
   }
 }
 
@@ -136,7 +136,7 @@ function consultarVideoPorCodigo() {
 
   for (let i = 0; i < codigosVideos.length; i++) {
     if (codigosVideos[i] === codigoBusca) {
-      console.log(
+      alert(
         "Título: " +
           titulosVideos[i] +
           " | Visualizações: " +
@@ -148,7 +148,7 @@ function consultarVideoPorCodigo() {
   }
 
   if (!encontrado) {
-    console.log("Vídeo não encontrado.");
+    alert("Vídeo não encontrado.");
   }
 }
 
@@ -157,7 +157,7 @@ function consultarVideoPorCodigo() {
 // ==================================================
 function consultarMaisPopular() {
   if (visualizacoesVideos.length === 0) {
-    console.log("Nenhum vídeo cadastrado.");
+    alert("Nenhum vídeo cadastrado.");
     return;
   }
 
@@ -171,7 +171,7 @@ function consultarMaisPopular() {
     }
   }
 
-  console.log(
+  alert(
     "Vídeo mais popular: " +
       titulosVideos[posicao] +
       " | Visualizações: " +
@@ -187,7 +187,7 @@ function relatorioPorInscrito() {
   let indiceInscrito = idsInscritos.indexOf(idBusca);
 
   if (indiceInscrito === -1) {
-    console.log("Inscrito não encontrado.");
+    alert("Inscrito não encontrado.");
     return;
   }
 
@@ -205,9 +205,9 @@ function relatorioPorInscrito() {
   }
 
   if (encontrouRegistros) {
-    console.log(resultado);
+    alert(resultado);
   } else {
-    console.log("Sem registros para esse inscrito.");
+    alert("Sem registros para esse inscrito.");
   }
 }
 
@@ -234,26 +234,26 @@ let quantidadesVisualizacoes = [];
 let valoresTotaisSimulados = []; // opcional (ex: receita estimada)
 
 // ==================================================
-// FUNÇÃO MENU PRINCIPAL
-// ==================================================
-console.log(
-  "=== MENU PRINCIPAL ===\n" +
-    "1 - Cadastrar inscrito\n" +
-    "2 - Cadastrar vídeo\n" +
-    "3 - Registrar visualização\n" +
-    "4 - Consultar registros de visualizações\n" +
-    "5 - Atualizar inscrito\n" +
-    "6 - Remover inscrito\n" +
-    "7 - Consultar vídeo por código\n" +
-    "8 - Consultar vídeo mais popular\n" +
-    "9 - Relatório por inscrito\n" +
-    "10 - Encerrar"
-);
-// ==================================================
 // LOOP PRINCIPAL
 // ==================================================
 let opcao;
 while (opcao !== "s") {
+  // ==================================================
+  // FUNÇÃO MENU PRINCIPAL
+  // ==================================================
+  alert(
+    "=== MENU PRINCIPAL ===\n" +
+      "1 - Cadastrar inscrito\n" +
+      "2 - Cadastrar vídeo\n" +
+      "3 - Registrar visualização\n" +
+      "4 - Consultar registros de visualizações\n" +
+      "5 - Atualizar inscrito\n" +
+      "6 - Remover inscrito\n" +
+      "7 - Consultar vídeo por código\n" +
+      "8 - Consultar vídeo mais popular\n" +
+      "9 - Relatório por inscrito\n" +
+      "10 - Encerrar"
+  );
   opcao = parseInt(prompt("Digite a opção desejada:"));
   switch (opcao) {
     case 1:
@@ -284,10 +284,10 @@ while (opcao !== "s") {
       relatorioPorInscrito();
       break;
     case 10:
-      console.log("Encerrando o sistema... Até logo, criador de conteúdo!");
+      alert("Encerrando o sistema... Até logo, criador de conteúdo!");
       break;
     default:
-      console.log("Opção inválida! Tente novamente.");
+      alert("Opção inválida! Tente novamente.");
       break;
   }
   opcao = prompt("Deseja encerrar? (s/n):");
