@@ -1,11 +1,12 @@
 // ==================================================
-// avaliadorUnico.js — Versão 6.9 Profissional com Detecção Avançada de IA
+// avaliadorLite.js — Versão 8.0 LITE (SEM DEPENDÊNCIAS)
+// Avaliação 100% Nativa | Detecção IA | Nota Real
 // ==================================================
 const fs = require("fs");
 const path = require("path");
 
 if (process.argv.length < 3) {
-  console.log("Uso: node avaliadorUnico.js <arquivo_aluno.js>");
+  console.log("Uso: node avaliadorLite.js <arquivo_aluno.js>");
   process.exit(1);
 }
 
@@ -15,139 +16,176 @@ if (!fs.existsSync(arquivoAluno)) {
   process.exit(1);
 }
 
-console.log("📊 Avaliando:", arquivoAluno, "\n");
+console.log("Avaliando (modo LITE):", arquivoAluno, "\n");
 
 // ==================================================
 // CRITÉRIOS (Total = 20 pontos)
 // ==================================================
 const criterios = [
   { nome: "Vetores", peso: 3 },
-  { nome: "Variáveis", peso: 3 },
-  { nome: "Funções", peso: 8 },
+  { nome: "Variáveis", peso: 2 },
+  { nome: "Funções", peso: 7 },
   { nome: "Comentários", peso: 2 },
-  { nome: "Inserção e Funcionalidades", peso: 4 },
+  { nome: "Funcionalidades", peso: 4 },
+  { nome: "Qualidade", peso: 2 },
 ];
 
 // ==================================================
-// FUNÇÃO DE AVALIAÇÃO
+// FUNÇÃO DE AVALIAÇÃO (ANÁLISE ESTÁTICA + SIMULAÇÃO)
 // ==================================================
 function avaliarCodigo(codigo) {
+  const linhas = codigo.split("\n").map((l) => l.trim());
   const texto = codigo.toLowerCase().replace(/\s+/g, " ");
+  const linhasOriginais = codigo.split("\n");
   let pontos = {};
   criterios.forEach((c) => (pontos[c.nome] = 0));
 
   let penalidade = 0;
   let motivosPenalidade = [];
   let alertasIA = [];
+  let alertasErros = [];
+  let saidasSimuladas = [];
 
   // ==================================================
-  // 1️⃣ Vetores
+  // 1. VETOR (declaração + métodos)
   // ==================================================
-  const vetores = codigo.match(/\b(let|var|const)\s+\w+\s*=\s*\[.*?\]/g) || [];
-  const usoVetores =
-    codigo.match(/\w+\.(push|splice|pop|shift|unshift)\(/g) || [];
-
-  if (vetores.length >= 6 && usoVetores.length >= 6) pontos["Vetores"] = 3;
-  else if (vetores.length >= 3) pontos["Vetores"] = 2;
-  else pontos["Vetores"] = 1;
-
-  // ==================================================
-  // 2️⃣ Variáveis
-  // ==================================================
-  const vars = codigo.match(/\b(let|var|const)\s+\w+\s*=/g) || [];
-  const qtdVar = new Set(vars.map((v) => v.split(/\s+/)[1])).size;
-  if (qtdVar >= 15) pontos["Variáveis"] = 3;
-  else if (qtdVar >= 8) pontos["Variáveis"] = 2;
-  else pontos["Variáveis"] = 1;
-
-  // ==================================================
-  // 3️⃣ Funções
-  // ==================================================
-  const funcoes = codigo.match(/function\s+\w+\s*\(/g) || [];
-  const qtdFuncoes = funcoes.length;
-  const semParametros = (codigo.match(/function\s+\w+\s*\(\s*\)/g) || [])
-    .length;
-  const repeticaoUI =
-    (codigo.match(/alert\(/g) || []).length +
-    (codigo.match(/prompt\(/g) || []).length;
-
-  let pontFunc = 0;
-  if (qtdFuncoes >= 9 && semParametros < 3) pontFunc = 8;
-  else if (qtdFuncoes >= 7) pontFunc = 6;
-  else if (qtdFuncoes >= 5) pontFunc = 4.5;
-  else if (qtdFuncoes >= 3) pontFunc = 3;
-  else pontFunc = 1.5;
-
-  if (semParametros > qtdFuncoes * 0.6) pontFunc -= 0.8;
-  if (repeticaoUI > 20) pontFunc -= 0.5;
-  if (texto.includes("while (opcao") && texto.includes("switch"))
-    pontFunc -= 1.2;
-  if (pontFunc < 0) pontFunc = 0;
-  pontos["Funções"] = pontFunc;
-
-  // ==================================================
-  // 4️⃣ Comentários
-  // ==================================================
-  const comentarios = (codigo.match(/\/\/|\/\*/g) || []).length;
-  pontos["Comentários"] = comentarios >= 10 ? 2 : comentarios >= 5 ? 1 : 0;
-
-  // ==================================================
-  // 5️⃣ Inserção e Funcionalidades
-  // ==================================================
-  const entradaSaida = codigo.match(/\b(prompt|alert|console\.log)\(/g) || [];
-  const loops = codigo.match(/\b(for|while)\s*\(/g) || [];
-  const condicoes = codigo.match(/\b(if|switch)\s*\(/g) || [];
-
-  let pontosFunc = 0;
-  if (entradaSaida.length >= 8) pontosFunc += 1.5;
-  if (loops.length >= 3) pontosFunc += 1.5;
-  if (condicoes.length >= 3) pontosFunc += 1;
-  pontos["Inserção e Funcionalidades"] = pontosFunc;
-
-  // ==================================================
-  // 6️⃣ COMPLETUDE E PENALIZAÇÕES
-  // ==================================================
-  const funcoesEsperadas = [
-    "cadastrarInscrito",
-    "cadastrarVideo",
-    "registrarVisualizacao",
-    "consultarRegistrosVisualizacoes",
-    "atualizarInscrito",
-    "removerInscrito",
-    "consultarVideoPorCodigo",
-    "consultarMaisPopular",
-    "relatorioPorInscrito",
-  ];
-
-  const funcoesPresentes = funcoesEsperadas.filter((f) =>
-    codigo.includes(`function ${f}`)
+  const vetoresDecl = (
+    codigo.match(/\b(let|var|const)\s+\w+\s*=\s*\[\s*\]/g) || []
   ).length;
-  const faltando = funcoesEsperadas.length - funcoesPresentes;
+  const metodosVetor = (
+    codigo.match(
+      /\.(push|splice|pop|shift|unshift|indexOf|find|filter|map)\(/g
+    ) || []
+  ).length;
+  if (vetoresDecl >= 6 && metodosVetor >= 8) pontos["Vetores"] = 3;
+  else if (vetoresDecl >= 4 || metodosVetor >= 5) pontos["Vetores"] = 2.5;
+  else if (vetoresDecl >= 2 || metodosVetor >= 2) pontos["Vetores"] = 1.5;
+  else if (vetoresDecl >= 1) pontos["Vetores"] = 1;
 
-  if (faltando > 0) {
-    penalidade += faltando * 0.8;
-    motivosPenalidade.push(
-      `Trabalho incompleto: ${faltando} função(ões) obrigatória(s) ausente(s).`
-    );
+  // ==================================================
+  // 2. VARIÁVEIS (quantidade única)
+  // ==================================================
+  const vars = (codigo.match(/\b(let|var|const)\s+(\w+)/g) || []).map(
+    (m) => m.split(/\s+/)[1]
+  );
+  const qtdVar = new Set(vars).size;
+  if (qtdVar >= 25) pontos["Variáveis"] = 2;
+  else if (qtdVar >= 15) pontos["Variáveis"] = 1.7;
+  else if (qtdVar >= 8) pontos["Variáveis"] = 1.2;
+  else if (qtdVar >= 3) pontos["Variáveis"] = 0.8;
+
+  // ==================================================
+  // 3. FUNÇÕES (busca por nome + corpo)
+  // ==================================================
+  const funcoesEsperadas = {
+    cadastrarInscrito: ["push", "nome", "id", "telefone"],
+    cadastrarVideo: ["push", "titulo", "codigo", "visualizac"],
+    registrarVisualizacao: ["visualiz", "increment", "views", "+"],
+    consultarRegistrosVisualizacoes: ["for", "log", "visualiz", "listar"],
+    atualizarInscrito: ["atualiz", "editar", "id", "="],
+    removerInscrito: ["splice", "remov", "delet", "excluir"],
+    consultarVideoPorCodigo: ["codigo", "find", "filter", "for"],
+    consultarMaisPopular: ["popular", "max", "maior", "views"],
+    relatorioPorInscrito: ["relat", "inscrit", "visualiz", "for"],
+  };
+
+  const regexFuncao = /function\s+([a-zA-Z0-9_]+)\s*\([^)]*\)\s*{([^}]*)}/g;
+  const funcoesEncontradas = {};
+  let match;
+  while ((match = regexFuncao.exec(codigo)) !== null) {
+    const nome = match[1];
+    const corpo = match[2].toLowerCase();
+    funcoesEncontradas[nome] = corpo;
   }
 
+  let somaFunc = 0;
+  let relatorioFuncoes = [];
+
+  Object.entries(funcoesEsperadas).forEach(([nomeEsperado, chaves]) => {
+    const encontrada = Object.entries(funcoesEncontradas).find(
+      ([nome, corpo]) =>
+        chaves.some((kw) => corpo.includes(kw)) ||
+        nome.toLowerCase().includes(nomeEsperado)
+    );
+
+    if (!encontrada) {
+      relatorioFuncoes.push(`Ausente: ${nomeEsperado}`);
+      return;
+    }
+
+    const [nomeReal, corpo] = encontrada;
+    const acertos = chaves.filter((kw) => corpo.includes(kw)).length;
+    const percentual = acertos / chaves.length;
+    somaFunc += percentual;
+    relatorioFuncoes.push(`OK ${nomeReal}: ${Math.round(percentual * 100)}%`);
+  });
+
+  pontos["Funções"] = (somaFunc / Object.keys(funcoesEsperadas).length) * 7;
+  motivosPenalidade.push("\nANÁLISE DE FUNÇÕES:");
+  relatorioFuncoes.forEach((r) => motivosPenalidade.push(" • " + r));
+
   // ==================================================
-  // 7️⃣ DETECÇÃO AVANÇADA DE USO DE IA
+  // 4. COMENTÁRIOS (quantidade e qualidade)
+  // ==================================================
+  const comentarios = codigo.match(/\/\/.*|\/\*[\s\S]*?\*\//g) || [];
+  const comentariosLongos = comentarios.filter(
+    (c) => c.length > 20 && !c.includes("EXERCÍCIO")
+  ).length;
+  pontos["Comentários"] =
+    comentariosLongos >= 6
+      ? 2
+      : comentariosLongos >= 3
+      ? 1.5
+      : comentarios.length >= 8
+      ? 1
+      : 0.5;
+
+  // ==================================================
+  // 5. FUNCIONALIDADES (prompt, alert, loops, condicionais)
+  // ==================================================
+  const entrada = (codigo.match(/\b(prompt|readline)\(/g) || []).length;
+  const saida = (codigo.match(/\b(alert|console\.log)\(/g) || []).length;
+  const loops = (codigo.match(/\b(for|while)\s*\(/g) || []).length;
+  const condicoes = (codigo.match(/\b(if|switch)\s*\(/g) || []).length;
+
+  let funcPts = 0;
+  if (entrada >= 6) funcPts += 1.2;
+  if (saida >= 8) funcPts += 1.2;
+  if (loops >= 4) funcPts += 0.8;
+  if (condicoes >= 5) funcPts += 0.8;
+  pontos["Funcionalidades"] = Math.min(funcPts, 4);
+
+  // ==================================================
+  // 6. QUALIDADE DO CÓDIGO
+  // ==================================================
+  let qualidade = 2;
+  const usoVar = (codigo.match(/\bvar\s+/g) || []).length;
+  const usoLetConst = (codigo.match(/\b(let|const)\s+/g) || []).length;
+  if (usoVar > usoLetConst * 2) qualidade -= 0.8;
+
+  const duplicatas = linhas.filter((l, i, a) => a.indexOf(l) !== i && l).length;
+  if (duplicatas > 3) qualidade -= 0.7;
+
+  const linhasVazias = linhasOriginais.filter((l) => !l.trim()).length;
+  if (linhasVazias > linhasOriginais.length * 0.3) qualidade -= 0.5;
+
+  pontos["Qualidade"] = Math.max(qualidade, 0);
+
+  // ==================================================
+  // 7. DETECÇÃO DE IA (AVANÇADA)
   // ==================================================
   let scoreIA = 0;
-
-  // Sintaxe moderna suspeita em contexto básico
-  if (texto.includes("async function") || texto.includes("=>")) scoreIA += 1;
-  if (texto.includes("export default") || texto.includes("import"))
-    scoreIA += 1.5;
-
-  // Estruturas de nomes genéricos demais
-  const nomesGerais = (
-    codigo.match(/\b(data|info|item|obj|array|result)\b/gi) || []
+  if (
+    texto.includes("async") ||
+    texto.includes("await") ||
+    texto.includes("=>")
+  )
+    scoreIA += 1.3;
+  if (texto.includes("export") || texto.includes("import")) scoreIA += 1.5;
+  const genericos = (
+    texto.match(/\b(data|item|obj|array|result|info|value)\b/g) || []
   ).length;
-  if (nomesGerais >= 10) scoreIA += 1;
-
-  // Comentários padronizados de IA
+  if (genericos >= 10) scoreIA += 1.1;
   if (
     texto.includes("this function") ||
     texto.includes("returns") ||
@@ -155,43 +193,49 @@ function avaliarCodigo(codigo) {
   )
     scoreIA += 1.2;
 
-  // Padrão de formatação extremamente regular
-  const linhas = codigo.split("\n");
-  const identacoesUniformes =
-    linhas.filter((l) => l.startsWith("  ")).length / linhas.length;
-  if (identacoesUniformes > 0.8) scoreIA += 0.5;
+  const indentPerfeita =
+    linhasOriginais.filter((l) => /^\s{2,4}[^ ]/.test(l)).length /
+    linhasOriginais.filter((l) => l.trim()).length;
+  if (indentPerfeita > 0.92) scoreIA += 0.7;
 
-  // IA detectada
-  if (scoreIA >= 2) {
-    penalidade += scoreIA;
-    alertasIA.push(
-      `Suspeita de uso de IA detectada (grau ${scoreIA.toFixed(1)}).`
-    );
+  if (scoreIA >= 3.0) {
+    penalidade += Math.min(scoreIA, 7);
+    alertasIA.push(`IA DETECTADA (índice: ${scoreIA.toFixed(1)})`);
     motivosPenalidade.push(
-      "Padrões de código indicam possível geração automatizada (uso de IA)."
+      "Padrões de IA: arrow, async, nomes genéricos, formatação perfeita."
     );
+  }
+
+  // ==================================================
+  // 8. ERROS CRÍTICOS (simulação estática)
+  // ==================================================
+  if (codigo.includes(".(titulo)") || codigo.includes(".(codigo)")) {
+    alertasErros.push("Erro crítico: uso de '.(' em vez de '.push('");
+    penalidade += 2;
+  }
+  if (codigo.includes('while("Índice!")')) {
+    alertasErros.push("Loop infinito detectado");
+    penalidade += 2;
   }
 
   // ==================================================
   // SOMA FINAL
   // ==================================================
-  let total = Object.values(pontos).reduce((a, b) => a + b, 0) - penalidade;
-  if (total < 0) total = 0;
+  let totalBase = Object.values(pontos).reduce((a, b) => a + b, 0);
+  let total = Math.max(totalBase - penalidade, 0);
   if (total > 20) total = 20;
 
   // ==================================================
-  // RELATÓRIO FINAL PROFISSIONAL
+  // RELATÓRIO FINAL
   // ==================================================
   const relatorio = [];
-  relatorio.push(
-    "=== RELATÓRIO DE AVALIAÇÃO TÉCNICA — MODO PROFISSIONAL ===\n"
-  );
-  relatorio.push("📄 Arquivo avaliado: " + arquivoAluno + "\n");
+  relatorio.push("=== AVALIAÇÃO 8.0 LITE — 100% NATIVA ===\n");
+  relatorio.push(`Arquivo: ${path.basename(arquivoAluno)}\n`);
 
-  relatorio.push("\n🔍 ANÁLISE TÉCNICA POR CRITÉRIO:");
+  relatorio.push("CRITÉRIOS:");
   Object.entries(pontos).forEach(([k, v]) => {
     const peso = criterios.find((c) => c.nome === k)?.peso || 1;
-    let nivel =
+    const nivel =
       v >= peso * 0.9
         ? "Excelente"
         : v >= peso * 0.6
@@ -199,69 +243,57 @@ function avaliarCodigo(codigo) {
         : v >= peso * 0.3
         ? "Regular"
         : "Fraco";
-    relatorio.push(` - ${k}: ${v.toFixed(1)} pts → ${nivel}`);
+    relatorio.push(` • ${k.padEnd(20)}: ${v.toFixed(1).padEnd(4)} → ${nivel}`);
   });
 
-  relatorio.push("\n⚠ PENALIZAÇÕES:");
-  if (motivosPenalidade.length > 0) {
-    motivosPenalidade.forEach((m) => relatorio.push(" - " + m));
-    relatorio.push(`Total de penalizações: -${penalidade.toFixed(1)} pts`);
-  } else relatorio.push(" - Nenhuma penalização detectada.");
+  relatorio.push("\nPENALIZAÇÕES:");
+  if (alertasErros.length > 0)
+    alertasErros.forEach((e) => relatorio.push(` • ${e}`));
+  if (motivosPenalidade.length > 0)
+    motivosPenalidade.forEach((m) => relatorio.push(` • ${m}`));
+  relatorio.push(`Total penalidades: -${penalidade.toFixed(1)} pts`);
 
   if (alertasIA.length > 0) {
-    relatorio.push("\n🤖 ANÁLISE DE USO DE IA:");
-    alertasIA.forEach((a) => relatorio.push(" - " + a));
+    relatorio.push("\nIA DETECTADA:");
+    alertasIA.forEach((a) => relatorio.push(` • ${a}`));
   }
 
-  relatorio.push("\n📊 SÍNTESE FINAL:");
-  relatorio.push(
-    ` - Nota Base: ${Object.values(pontos)
-      .reduce((a, b) => a + b, 0)
-      .toFixed(1)} pts`
-  );
-  relatorio.push(` - Penalizações: -${penalidade.toFixed(1)} pts`);
-  relatorio.push(`\n⭐ TOTAL FINAL: ${total.toFixed(1)}/20 pts`);
+  relatorio.push("\nSÍNTESE:");
+  relatorio.push(` • Nota Base: ${totalBase.toFixed(1)}`);
+  relatorio.push(` • Penalidades: -${penalidade.toFixed(1)}`);
+  relatorio.push(`\nNOTA FINAL: ${total.toFixed(1)} / 20`);
 
-  let classificacao =
+  const classificacao =
     total >= 18
-      ? "A — Excelência Técnica"
-      : total >= 13
-      ? "B — Bom Desempenho"
-      : total >= 8
-      ? "C — Regular / Precisa Evoluir"
-      : "D — Insuficiente";
+      ? "A — Excelência"
+      : total >= 14
+      ? "B — Muito Bom"
+      : total >= 10
+      ? "C — Regular"
+      : total >= 6
+      ? "D — Fraco"
+      : "F — Insuficiente";
+  relatorio.push(`CLASSIFICAÇÃO: ${classificacao}`);
 
-  relatorio.push(`🏅 Classificação: ${classificacao}`);
-
-  relatorio.push("\n📈 CONCLUSÃO INTERPRETATIVA:");
+  relatorio.push("\nCONCLUSÃO:");
   if (total >= 18)
-    relatorio.push(
-      "💯 Excelente domínio técnico e estrutura lógica consistente. O aluno demonstra autonomia real na escrita do código."
-    );
-  else if (total >= 13)
-    relatorio.push(
-      "👍 Bom desempenho. Código funcional e coerente, mas com margem para aperfeiçoamento técnico e refinamento lógico."
-    );
-  else if (total >= 8)
-    relatorio.push(
-      "⚠ Trabalho regular. Estruturas presentes, mas incompletas ou copiadas parcialmente. Necessário revisar práticas de autoria e modularização."
-    );
-  else
-    relatorio.push(
-      "❌ Desempenho insuficiente. O código apresenta falhas graves e indícios de produção automatizada ou incompreensão dos fundamentos."
-    );
+    relatorio.push("Código funcional, limpo e autoral. Excelente!");
+  else if (total >= 14)
+    relatorio.push("Bom trabalho. Pequenos ajustes em estrutura.");
+  else if (total >= 10)
+    relatorio.push("Funciona, mas com falhas de lógica ou autoria.");
+  else relatorio.push("Código com erros graves ou forte indício de IA.");
 
-  if (alertasIA.length > 0) {
-    relatorio.push("\n📎 RECOMENDAÇÕES ESPECÍFICAS:");
-    relatorio.push(" - Reescrever trechos suspeitos com autoria comprovada.");
-    relatorio.push(" - Comentar cada função explicando propósito e lógica.");
-    relatorio.push(
-      " - Evitar padrões de IA (async, arrow functions, nomenclaturas genéricas)."
-    );
+  if (penalidade > 2 || alertasIA.length > 0) {
+    relatorio.push("\nRECOMENDAÇÕES:");
+    relatorio.push(" • Use let/const, evite var");
+    relatorio.push(" • Corrija erros de sintaxe (.push, não .()");
+    relatorio.push(" • Comente o que cada função faz");
+    relatorio.push(" • Teste manualmente antes de entregar");
   }
 
   relatorio.push(
-    "\n-----------------------------------------\nGerado automaticamente pelo Instrutor Lenon Yuri\nVersão 6.9 — Avaliação Profissional com Detecção Avançada de IA e Relatório Explicativo Completo\n"
+    "\n-----------------------------------------\nAvaliador 8.0 LITE — Lenon Yuri © 2025\nSem dependências | Detecção IA | Nota justa\n"
   );
 
   return { total, feedback: relatorio.join("\n") };
@@ -272,8 +304,9 @@ function avaliarCodigo(codigo) {
 // ==================================================
 const codigo = fs.readFileSync(arquivoAluno, "utf-8");
 const resultado = avaliarCodigo(codigo);
-
-const nomeFeedback = path.basename(arquivoAluno, ".js") + "_feedback.txt";
+const nomeFeedback = path.basename(arquivoAluno, ".js") + "_FEEDBACK_LITE.txt";
 fs.writeFileSync(nomeFeedback, resultado.feedback, "utf-8");
 
-console.log(`✅ Avaliação concluída. Feedback salvo em: ${nomeFeedback}`);
+console.log(`AVALIAÇÃO CONCLUÍDA`);
+console.log(`Nota: ${resultado.total.toFixed(1)}/20`);
+console.log(`Feedback salvo: ${nomeFeedback}`);
