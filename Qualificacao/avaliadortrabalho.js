@@ -1,306 +1,343 @@
 // ==================================================
-// avaliadorVendasOficial_v5.js — Avaliador Técnico de Lógica Estruturada
-// Node.js v18+
-// Uso: node avaliadorVendasOficial_v5.js <arquivo_aluno.js>
+// avaliador_v11.js — FUNCIONA 100% NO NODE v24.11.0
+// npm install vm2 cli-table3 chalk@5
+// Uso: node avaliador_v11.js "arquivo_aluno.js"
 // ==================================================
-
 const fs = require("fs");
 const path = require("path");
+const { VM } = require("vm2");
+const Table = require("cli-table3");
+const chalk = require("chalk").default; // Fix para Chalk v5 em CJS
 
-// ==============================
-// Validação CLI
-// ==============================
+// Chalk v5+ → sintaxe correta
+const boldText = chalk.bold;
+const cyanText = chalk.cyan;
+const redText = chalk.red;
+const greenText = chalk.green;
+const yellowText = chalk.yellow;
+const magentaText = chalk.magenta;
+const grayText = chalk.gray;
+
+// Validação
 if (process.argv.length < 3) {
-  console.log("Uso: node avaliadorVendasOficial_v5.js <arquivo_aluno.js>");
+  console.log(
+    redText(boldText("Uso: node avaliador_v11.js <arquivo_aluno.js>"))
+  );
   process.exit(1);
 }
-
 const arquivoAluno = process.argv[2];
 if (!fs.existsSync(arquivoAluno)) {
-  console.log("Arquivo não encontrado:", arquivoAluno);
+  console.log(redText(boldText("Arquivo não encontrado:")), arquivoAluno);
   process.exit(1);
 }
+const codigoAluno = fs.readFileSync(arquivoAluno, "utf-8");
+const linhasCodigo = codigoAluno.split("\n");
 
 // ==================================================
-// CRITÉRIOS DE AVALIAÇÃO — TOTAL 80 PONTOS
-// ==================================================
-const criterios = [
-  { nome: "Uso de variáveis (var)", peso: 10 },
-  { nome: "Uso de funções", peso: 10 },
-  { nome: "Comentário da atividade", peso: 10 },
-  { nome: "Uso de switch", peso: 10 },
-  { nome: "Uso de vetores (arrays)", peso: 10 },
-  { nome: "Uso de if/else", peso: 10 },
-  { nome: "Uso de for", peso: 10 },
-  { nome: "Uso de while", peso: 10 },
-];
-
-// ==================================================
-// FUNÇÃO DE AVALIAÇÃO
+// AVALIAÇÃO COMPLETA
 // ==================================================
 function avaliarCodigo(codigo) {
-  let pontos = {};
-  let feedback = [];
-  let observacoes = [];
-  criterios.forEach((c) => (pontos[c.nome] = 0));
+  const feedback = [];
+  const acertos = [];
+  const alertas = [];
+  const erros = [];
+  let pontosTotal = 0;
 
-  // --- 1. Variáveis ---
-  const vars = codigo.match(/\bvar\s+\w+/g) || [];
-  pontos["Uso de variáveis (var)"] =
-    vars.length >= 8 ? 10 : (vars.length / 8) * 10;
+  feedback.push(cyanText(boldText("═".repeat(70))));
   feedback.push(
-    `✔ Variáveis declaradas: ${vars.length} (${pontos[
-      "Uso de variáveis (var)"
-    ].toFixed(1)} pts)`
+    cyanText(boldText("     AVALIADOR v11 - RELATÓRIO OFICIAL E DIDÁTICO"))
+  );
+  feedback.push(cyanText(boldText("═".repeat(70))));
+  feedback.push(
+    boldText(`Olá! Aqui está a avaliação detalhada do seu trabalho.`)
+  );
+  feedback.push(
+    boldText(`Aluno: ${yellowText(path.basename(arquivoAluno, ".js"))}`)
+  );
+  feedback.push(
+    boldText(`Data da avaliação: ${new Date().toLocaleString("pt-BR")}`)
+  );
+  feedback.push(boldText(`O código tem ${linhasCodigo.length} linhas.`));
+  feedback.push(
+    "\nVou explicar passo a passo o que está bom, o que pode melhorar e os problemas principais. Vamos focar em texto simples e explicações claras, sem muitos números."
   );
 
-  // --- 2. Funções ---
-  const funcoes = codigo.match(/function\s+\w+\s*\(/g) || [];
-  pontos["Uso de funções"] =
-    funcoes.length >= 5 ? 10 : (funcoes.length / 5) * 10;
-  feedback.push(
-    `✔ Funções detectadas: ${funcoes.length} (${pontos[
-      "Uso de funções"
-    ].toFixed(1)} pts)`
-  );
-
-  // --- 3. Comentários ---
-  const comentarios =
-    (codigo.match(/\/\//g) || []).length +
-    (codigo.match(/\/\*[\s\S]*?\*\//g) || []).length;
-  if (comentarios === 0) {
-    pontos["Comentário da atividade"] = 0;
-    observacoes.push("Ausência total de comentários explicativos.");
-  } else if (comentarios > 40) {
-    pontos["Comentário da atividade"] = 5; // Excesso suspeito
-    observacoes.push(
-      "Número excessivo de comentários — padrão automatizado detectado."
+  // === VARIÁVEIS ===
+  const vars = (codigo.match(/\bvar\s+\w+/g) || []).length;
+  const lets = (codigo.match(/\blet\s+\w+/g) || []).length;
+  const consts = (codigo.match(/\bconst\s+\w+/g) || []).length;
+  const totalVars = vars + lets + consts;
+  let pontosVars = 0;
+  if (totalVars >= 12) {
+    pontosVars = 10;
+    acertos.push(
+      `Você declarou variáveis suficientes para armazenar os dados dos clientes, produtos e vendas. Bom trabalho! (var/let/const estão todos permitidos)`
     );
   } else {
-    pontos["Comentário da atividade"] =
-      comentarios >= 8 ? 10 : (comentarios / 8) * 10;
+    pontosVars = totalVars * 0.8;
+    alertas.push(
+      `Faltam algumas variáveis. O sistema precisa de pelo menos uma dúzia para guardar nomes, CPFs, produtos, etc. Adicione mais para completar o cadastro.`
+    );
   }
-  feedback.push(
-    `✔ Comentários encontrados: ${comentarios} (${pontos[
-      "Comentário da atividade"
-    ].toFixed(1)} pts)`
-  );
+  pontosTotal += pontosVars;
 
-  // --- 4. Switch ---
-  pontos["Uso de switch"] = /\bswitch\s*\(.*\)/.test(codigo) ? 10 : 0;
-  if (pontos["Uso de switch"] === 0)
-    observacoes.push("Ausência de estrutura switch.");
-  feedback.push(
-    pontos["Uso de switch"]
-      ? "✔ Estrutura switch detectada"
-      : "✖ Nenhum switch encontrado (0 pts)"
-  );
-
-  // --- 5. Vetores ---
-  const arrays = codigo.match(/\[\s*\]/g) || [];
-  pontos["Uso de vetores (arrays)"] =
-    arrays.length >= 4 ? 10 : (arrays.length / 4) * 10;
-  if (arrays.length === 0) observacoes.push("Nenhum vetor identificado.");
-  feedback.push(
-    `✔ Vetores detectados: ${arrays.length} (${pontos[
-      "Uso de vetores (arrays)"
-    ].toFixed(1)} pts)`
-  );
-
-  // --- 6. If/Else ---
-  const ifs = (codigo.match(/\bif\s*\(/g) || []).length;
-  const elses = (codigo.match(/\belse\b/g) || []).length;
-  pontos["Uso de if/else"] = Math.min((ifs + elses) * 5, 10);
-  if (ifs === 0 && elses === 0)
-    observacoes.push("Nenhuma estrutura condicional (if/else) identificada.");
-  feedback.push(
-    `✔ Estruturas condicionais detectadas: if(${ifs}) else(${elses}) → ${pontos[
-      "Uso de if/else"
-    ].toFixed(1)} pts`
-  );
-
-  // --- 7. For ---
-  const fors = (codigo.match(/\bfor\s*\(/g) || []).length;
-  pontos["Uso de for"] = fors > 0 ? 10 : 0;
-  if (fors === 0) observacoes.push("Laço for ausente.");
-  feedback.push(
-    fors > 0 ? "✔ Estrutura for detectada" : "✖ Nenhum for encontrado (0 pts)"
-  );
-
-  // --- 8. While ---
-  const whiles = (codigo.match(/\bwhile\s*\(/g) || []).length;
-  pontos["Uso de while"] = whiles > 0 ? 10 : 0;
-  if (whiles === 0) observacoes.push("Laço while ausente.");
-  feedback.push(
-    whiles > 0
-      ? "✔ Estrutura while detectada"
-      : "✖ Nenhum while encontrado (0 pts)"
-  );
-
-  // ==================================================
-  // TESTES DE INSERÇÃO E SAÍDA DE DADOS
-  // ==================================================
-  const entrada = /(prompt\s*\(|push\s*\(|parseInt\s*\(|parseFloat\s*\()/g;
-  const saida = /(alert\s*\(|splice\s*\(|console\.log\s*\()/g;
-  const entradas = (codigo.match(entrada) || []).length;
-  const saidas = (codigo.match(saida) || []).length;
-
-  if (entradas > 0 && saidas > 0) {
-    feedback.push(
-      "✔ Teste prático simulado: inserção e exibição de dados detectadas."
+  // === FUNÇÕES ===
+  const funcs = (codigo.match(/function\s+\w+\s*\(/g) || []).length;
+  let pontosFuncs = 0;
+  if (funcs >= 7) {
+    pontosFuncs = 10;
+    acertos.push(
+      `Você criou funções para cada parte principal, como cadastrar cliente, produto e registrar venda. Isso deixa o código organizado e fácil de entender.`
     );
-  } else if (entradas > 0 || saidas > 0) {
-    feedback.push(
-      "⚠ Teste parcial: apenas inserção ou exibição identificadas → penalização -10%"
-    );
-    observacoes.push("Execução prática incompleta (falta entrada ou saída).");
-    for (let k in pontos) pontos[k] *= 0.9;
   } else {
-    feedback.push(
-      "✖ Nenhuma simulação de entrada/saída detectada → penalização -15%"
+    pontosFuncs = funcs * 1.4;
+    alertas.push(
+      `O código tem poucas funções. Para um sistema completo, crie funções separadas para menu, cadastro, atualização, remoção e consulta.`
     );
-    observacoes.push("Código sem testes práticos de funcionamento.");
-    for (let k in pontos) pontos[k] *= 0.85;
   }
+  pontosTotal += pontosFuncs;
 
-  // ==================================================
-  // DETECÇÃO DE USO DE IA OU CÓDIGO FORA DO ESCOPO
-  // ==================================================
-  const proibidos = [
-    { regex: /=>/, desc: "Arrow functions (não ensinadas)" },
-    {
-      regex: /\b(forEach|map|filter|reduce|find|sort)\s*\(/,
-      desc: "Métodos modernos de array",
-    },
-    { regex: /\bclass\s+\w+/, desc: "Classes ES6" },
-    { regex: /\bimport\s+|export\s+/, desc: "Módulos import/export" },
-    { regex: /\basync\s+|await\s+|Promise\b/, desc: "Assincronismo moderno" },
-    { regex: /\bconst\b/, desc: "Uso de const (fora da apostila)" },
-    { regex: /\blet\b/, desc: "Uso de let (fora da apostila)" },
-    { regex: /\btry\s*{/, desc: "Bloco try/catch avançado" },
-    {
-      regex: /ChatGPT|OpenAI|Gemini|Claude|copilot/i,
-      desc: "Marcas explícitas de IA",
-    },
-  ];
-
-  const violacoes = proibidos.filter((p) => p.regex.test(codigo));
-  const linhas = codigo.split("\n").length;
-  const mediaComprimento = codigo.length / linhas;
-  const formatoIA = mediaComprimento > 130;
-  let penalIA = 1;
-
-  if (violacoes.length > 0 || formatoIA || comentarios > 40) {
-    feedback.push(
-      "\n⚠ SUSPEITA DE USO DE IA OU CÓDIGO ACIMA DO NÍVEL ENSINADO:"
+  // === COMENTÁRIOS ===
+  const coments = (codigo.match(/\/\/|\/\*[\s\S]*?\*\//g) || []).length;
+  let pontosComents = 0;
+  if (coments >= 15) {
+    pontosComents = 10;
+    acertos.push(
+      `Seus comentários explicam bem o que cada parte do código faz. Isso ajuda qualquer pessoa a entender o programa rapidamente.`
     );
-    violacoes.forEach((v) => feedback.push(`   - ${v.desc}`));
-    if (formatoIA)
-      feedback.push(
-        "   - Código muito compacto e denso (característica de IA)."
+  } else if (coments >= 8) {
+    pontosComents = 6;
+    alertas.push(
+      `Os comentários estão OK, mas adicione mais para descrever o que cada função ou vetor faz. Por exemplo, explique "este vetor armazena os nomes dos clientes".`
+    );
+  } else {
+    pontosComents = coments * 0.5;
+    erros.push(
+      `Quase não há comentários no código. Sempre explique o que cada seção faz, como "Aqui cadastramos o cliente no vetor". Sem isso, fica difícil ler.`
+    );
+  }
+  pontosTotal += pontosComents;
+
+  // === SWITCH ===
+  let pontosSwitch = 0;
+  if (/\bswitch\s*\(.*\)\s*{/.test(codigo)) {
+    pontosSwitch = 10;
+    acertos.push(
+      `O menu principal usa switch para escolher opções, como cadastrar ou consultar. Essa é a estrutura certa para isso!`
+    );
+  } else {
+    erros.push(
+      `Não há switch no menu. Use switch(opcao) { case 1: ... } para lidar com as escolhas do usuário, em vez de if/else repetidos.`
+    );
+  }
+  pontosTotal += pontosSwitch;
+
+  // === VETORES ===
+  const pushs = (codigo.match(/\.push\(/g) || []).length;
+  const splices = (codigo.match(/\.splice\(/g) || []).length;
+  let pontosVetores = 0;
+  if (pushs >= 6 && splices >= 1) {
+    pontosVetores = 10;
+    acertos.push(
+      `Vetores bem usados para armazenar dados, com push para adicionar e splice para remover itens. Perfeito para listas de clientes e vendas!`
+    );
+  } else {
+    if (splices === 0)
+      erros.push(
+        `Não usa splice para remover clientes. Delete não remove de verdade, só deixa um buraco no vetor. Use nomesClientes.splice(i, 1);`
       );
-    if (comentarios > 40)
-      feedback.push("   - Excesso de comentários automatizados detectado.");
-    penalIA = violacoes.length >= 3 ? 0.5 : 0.7;
-    observacoes.push(
-      "Padrões avançados ou automatizados encontrados. Redução aplicada por possível uso de IA."
+    if (pushs < 6)
+      alertas.push(
+        `Faltam comandos push para adicionar itens aos vetores. Use nomesClientes.push(nome); para cada cadastro.`
+      );
+    pontosVetores = pushs * 1.2 + splices * 5;
+  }
+  pontosTotal += pontosVetores;
+
+  // === LAÇOS ===
+  const fors = (codigo.match(/\bfor\s*\(/g) || []).length;
+  const whiles = (codigo.match(/\bwhile\s*\(/g) || []).length;
+  let pontosLacos = 0;
+  if (fors >= 1 && whiles >= 1) {
+    pontosLacos = 10;
+    acertos.push(
+      `Laços de repetição bem aplicados: while para o menu principal e for para listar vendas. Isso faz o sistema interativo e completo.`
     );
-    feedback.push(
-      `   → Penalização aplicada: -${Math.round((1 - penalIA) * 100)}%`
+  } else {
+    if (whiles === 0)
+      erros.push(
+        `Falta while no loop principal. Use while(opcao !== 7) para repetir o menu até o usuário sair.`
+      );
+    if (fors === 0)
+      erros.push(
+        `Falta for na consulta de vendas. Use for(var i=0; i<vendas.length; i++) para mostrar cada venda.`
+      );
+  }
+  pontosTotal += pontosLacos;
+
+  // === EXECUÇÃO ===
+  let execOK = false;
+  let erroExec = "";
+  let pontosExec = 0;
+  try {
+    const vm = new VM({
+      timeout: 3000,
+      sandbox: {
+        prompt: () => "7",
+        alert: () => {},
+        console: { log: () => {} },
+      },
+    });
+    vm.run(codigo);
+    execOK = true;
+    pontosExec = 10;
+    acertos.push(
+      `O código roda sem travar ou erros graves. Parabéns pela lógica funcional!`
     );
-    for (let k in pontos) pontos[k] *= penalIA;
+  } catch (e) {
+    if (e.message.includes("timed out")) {
+      erros.push(
+        `O código trava em um loop infinito, como while(i=0) sem incremento. Verifique os laços de repetição para garantir que eles terminem.`
+      );
+    } else {
+      erroExec = e.message.split("\n")[0];
+      erros.push(
+        `Erro ao rodar o código: ${erroExec}. Isso significa que há um problema na sintaxe ou lógica, como variável não definida.`
+      );
+    }
+  }
+  pontosTotal += pontosExec;
+
+  // === ERROS COMUNS ===
+  if (codigo.includes("delete("))
+    erros.push(
+      `Usou delete em vetor, o que não remove o item direito. Troque por splice para limpar a lista corretamente.`
+    );
+  if (/parseFloat\s*\(\s*prompt\s*\([^)]*menu/i.test(codigo))
+    erros.push(
+      `parseFloat no menu transforma opções em números decimais, quebrando o switch. Use parseInt para números inteiros.`
+    );
+  if (/while\s*\(\s*i\s*=\s*0/i.test(codigo))
+    erros.push(
+      `While com "i=0" causa loop infinito. Coloque a condição certa, como while(i < length), e incremente i dentro do laço.`
+    );
+
+  // === RESUMO SEM TABELA ===
+  feedback.push(boldText("\nResumo da Avaliação:"));
+  feedback.push(
+    "Aqui vai uma explicação simples de cada parte do seu código, sem números complicados. Foque no que está bom e no que melhorar."
+  );
+
+  feedback.push(boldText("\nO que está bom (acertos):"));
+  if (acertos.length > 0) {
+    acertos.forEach((a) => feedback.push(greenText("• " + a)));
   } else {
     feedback.push(
-      "\n✔ Nenhum indício de IA detectado. Código autêntico e compatível com o nível técnico exigido."
+      yellowText(
+        "Não há acertos destacados desta vez. Vamos trabalhar para melhorar!"
+      )
     );
   }
 
-  // ==================================================
-  // TRABALHO INCOMPLETO
-  // ==================================================
-  const faltantes = Object.values(pontos).filter((p) => p === 0).length;
-  if (faltantes >= 3) {
-    observacoes.push("Trabalho incompleto com ausência de partes essenciais.");
+  feedback.push(boldText("\nO que pode melhorar (alertas):"));
+  if (alertas.length > 0) {
+    alertas.forEach((a) => feedback.push(yellowText("• " + a)));
+  } else {
     feedback.push(
-      `⚠ Trabalho incompleto (${faltantes} critérios zerados) → penalização adicional de 15%.`
+      greenText("Nenhuma melhoria sugerida. Tudo ótimo nessa área!")
     );
-    for (let k in pontos) pontos[k] *= 0.85;
   }
 
-  // ==================================================
-  // TOTALIZAÇÃO FINAL
-  // ==================================================
-  let total = Object.values(pontos).reduce((a, b) => a + b, 0);
-  if (total > 80) total = 80;
-  if (total < 0) total = 0;
-
-  let conceito =
-    total >= 70
-      ? "EXCELENTE"
-      : total >= 55
-      ? "BOM"
-      : total >= 40
-      ? "REGULAR"
-      : "INSUFICIENTE";
-
-  feedback.push(
-    `\n=== TOTAL FINAL: ${total.toFixed(1)}/80 pts — ${conceito} ===`
-  );
-
-  // ==================================================
-  // RELATÓRIO FINAL PROFISSIONAL E EXPLICATIVO
-  // ==================================================
-  feedback.push("\n=====================================================");
-  feedback.push("📊 RELATÓRIO TÉCNICO DETALHADO");
-  feedback.push("=====================================================");
-  feedback.push(`📄 Arquivo avaliado: ${arquivoAluno}`);
-  feedback.push(`🧮 Pontuação total obtida: ${total.toFixed(1)} / 80`);
-  feedback.push(`🏷️ Conceito final: ${conceito}`);
-  feedback.push("\n🔍 Análise conclusiva:");
-  if (total >= 70)
-    feedback.push(
-      "✔ Código bem estruturado, funcional e compatível com o conteúdo ensinado. Demonstra domínio lógico."
-    );
-  else if (total >= 55)
-    feedback.push(
-      "⚠ Código apresenta pequenas falhas de estrutura, mas mantém lógica funcional e coerente."
-    );
-  else if (total >= 40)
-    feedback.push(
-      "⚠ Código incompleto, com deficiências conceituais e estrutura fraca."
-    );
-  else
-    feedback.push(
-      "❌ Código insuficiente ou possivelmente automatizado, sem demonstrar aprendizado real."
-    );
-
-  if (observacoes.length > 0) {
-    feedback.push("\n🛠️ Pontos que afetaram a nota:");
-    observacoes.forEach((o) => feedback.push(` - ${o}`));
+  feedback.push(boldText("\nProblemas principais (erros graves):"));
+  if (erros.length > 0) {
+    erros.forEach((e) => feedback.push(redText("• " + e)));
+  } else {
+    feedback.push(greenText("Nenhum erro grave encontrado. Bom sinal!"));
   }
 
-  feedback.push("\n💡 Observação geral:");
+  // === PENALIZAÇÕES ===
+  if (erros.length >= 3) pontosTotal *= 0.3;
+  else if (erros.length >= 1) pontosTotal *= 0.6;
+  if (alertas.length >= 4) pontosTotal *= 0.8;
+
+  const notaFinal = Math.min(80, Math.max(0, Number(pontosTotal.toFixed(1))));
+  const conceito =
+    notaFinal >= 70
+      ? greenText(boldText("EXCELENTE"))
+      : notaFinal >= 55
+      ? yellowText(boldText("BOM"))
+      : notaFinal >= 40
+      ? magentaText(boldText("REGULAR"))
+      : redText(boldText("REPROVADO"));
+
   feedback.push(
-    "A nota reflete não apenas a presença de estruturas, mas a coerência e autenticidade da lógica apresentada."
+    boldText(
+      `\nSua nota final é ${notaFinal}/80, que é considerada ${conceito}.`
+    )
+  );
+  if (notaFinal >= 70) {
+    feedback.push(
+      greenText(
+        boldText(
+          "Parabéns! Seu trabalho está completo e roda bem. Continue assim."
+        )
+      )
+    );
+  } else if (notaFinal >= 55) {
+    feedback.push(
+      yellowText(
+        boldText("Bom esforço, mas ajuste as melhorias para ficar perfeito.")
+      )
+    );
+  } else {
+    feedback.push(
+      redText(
+        boldText(
+          "Precisa corrigir os erros graves para o sistema funcionar direito."
+        )
+      )
+    );
+  }
+
+  feedback.push(boldText("\nDicas para melhorar e tirar nota máxima:"));
+  feedback.push(
+    "• Para remover itens, use splice(i, 1) em vez de delete – assim o vetor fica limpo."
   );
   feedback.push(
-    "O avaliador considera clareza, originalidade, uso adequado de sintaxe e compatibilidade com o conteúdo do curso."
+    "• No menu principal, use while(opcao !== 7) para repetir até o usuário sair."
+  );
+  feedback.push(
+    "• Para listar vendas, use for(let i = 0; i < vendas.length; i++) e mostre cada item."
+  );
+  feedback.push(
+    "• No prompt do menu, use parseInt para ler números inteiros corretamente."
+  );
+  feedback.push(
+    "• Adicione comentários em cada função, como // Esta função cadastra o cliente."
+  );
+  feedback.push(
+    "• Let e const estão permitidos, use o que preferir para variáveis."
   );
 
-  return { feedback: feedback.join("\n"), total: total.toFixed(1), conceito };
+  feedback.push("\n" + grayText("═".repeat(70)));
+  feedback.push(
+    grayText("Fim do relatório. Qualquer dúvida, pergunte ao professor!")
+  );
+
+  return { feedback: feedback.join("\n"), nota: notaFinal };
 }
 
 // ==================================================
-// EXECUÇÃO
+// SALVAR E MOSTRAR
 // ==================================================
-const codigo = fs.readFileSync(arquivoAluno, "utf-8");
-const resultado = avaliarCodigo(codigo);
+const resultado = avaliarCodigo(codigoAluno);
+const nomeSaida = path.basename(arquivoAluno, ".js") + "_RELATORIO_v11.txt";
+// Remove códigos de cor ANSI antes de salvar no .txt
+const limparANSI = (texto) =>
+  texto.replace(/\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])/g, "");
 
-const nomeFeedback = path.basename(arquivoAluno, ".js") + "_feedback.txt";
-fs.writeFileSync(
-  nomeFeedback,
-  `=== RELATÓRIO DE AVALIAÇÃO TÉCNICA ===\n\n${resultado.feedback}\n`,
-  "utf-8"
-);
+fs.writeFileSync(nomeSaida, limparANSI(resultado.feedback) + "\n", "utf-8");
 
-console.log(`✅ Avaliação concluída! Relatório salvo em: ${nomeFeedback}`);
+console.log(greenText(boldText("✅ AVALIAÇÃO v11 CONCLUÍDA!")));
+console.log(cyanText(`📄 Relatório salvo: ${nomeSaida}`));
+console.log(boldText(`🏆 Nota: ${resultado.nota}/80`));
