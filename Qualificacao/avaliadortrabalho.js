@@ -1,7 +1,9 @@
 // ==================================================
-// avaliador_v11.js — FUNCIONA 100% NO NODE v24.11.0
+// avaliador_v11_mod.js — FUNCIONA 100% NO NODE v24.11.0
 // npm install vm2 cli-table3 chalk@5
-// Uso: node avaliador_v11.js "arquivo_aluno.js"
+// Uso: node avaliador_v11_mod.js "arquivo_aluno.js"
+// Versão modificada: aplica nota mediana automática para padrões "iniciantes"
+// e preserva detecção de construções avançadas que devam zerar nota.
 // ==================================================
 const fs = require("fs");
 const path = require("path");
@@ -21,7 +23,7 @@ const grayText = chalk.gray;
 // Validação
 if (process.argv.length < 3) {
   console.log(
-    redText(boldText("Uso: node avaliador_v11.js <arquivo_aluno.js>"))
+    redText(boldText("Uso: node avaliador_v11_mod.js <arquivo_aluno.js>"))
   );
   process.exit(1);
 }
@@ -255,10 +257,40 @@ function avaliarCodigo(codigo) {
     feedback.push(greenText("Nenhum erro grave encontrado. Bom sinal!"));
   }
 
-  // === PENALIZAÇÕES ===
-  if (erros.length >= 3) pontosTotal *= 0.3;
-  else if (erros.length >= 1) pontosTotal *= 0.6;
-  if (alertas.length >= 4) pontosTotal *= 0.8;
+  // === PENALIZAÇÕES (AJUSTADA PARA TRABALHOS INICIANTES) ===
+  // Detecta padrões de trabalhos "iniciantes" que você quer tratar como medianos.
+  // Se detectado, forçamos uma nota base mediana (48/80) e pulamos penalizações extras.
+  let aplicarPenalizacoes = true;
+  const padraoIniciante = [
+    /produtos\s*=\s*\[/, // arrays globais sem let/const
+    /listaPrecosProdutos\.push\s*\(\s*parseInt/i, // preços lidos com parseInt
+    /for\s*\(\s*i\s*=\s*0\s*;\s*i\s*<=\s*listaVendas\.length/i, // for com <= listaVendas.length
+    /while\s*\(\s*escolha\s*===\s*0\s*\)/i, // while(escolha === 0)
+    /var\s+nomeClientes\s*=/, // uso de var na estrutura
+  ];
+
+  const codigoMinus = codigo.toString();
+  let correspondeIniciante = padraoIniciante.some((re) => re.test(codigoMinus));
+
+  if (correspondeIniciante) {
+    // Forçar nota base mediana: 48/80 (ajusta pontosTotal para refletir mediana).
+    // Mantemos o feedback, mas pulamos descontar por múltiplas advertências.
+    pontosTotal = 48;
+    aplicarPenalizacoes = false;
+    alertas.push(
+      "Identificado padrão de projeto 'iniciantes'. Aplicando regra: nota mediana (48/80)."
+    );
+  }
+
+  // Se não é iniciante, aplica penalizações normais (como antes)
+  if (aplicarPenalizacoes) {
+    if (erros.length >= 3) pontosTotal *= 0.3;
+    else if (erros.length >= 1) pontosTotal *= 0.6;
+    if (alertas.length >= 4) pontosTotal *= 0.8;
+  } else {
+    // opcional: suavizar alertas para não confundir o estudante
+    // (os alertas já foram mantidos; não aplicaremos multiplicadores)
+  }
 
   const notaFinal = Math.min(80, Math.max(0, Number(pontosTotal.toFixed(1))));
   const conceito =
