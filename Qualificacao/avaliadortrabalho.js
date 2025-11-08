@@ -260,39 +260,64 @@ function avaliarCodigo(codigo) {
   // === PENALIZAÇÕES (AJUSTADA PARA TRABALHOS INICIANTES) ===
   // Detecta padrões de trabalhos "iniciantes" que você quer tratar como medianos.
   // Se detectado, forçamos uma nota base mediana (48/80) e pulamos penalizações extras.
+  // === PENALIZAÇÕES AJUSTADAS — v11.2 ===
+  // Agora exige execução + 60% das funções esperadas para garantir mínimo 60/80
+
   let aplicarPenalizacoes = true;
   const padraoIniciante = [
-    /produtos\s*=\s*\[/, // arrays globais sem let/const
-    /listaPrecosProdutos\.push\s*\(\s*parseInt/i, // preços lidos com parseInt
-    /for\s*\(\s*i\s*=\s*0\s*;\s*i\s*<=\s*listaVendas\.length/i, // for com <= listaVendas.length
-    /while\s*\(\s*escolha\s*===\s*0\s*\)/i, // while(escolha === 0)
-    /var\s+nomeClientes\s*=/, // uso de var na estrutura
+    /produtos\s*=\s*\[/,
+    /listaPrecosProdutos\.push\s*\(\s*parseInt/i,
+    /for\s*\(\s*i\s*=\s*0\s*;\s*i\s*<=\s*listaVendas\.length/i,
+    /while\s*\(\s*escolha\s*===\s*0\s*\)/i,
+    /var\s+nomeClientes\s*=/,
   ];
 
   const codigoMinus = codigo.toString();
-  let correspondeIniciante = padraoIniciante.some((re) => re.test(codigoMinus));
+  const correspondeIniciante = padraoIniciante.some((re) =>
+    re.test(codigoMinus)
+  );
 
   if (correspondeIniciante) {
-    // Forçar nota base mediana: 48/80 (ajusta pontosTotal para refletir mediana).
-    // Mantemos o feedback, mas pulamos descontar por múltiplas advertências.
-    pontosTotal = 48;
+    // Trabalhos básicos, mas válidos → nota mediana justa
+    pontosTotal = 60;
     aplicarPenalizacoes = false;
     alertas.push(
-      "Identificado padrão de projeto 'iniciantes'. Aplicando regra: nota mediana (48/80)."
+      "Padrão 'iniciante' detectado. Aplicada nota mediana automática (60/80)."
     );
   }
 
-  // Se não é iniciante, aplica penalizações normais (como antes)
   if (aplicarPenalizacoes) {
-    if (erros.length >= 3) pontosTotal *= 0.3;
-    else if (erros.length >= 1) pontosTotal *= 0.6;
-    if (alertas.length >= 4) pontosTotal *= 0.8;
-  } else {
-    // opcional: suavizar alertas para não confundir o estudante
-    // (os alertas já foram mantidos; não aplicaremos multiplicadores)
+    let penalizacao = 1.0;
+    if (erros.length >= 3) penalizacao -= 0.25;
+    else if (erros.length >= 1) penalizacao -= 0.15;
+    if (alertas.length >= 4) penalizacao -= 0.1;
+
+    pontosTotal *= penalizacao;
+
+    // Calcula proporção de funções implementadas
+    const proporcaoFuncoes = funcs / 7; // 7 funções esperadas como referência
+    let limiteMinimo = 0;
+
+    if (execOK) {
+      if (proporcaoFuncoes >= 0.6) {
+        limiteMinimo = 60;
+      } else if (proporcaoFuncoes >= 0.4) {
+        limiteMinimo = 50;
+      }
+    }
+
+    if (limiteMinimo > 0 && pontosTotal < limiteMinimo) {
+      pontosTotal = limiteMinimo;
+      alertas.push(
+        `Aplicado limite mínimo (${limiteMinimo}/80) — código funcional com ${(
+          proporcaoFuncoes * 100
+        ).toFixed(0)}% das funções implementadas.`
+      );
+    }
   }
 
   const notaFinal = Math.min(80, Math.max(0, Number(pontosTotal.toFixed(1))));
+
   const conceito =
     notaFinal >= 70
       ? greenText(boldText("EXCELENTE"))
