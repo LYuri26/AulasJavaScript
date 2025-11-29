@@ -1,0 +1,302 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  font-family: Snell Roundhand, cursive;
+}
+
+body {
+  font-family: "Times New Roman", Times, serif;
+  background-color: cornsilk;
+  line-height: 1.6rem;
+}
+
+.container-header {
+  max-width: 1150px;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+.header-geral {
+  background-color: pink;
+  color: white;
+  padding: 2rem 0;
+  border-bottom: 4px solid red;
+  border-radius: 0 0 10px 10px;
+}
+
+.titulo-principal {
+  font-size: 3.2rem;
+  letter-spacing: 1px;
+  font-weight: 700rem;
+  line-height: 3.6rem;
+}
+
+.menu-navegacao,
+.lista-menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.link-menu {
+  color: tomato;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 0.8rem;
+  transition: 0.3s;
+}
+
+.link-menu:hover {
+  background-color: black;
+  border-radius: 5px;
+}
+
+.secao {
+  padding: 3rem 1rem;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.header-secao {
+  margin-bottom: 1.5rem;
+}
+.titulo-secao {
+  font-size: 1.7rem;
+  margin-bottom: 0;
+  position: relative;
+  padding-left: 20px;
+}
+
+.titulo-secao::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 10px;
+  height: 10px;
+  background-color: violet;
+  border-radius: 3px;
+}
+
+.descricao-secao {
+  color: greenyellow;
+  font-size: 2rem;
+  line-height: 2.6rem;
+}
+
+.artigo {
+  background-color: blue;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 2);
+  color: yellow;
+  font-size: 16px;
+}
+
+.figura {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+.img-exemplo {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 8px;
+}
+
+.lista-exemplos .exemplo {
+  margin-bottom: 0.7rem;
+  padding-left: 1rem;
+  position: relative;
+  list-style: none;
+  text-decoration: none;
+}
+.lista-exemplos .exemplo::before {
+  content: "🥸";
+  color: aquamarine;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.seletor-simples {
+  background-color: brown;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.seletor-complexo {
+  background-color: fuchsia;
+  border-left: 7px groove darkgreen;
+}
+
+#box-exemplo {
+  border: 3px dashed lime;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  background-color: blueviolet;
+  border-radius: 6px;
+  color: azure;
+}
+
+.lista-box {
+  margin: 0.4rem 0;
+}
+
+.container-flex {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.item-flex {
+  flex: 1;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 3px dotted palevioletred;
+  text-align: center;
+  background-color: gray;
+  transition: 1s;
+}
+
+.item-flex:hover {
+  transform: scale(1.05);
+}
+
+.container-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.item-grid {
+  background-color: blue;
+  text-align: center;
+  border: 4px groove purple;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: aquamarine;
+  border-radius: 6px;
+}
+.tabela-exemplo {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.tabela-exemplo th {
+  background-color: green;
+  color: orangered;
+  padding: 0.8rem;
+  border: 1px solid lightskyblue;
+}
+
+.tabela-exemplo td {
+  padding: 0.7rem;
+  border: 1px solid lightskyblue;
+}
+
+.formulario {
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+}
+
+.grupo-campos {
+  border: 4px groove cyan;
+  padding: 2.2rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.label-campo {
+  font-weight: bolder;
+  display: block;
+  margin: 0.5rem 0;
+}
+
+.input-campo,
+.campo-textarea,
+.campo-select {
+  width: 100%;
+  padding: 2rem;
+  border: 3px double aquamarine;
+  border-radius: 7px;
+  margin-bottom: 2rem;
+  transition: 2s;
+}
+
+.input-campo:focus {
+  border-color: red;
+  box-shadow: 0 0 10px rgba(255, 0, 196, 2);
+}
+
+.botao-enviar {
+  padding: 0.8rem 1.4rem;
+  background-color: brown;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.botao-enviar:hover {
+  background-color: orange;
+  transform: translateY(-2px);
+}
+
+.secao-midias {
+  text-align: center;
+  align-items: center;
+}
+.header-secao {
+  text-align: left;
+}
+
+.img-responsiva {
+  width: 50%;
+  border-radius: 30px;
+  text-align: center;
+  align-items: center;
+}
+
+.video-responsivo {
+  width: 25%;
+  border-radius: 60px;
+  margin: 1rem 0;
+  text-align: center;
+  align-items: center;
+}
+.audio-controle {
+  width: 100%;
+  margin-top: 3rem;
+  text-align: center;
+  align-items: center;
+  border-radius: 40px;
+  background-color: gold;
+}
+
+.rodape-geral {
+  background-color: magenta;
+  color: peachpuff;
+  text-align: center;
+  padding: 2rem 3rem;
+  margin-top: 3rem;
+}
+
+.texto-rodape {
+  font-size: 2rem;
+  font-weight: bolder;
+  font-style: oblique;
+}

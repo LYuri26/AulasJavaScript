@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Projeto — Estrutura Completa para CSS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body id="body-principal">
+
+    <!-- ===================================================== -->
+    <!-- CABEÇALHO GERAL -->
+    <!-- ===================================================== -->
+    <header id="topo-site" class="header-geral">
+        <div class="container-header">
+            <h1 class="titulo-principal">Aula Completa de CSS — Estrutura HTML</h1>
+
+            <!-- Navegação principal -->
+            <nav id="menu-navegacao" class="menu-navegacao">
+                <ul class="lista-menu">
+                    <li class="item-menu"><a href="#introducao-css" class="link-menu">Introdução</a></li>
+                    <li class="item-menu"><a href="#seletores" class="link-menu">Seletores</a></li>
+                    <li class="item-menu"><a href="#box-model" class="link-menu">Box Model</a></li>
+                    <li class="item-menu"><a href="#layout" class="link-menu">Layouts</a></li>
+                    <li class="item-menu"><a href="#formularios" class="link-menu">Formulários</a></li>
+                    <li class="item-menu"><a href="#midias" class="link-menu">Mídias</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===================================================== -->
+    <!-- CONTEÚDO PRINCIPAL -->
+    <!-- ===================================================== -->
+    <main id="conteudo-principal">
+
+        <!-- ===================================================== -->
+        <!-- SEÇÃO 1: INTRODUÇÃO -->
+        <!-- ===================================================== -->
+        <section id="introducao-css" class="secao secao-introducao">
+
+            <header class="header-secao">
+                <h2 class="titulo-secao">Introdução ao CSS</h2>
+                <p class="descricao-secao">A base para trabalhar estilos e aparência nas páginas web.</p>
+            </header>
+
+            <article id="artigo-o-que-e-css" class="artigo">
+                <h3 class="subtitulo-artigo">O que é CSS?</h3>
+                <p class="texto">
+                    CSS é a linguagem que define cores, tamanhos, espaçamentos, fontes, layouts e animações,
+                    separando forma e conteúdo.
+                </p>
+
+                <figure id="figura-exemplo" class="figura">
+                    <img src="./avatares_sistema_fiergs_senai_cor.png" alt="Ilustração CSS" class="img-exemplo">
+                    <figcaption>Figura ilustrativa: Estilização usando CSS.</figcaption>
+                </figure>
+            </article>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- SEÇÃO 2: SELETORES -->
+        <!-- ===================================================== -->
+        <section id="seletores" class="secao secao-seletores">
+
+            <header class="header-secao">
+                <h2 class="titulo-secao">Seletores CSS</h2>
+                <p class="descricao-secao">A forma como você seleciona e estiliza qualquer elemento.</p>
+            </header>
+
+            <article class="artigo seletor-simples">
+                <h3 class="subtitulo-artigo">Seletores Simples</h3>
+                <ul class="lista-exemplos">
+                    <li class="exemplo">h1, h2, p, nav (por tag)</li>
+                    <li class="exemplo">.classe (por classe)</li>
+                    <li class="exemplo">#id (por ID)</li>
+                    <li class="exemplo">[atributo] (por atributo)</li>
+                </ul>
+            </article>
+
+            <article class="artigo seletor-complexo">
+                <h3 class="subtitulo-artigo">Seletores Combinados</h3>
+                <ol class="lista-numerada">
+                    <li>pai filho → <code>div p</code></li>
+                    <li>pai > filho direto → <code>div > p</code></li>
+                    <li>irmão próximo → <code>h1 + p</code></li>
+                    <li>todos os irmãos → <code>h1 ~ p</code></li>
+                </ol>
+            </article>
+
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- SEÇÃO 3: BOX MODEL -->
+        <!-- ===================================================== -->
+        <section id="box-model" class="secao secao-box-model">
+
+            <header class="header-secao">
+                <h2 class="titulo-secao">Box Model Completo</h2>
+            </header>
+
+            <div class="box-exemplo" id="box-exemplo">
+                <h3 class="subtitulo-artigo">Exemplo de Caixa</h3>
+
+                <p class="texto">Cada elemento HTML é uma caixa formada por:</p>
+
+                <ul class="lista-box">
+                    <li><strong>Content</strong> — conteúdo</li>
+                    <li><strong>Padding</strong> — espaço interno</li>
+                    <li><strong>Border</strong> — borda</li>
+                    <li><strong>Margin</strong> — espaço externo</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- SEÇÃO 4: LAYOUT COMPLETO -->
+        <!-- ===================================================== -->
+        <section id="layout" class="secao secao-layout">
+
+            <header class="header-secao">
+                <h2 class="titulo-secao">Layouts em CSS</h2>
+            </header>
+
+            <!-- Containers para treinos de Flexbox -->
+            <div id="container-flex" class="container-layout container-flex">
+                <h3 class="subtitulo-artigo">Container Flex</h3>
+
+                <div class="item-flex item-flex-1">Item Flex 1</div>
+                <div class="item-flex item-flex-2">Item Flex 2</div>
+                <div class="item-flex item-flex-3">Item Flex 3</div>
+            </div>
+
+            <!-- Containers para treinos de Grid -->
+            <div id="container-grid" class="container-layout container-grid">
+                <h3 class="subtitulo-artigo">Container Grid</h3>
+
+                <div class="item-grid grid-a">A</div>
+                <div class="item-grid grid-b">B</div>
+                <div class="item-grid grid-c">C</div>
+                <div class="item-grid grid-d">D</div>
+                <div class="item-grid grid-e">E</div>
+                <div class="item-grid grid-f">F</div>
+            </div>
+
+            <!-- Tabela para estilização -->
+            <table id="tabela-exemplo" class="tabela-exemplo">
+                <thead>
+                    <tr>
+                        <th>Propriedade</th>
+                        <th>Função</th>
+                        <th>Exemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>display</td>
+                        <td>Define tipo de exibição</td>
+                        <td>flex, grid, block</td>
+                    </tr>
+                    <tr>
+                        <td>gap</td>
+                        <td>Espaço entre itens</td>
+                        <td>20px</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- SEÇÃO 5: FORMULÁRIOS COMPLETOS -->
+        <!-- ===================================================== -->
+        <section id="formularios" class="secao secao-formularios">
+
+            <header class="header-secao">
+                <h2 class="titulo-secao">Formulários em HTML</h2>
+            </header>
+
+            <form id="formulario-contato" class="formulario">
+
+                <fieldset class="grupo-campos">
+                    <legend>Informações pessoais</legend>
+
+                    <label for="nome" class="label-campo">Nome:</label>
+                    <input id="nome" type="text" class="input-campo campo-texto">
+
+                    <label for="email" class="label-campo">E-mail:</label>
+                    <input id="email" type="email" class="input-campo campo-email">
+
+                    <label for="idade" class="label-campo">Idade:</label>
+                    <input id="idade" type="number" class="input-campo campo-numero">
+                </fieldset>
+
+                <fieldset class="grupo-campos">
+                    <legend>Preferências</legend>
+
+                    <label><input type="checkbox" class="campo-checkbox"> Receber novidades</label>
+                    <label><input type="radio" name="curso" value="html" class="campo-radio"> HTML</label>
+                    <label><input type="radio" name="curso" value="css" class="campo-radio"> CSS</label>
+
+                    <label for="curso-select">Escolha um curso:</label>
+                    <select id="curso-select" class="campo-select">
+                        <option>Front-End</option>
+                        <option>Design</option>
+                    </select>
+                </fieldset>
+
+                <label for="mensagem" class="label-campo">Mensagem:</label>
+                <textarea id="mensagem" class="campo-textarea"></textarea>
+
+                <button id="botao-enviar" class="botao botao-enviar">Enviar</button>
+            </form>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- SEÇÃO 6: MÍDIAS -->
+        <!-- ===================================================== -->
+        <section id="midias" class="secao secao-midias">
+            <header class="header-secao">
+                <h2 class="titulo-secao">Mídias (Imagem, Vídeo, Áudio)</h2>
+            </header>
+
+            <figure class="figura-midias">
+                <img src="./autumn-9852400.png" alt="Imagem exemplo" class="img-responsiva">
+                <figcaption>Imagem responsiva para treinar CSS</figcaption>
+            </figure>
+
+            <video id="video-exemplo" class="video-responsivo" controls>
+                <source src="./298643.mov" type="video/mp4">
+            </video>
+
+            <audio id="audio-exemplo" class="audio-controle" controls>
+                <source src="./sandbreaker-379630.mp3" type="audio/mp3">
+            </audio>
+
+        </section>
+
+    </main>
+
+    <!-- ===================================================== -->
+    <!-- RODAPÉ -->
+    <!-- ===================================================== -->
+    <footer id="rodape-site" class="rodape-geral">
+        <p class="texto-rodape">© 2025 — Super Projeto CSS Completo</p>
+    </footer>
+
+</body>
+
+</html>
